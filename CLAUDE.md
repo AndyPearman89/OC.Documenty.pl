@@ -1,35 +1,605 @@
 # CLAUDE.md
 
-## Production Rules
+> Enterprise Production Configuration
+> Project: OC.Documenty.pl
+> Version: 3.0 Enterprise
+> Status: Production Only
 
-This repository targets production-quality software only.
+---
 
-### Non-negotiable requirements
-- No TODO, FIXME, XXX or placeholder code.
-- No mock implementations committed as production.
-- Every feature must be complete, tested and documented.
-- Use strict TypeScript.
-- No `any`.
-- No duplicated code.
-- Accessibility (WCAG AA) is mandatory.
-- Mobile-first responsive UI.
-- Performance and SEO are first-class requirements.
+# Mission
 
-### Testing
-Every feature must include appropriate tests where applicable:
-- Unit tests
-- Component tests
-- Integration tests
-- End-to-end tests for critical user journeys
+Develop and maintain the highest-quality platform for generating Polish insurance documents with a primary focus on OC (motor liability insurance) workflows.
 
-Do not mark work as complete unless build, lint, type checking and tests pass.
+Every implementation must be production-ready.
 
-### Architecture
-- Next.js App Router
-- Reusable components
-- Feature-based organization
-- Clear separation of UI, domain and infrastructure.
+Prototype code, temporary solutions and incomplete features are not acceptable.
 
-### Quality
-Prefer maintainability over shortcuts.
-Reject partial implementations. Ship production-ready code only.
+---
+
+# Core Principles
+
+1. Production First
+2. Quality Over Speed
+3. Security By Default
+4. Accessibility By Default
+5. SEO First
+6. Mobile First
+7. Reusable Architecture
+8. Maintainable Code
+9. Test Everything
+10. Continuous Improvement
+
+---
+
+# Forbidden
+
+Never commit
+
+- TODO
+- FIXME
+- XXX
+- HACK
+- placeholder UI
+- fake API
+- temporary implementations
+- duplicated code
+- console.log()
+- unused imports
+- dead code
+- inline CSS
+- magic numbers
+- hardcoded secrets
+- hardcoded API URLs
+
+---
+
+# Technology
+
+Frontend
+
+- Next.js 16+
+- React 19
+- TypeScript Strict
+- App Router
+- Tailwind CSS 4
+- shadcn/ui
+- Framer Motion
+- React Hook Form
+- Zod
+- Zustand
+- TanStack Query
+
+Backend (future)
+
+- WordPress Headless
+- REST API
+- GraphQL
+
+Infrastructure
+
+- GitHub
+- GitHub Actions
+- Docker
+- Vercel
+- Cloudflare
+
+---
+
+# Architecture
+
+Follow Feature Driven Architecture.
+
+Every module owns
+
+- components
+- hooks
+- types
+- services
+- validation
+- tests
+- documentation
+
+Never duplicate business logic.
+
+---
+
+# Project Structure
+
+app/
+
+components/
+
+features/
+
+hooks/
+
+lib/
+
+services/
+
+types/
+
+styles/
+
+public/
+
+docs/
+
+tests/
+
+---
+
+# Coding Standards
+
+Always
+
+✓ strict TypeScript
+
+✓ typed props
+
+✓ reusable hooks
+
+✓ composition
+
+✓ server components
+
+✓ semantic HTML
+
+✓ accessibility
+
+Never
+
+✗ any
+
+✗ duplicated code
+
+✗ inline styles
+
+✗ unused variables
+
+✗ dead code
+
+---
+
+# UI Rules
+
+Visual language
+
+White
+
+Red
+
+Rounded
+
+Professional
+
+Insurance
+
+Premium
+
+Minimal
+
+Consistent spacing
+
+Large typography
+
+3D illustrations
+
+---
+
+# Accessibility
+
+Required
+
+WCAG AA
+
+Keyboard navigation
+
+Screen reader support
+
+Focus management
+
+ARIA labels
+
+Semantic HTML
+
+Reduced motion support
+
+---
+
+# Performance
+
+Must satisfy
+
+Core Web Vitals
+
+Image Optimization
+
+Dynamic Import
+
+Lazy Loading
+
+Caching
+
+Streaming
+
+Code Splitting
+
+Avoid unnecessary rerenders.
+
+---
+
+# SEO
+
+Every page
+
+Metadata
+
+Canonical
+
+OpenGraph
+
+Twitter Card
+
+JSON-LD
+
+Breadcrumb
+
+FAQ Schema
+
+Article Schema
+
+Organization Schema
+
+Sitemap
+
+Robots
+
+---
+
+# Forms
+
+Always
+
+React Hook Form
+
+Zod
+
+Validation
+
+Autocomplete
+
+Keyboard support
+
+Friendly errors
+
+Loading state
+
+Disabled state
+
+Success state
+
+---
+
+# Generator
+
+Workflow
+
+Owner
+
+↓
+
+Vehicle
+
+↓
+
+Policy
+
+↓
+
+Insurer
+
+↓
+
+Reason
+
+↓
+
+Validation
+
+↓
+
+Preview
+
+↓
+
+Signature
+
+↓
+
+Send
+
+↓
+
+Success
+
+No shortcuts.
+
+---
+
+# PDF
+
+Every generated document
+
+Header
+
+Footer
+
+Logo
+
+QR Code
+
+Version
+
+Generation timestamp
+
+Professional spacing
+
+A4 layout
+
+Print Ready
+
+Download Ready
+
+---
+
+# Components
+
+Every component must include
+
+Props interface
+
+Accessibility
+
+Responsive layout
+
+Loading
+
+Error
+
+Empty state
+
+Documentation
+
+Unit tests
+
+---
+
+# Error Handling
+
+Support
+
+Loading
+
+Validation
+
+Offline
+
+Retry
+
+Unexpected error
+
+Server error
+
+Empty data
+
+---
+
+# Security
+
+Never expose
+
+Secrets
+
+API Keys
+
+Passwords
+
+JWT
+
+Environment variables
+
+Private URLs
+
+Validate all inputs.
+
+Escape output.
+
+---
+
+# Testing
+
+Every production feature requires
+
+Unit Tests
+
+Integration Tests
+
+Component Tests
+
+End-to-End Tests
+
+Accessibility Tests
+
+Performance Tests
+
+Regression Tests
+
+Snapshot Tests when appropriate.
+
+---
+
+# Quality Gates
+
+Every Pull Request must pass
+
+TypeScript
+
+ESLint
+
+Build
+
+Tests
+
+Coverage
+
+Accessibility
+
+Performance
+
+SEO
+
+No warnings.
+
+---
+
+# Code Review
+
+Reject if
+
+Any TODO exists
+
+Feature incomplete
+
+Accessibility broken
+
+Responsive broken
+
+Tests missing
+
+SEO missing
+
+Types missing
+
+Documentation missing
+
+---
+
+# Git
+
+Small commits
+
+Meaningful messages
+
+Conventional Commits preferred
+
+Never push broken builds.
+
+---
+
+# Documentation
+
+Every feature
+
+README
+
+Types
+
+Architecture
+
+Examples
+
+API
+
+Usage
+
+Migration notes when needed.
+
+---
+
+# Definition of Done
+
+A feature is complete only if
+
+✓ Build passes
+
+✓ Lint passes
+
+✓ Types pass
+
+✓ Tests pass
+
+✓ Responsive
+
+✓ Accessible
+
+✓ SEO complete
+
+✓ Documentation complete
+
+✓ No duplicated code
+
+✓ Production ready
+
+Otherwise continue implementation.
+
+---
+
+# Design System
+
+Use only approved design tokens.
+
+Spacing
+
+Typography
+
+Colors
+
+Icons
+
+Buttons
+
+Cards
+
+Inputs
+
+Tables
+
+Dialogs
+
+Navigation
+
+Animations
+
+must remain consistent across the project.
+
+---
+
+# Enterprise Rules
+
+Always prefer
+
+Maintainability
+
+Scalability
+
+Readability
+
+Performance
+
+Security
+
+Quality
+
+Never optimize for short-term speed at the expense of long-term maintainability.
+
+---
+
+# Final Rule
+
+Every commit should move the repository closer to a deployable production release.
+
+Never leave the repository in a partially implemented state.
+
+Ship quality.
