@@ -1,0 +1,5 @@
+import { Check, CloudDownload, FileText, LockKeyhole, PenLine, ShieldCheck } from "lucide-react";
+
+export function HeroProductVisual(){return <div className="productVisual" aria-label="Podgląd generatora dokumentów OC"><div className="visualGlow"/><div className="visualDocument"><div className="visualDocHeader"><span><FileText/></span><b>Wypowiedzenie OC</b><small>PDF A4</small></div><div className="visualLines"><i/><i/><i/><i/></div><div className="visualSignature"><PenLine/><span>Podpisano</span></div></div><div className="visualShield"><ShieldCheck/><span>Przetwarzanie lokalne</span></div><div className="visualDownload"><CloudDownload/><span><b>Dokument gotowy</b><small>do pobrania</small></span><Check/></div><div className="visualLock"><LockKeyhole/> Bez konta</div></div>}
+
+export function WorkflowVisual(){return <div className="workflowVisual" aria-hidden="true"><div><FileText/><span>Formularz</span></div><i/><div><PenLine/><span>Podpis</span></div><i/><div><CloudDownload/><span>PDF</span></div></div>}

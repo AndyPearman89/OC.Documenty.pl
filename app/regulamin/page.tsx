@@ -1,0 +1,9 @@
+﻿import type { Metadata } from "next";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+
+export const metadata:Metadata={title:"Regulamin serwisu",description:"Zasady korzystania z generatorów i wzorów dokumentów OC.Documenty.pl."};
+
+export default function TermsPage(){return <><Header/><main id="main-content" className="legalPage"><div className="container legalContent"><span className="eyebrow">Zasady korzystania</span><h1>Regulamin serwisu</h1><p className="legalLead">Ostatnia aktualizacja: 14 lipca 2026 r.</p><section><h2>1. Charakter usługi</h2><p>Serwis udostępnia narzędzia pomagające przygotować wzory dokumentów związanych z ubezpieczeniem OC. Serwis nie jest zakładem ubezpieczeń, kancelarią prawną ani organem administracji.</p></section><section><h2>2. Odpowiedzialność użytkownika</h2><p>Przed wysłaniem dokumentu użytkownik powinien sprawdzić poprawność danych, podstawę wypowiedzenia, termin oraz aktualne wymagania właściwego ubezpieczyciela.</p></section><section><h2>3. Podpis i wysyłka</h2><p>Akceptowany sposób podpisania i dostarczenia dokumentu może zależeć od ubezpieczyciela. Przygotowanie wiadomości e-mail nie powoduje automatycznego wysłania ani dołączenia pliku — użytkownik zatwierdza wiadomość we własnym programie pocztowym.</p></section><section><h2>4. Dostępność usługi</h2><p>Generatory są dostępne bez konta. Dane formularza mogą zostać utracone po zamknięciu lub odświeżeniu strony, dlatego gotowy dokument należy pobrać przed zakończeniem pracy.</p></section><section><h2>5. Operator</h2><p>OC.Documenty.pl jest częścią platformy Documenty.pl. Kontakt: <a href="mailto:oc@documenty.pl">oc@documenty.pl</a>.</p><p><strong>Przed publikacją należy uzupełnić pełne dane identyfikacyjne operatora i procedurę reklamacyjną.</strong></p></section></div></main><Footer/></>}
+
+
