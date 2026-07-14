@@ -1,0 +1,89 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="accentGrad-kupno" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#115e59"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e30613"/>
+      <stop offset="1" stop-color="#bd0010"/>
+    </linearGradient>
+    <filter id="softShadow-kupno" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0f766e" flood-opacity="0.28"/>
+    </filter>
+    <filter id="cardShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#0f172a" flood-opacity="0.16"/>
+    </filter>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#0f172a" opacity="0.05"/>
+    </pattern>
+    <radialGradient id="dotsFade-kupno" cx="30%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="white" stop-opacity="1"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="dotsMask-kupno">
+      <rect width="1200" height="630" fill="url(#dotsFade-kupno)"/>
+    </mask>
+  </defs>
+
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect width="1200" height="630" fill="url(#dots)" mask="url(#dotsMask-kupno)"/>
+  <rect width="1200" height="630" fill="#f0fdfa" opacity="0.35"/>
+  <rect width="1200" height="8" fill="url(#brandGrad)"/>
+
+  <!-- wordmark -->
+  <g transform="translate(64,44)">
+    <rect width="34" height="34" rx="10" fill="url(#brandGrad)"/>
+    <g transform="translate(8,8)" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 1 3 3v4.5c0 3.6 2.5 6.4 6 7.3 3.5-0.9 6-3.7 6-7.3V3L9 1Z"/>
+      <path d="m6.6 8.7 1.6 1.6 3-3"/>
+    </g>
+    <text x="46" y="14" font-size="19" font-weight="800" fill="#0f172a" letter-spacing="-0.3">OC.Documenty.pl</text>
+    <text x="46" y="28" font-size="10.5" font-weight="700" fill="#94a3b8" letter-spacing="1.6">PORADNIK I WZORY</text>
+  </g>
+
+  <!-- category pill -->
+  <g transform="translate(736,52)">
+    <rect width="226.6" height="34" rx="17" fill="white" stroke="#0f766e" stroke-opacity="0.25"/>
+    <circle cx="18" cy="17" r="4" fill="#0f766e"/>
+    <text x="34" y="22" font-size="13" font-weight="800" fill="#0f766e" letter-spacing="0.5">KUPNO I SPRZEDAŻ AUTA</text>
+  </g>
+
+  <!-- document card -->
+  <g transform="translate(120,140) rotate(-4.5 215 175)" filter="url(#cardShadow)">
+    <rect width="430" height="350" rx="28" fill="#ffffff" stroke="#eef0f4"/>
+    <rect x="34" y="34" width="362" height="10" rx="5" fill="url(#accentGrad-kupno)"/>
+    <rect x="34" y="74" width="318" height="11" rx="5.5" fill="#eef1f6"/>
+    <rect x="34" y="97" width="346" height="11" rx="5.5" fill="#eef1f6"/>
+    <rect x="34" y="120" width="252" height="11" rx="5.5" fill="#eef1f6"/>
+    <text x="34" y="320" font-size="12.5" font-weight="800" fill="#94a3b8">Wzór PDF</text>
+    <g transform="translate(348,268)">
+      <rect width="52" height="52" rx="16" fill="url(#accentGrad-kupno)"/>
+      <path d="M15 27 22 34 37 18" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- big icon badge -->
+  <g transform="translate(390,330) rotate(6 95 95)" filter="url(#softShadow-kupno)">
+    <rect width="190" height="190" rx="44" fill="url(#accentGrad-kupno)"/>
+    <g transform="translate(47,47) scale(4)" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m11 17 2 2a2 2 0 1 0 2.8-2.8"/><path d="m13.5 14.5 3-3a2 2 0 1 1 2.8 2.8L15 18.5"/><path d="M6 8h4l3.5 3.5"/><path d="M2 7 6 3l4 4v8l-4 4-4-4Z"/>
+    </g>
+  </g>
+
+  <!-- chip -->
+  <g transform="translate(610,150)" filter="url(#cardShadow)">
+    <rect width="140" height="40" rx="16" fill="white" stroke="#eef0f4"/>
+    <path d="m14 20 5 5 10-11" transform="translate(0,-2)" stroke="#0f766e" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="34" y="25" font-size="12.5" font-weight="800" fill="#0f172a">Aktualne 2026</text>
+  </g>
+
+  <!-- text block -->
+  <g transform="translate(0,0)">
+    <text x="654" y="248" font-size="13" font-weight="800" fill="#0f766e" letter-spacing="2">KUPNO I SPRZEDAŻ AUTA</text>
+    <text x="654" y="300" font-size="46" font-weight="800" fill="#0f172a" letter-spacing="-0.5"><tspan x="654" dy="0">Kupno i</tspan><tspan x="654" dy="56">sprzedaż auta</tspan></text>
+    <foreignObject x="654" y="380" width="470" height="90">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Segoe UI',Arial,sans-serif;font-size:16px;line-height:1.5;color:#64748b;">Formalności przy transakcji: umowa i zgłoszenie zbycia.</div>
+    </foreignObject>
+  </g>
+</svg>

@@ -1,22 +1,17 @@
 import type { CSSProperties } from "react";
 import {
-  BadgeDollarSign,
   Building2,
   CarFront,
   Check,
-  ClipboardList,
   CloudDownload,
   FileCheck2,
   FileClock,
   FileText,
-  Gavel,
   HandCoins,
   KeyRound,
-  Landmark,
   LockKeyhole,
   PenLine,
   ReceiptText,
-  ScrollText,
   ShieldCheck,
   ShieldQuestion,
   Signature,
@@ -198,86 +193,46 @@ export function BlogHeroVisual() {
 }
 
 const blogThumbnailThemes = {
-  "Kolizje i wypadki": { accent: "#ef4444", tint: "rgba(239,68,68,.12)", label: "Kolizje", icon: CarFront, chip: "Auto" },
-  "Ubezpieczenie OC": { accent: "#1d4ed8", tint: "rgba(29,78,216,.12)", label: "OC", icon: ScrollText, chip: "Polisa" },
-  "Kupno i sprzedaż auta": { accent: "#0f766e", tint: "rgba(15,118,110,.12)", label: "Auto", icon: ClipboardList, chip: "Umowa" },
-  Odszkodowania: { accent: "#7c3aed", tint: "rgba(124,58,237,.12)", label: "Zwrot", icon: BadgeDollarSign, chip: "Szkoda" },
-  "UFG i przepisy": { accent: "#0f172a", tint: "rgba(15,23,42,.12)", label: "UFG", icon: Landmark, chip: "Przepisy" },
-  "Dokumenty i wzory": { accent: "#ea580c", tint: "rgba(234,88,12,.12)", label: "PDF", icon: FileText, chip: "Wzór" },
-  Porównania: { accent: "#059669", tint: "rgba(5,150,105,.12)", label: "Porady", icon: Gavel, chip: "Porównanie" },
+  "Kolizje i wypadki": { accent: "#ef4444", tint: "rgba(239,68,68,.12)", cover: "kolizje" },
+  "Ubezpieczenie OC": { accent: "#1d4ed8", tint: "rgba(29,78,216,.12)", cover: "oc" },
+  "Kupno i sprzedaż auta": { accent: "#0f766e", tint: "rgba(15,118,110,.12)", cover: "kupno" },
+  Odszkodowania: { accent: "#7c3aed", tint: "rgba(124,58,237,.12)", cover: "odszkodowania" },
+  "UFG i przepisy": { accent: "#0f172a", tint: "rgba(15,23,42,.12)", cover: "ufg" },
+  "Dokumenty i wzory": { accent: "#ea580c", tint: "rgba(234,88,12,.12)", cover: "dokumenty" },
+  Porównania: { accent: "#059669", tint: "rgba(5,150,105,.12)", cover: "porownania" },
 } as const;
 
 export function BlogThumbnailVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
   const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
-  const Icon = theme.icon;
 
   return (
-    <div
-      className="blogThumbnail"
-      style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties}
-      aria-hidden="true"
-    >
-      <div className="blogThumbnailGlow" />
-      <div className="blogThumbnailOrbit" />
-      <div className="blogThumbnailBadge">{theme.label}</div>
-      <div className="blogThumbnailCard">
-        <div className="blogThumbnailSymbol">
-          <Icon />
-        </div>
-        <div className="blogThumbnailIdentity">
-          <span>{theme.label}</span>
-          <small>{theme.chip}</small>
-        </div>
-        <svg className="blogThumbnailRibbon" viewBox="0 0 84 84" aria-hidden="true">
-          <rect x="18" y="10" width="34" height="48" rx="8" fill="none" stroke="currentColor" strokeWidth="3" />
-          <path d="M26 26h18M26 34h18M26 42h11" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="56" cy="52" r="14" fill="none" stroke="currentColor" strokeWidth="3" />
-          <path d="m49.5 52.5 4.8 4.8 9.2-10.4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
-      <div className="blogThumbnailMeta">
-        <span>
-          <Check />
-          Gotowe
-        </span>
-        <span>
-          <CloudDownload />
-          PDF
-        </span>
-      </div>
+    <div className="blogThumbnail" style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- SVG source, next/image optimizer does not apply to vector assets */}
+      <img
+        src={`/blog/covers/${theme.cover}.svg`}
+        alt={`Grafika ilustrująca artykuł: ${title}`}
+        width={1200}
+        height={630}
+        loading="lazy"
+        className="blogThumbnailImage"
+      />
     </div>
   );
 }
 
 export function BlogCoverVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
   const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
-  const Icon = theme.icon;
-  const initials = title
-    .split(" ")
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
 
   return (
-    <div
-      className="blogCover"
-      style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties}
-      aria-hidden="true"
-    >
-      <div className="blogCoverTop">
-        <span>{theme.label}</span>
-        <i />
-      </div>
-      <div className="blogCoverTitle">{initials}</div>
-      <div className="blogCoverCard">
-        <Icon />
-        <strong>{title}</strong>
-      </div>
-      <div className="blogCoverFooter">
-        <span>{category}</span>
-        <small>{theme.chip} • OC.Documenty.pl</small>
-      </div>
+    <div className="blogCover" style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- SVG source, next/image optimizer does not apply to vector assets */}
+      <img
+        src={`/blog/covers/${theme.cover}.svg`}
+        alt={`Grafika ilustrująca artykuł: ${title}`}
+        width={1200}
+        height={630}
+        className="blogCoverImage"
+      />
     </div>
   );
 }
