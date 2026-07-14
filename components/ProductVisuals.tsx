@@ -219,17 +219,32 @@ export function BlogThumbnailVisual({ category, title }: { category: keyof typeo
     .toUpperCase();
 
   return (
-    <div className="blogThumbnail" style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties} aria-hidden="true">
+    <div
+      className="blogThumbnail"
+      style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties}
+      aria-hidden="true"
+    >
+      <div className="blogThumbnailGlow" />
+      <div className="blogThumbnailOrbit" />
       <div className="blogThumbnailBadge">{theme.label}</div>
       <div className="blogThumbnailCard">
-        <Icon />
-        <span>{initials}</span>
+        <div className="blogThumbnailSymbol">
+          <Icon />
+        </div>
+        <div className="blogThumbnailIdentity">
+          <span>{initials}</span>
+          <small>{theme.chip}</small>
+        </div>
       </div>
-      <div className="blogThumbnailChip">{theme.chip}</div>
-      <div className="blogThumbnailLines">
-        <i />
-        <i />
-        <i />
+      <div className="blogThumbnailMeta">
+        <span>
+          <Check />
+          Gotowe
+        </span>
+        <span>
+          <CloudDownload />
+          PDF
+        </span>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, CalendarDays, CheckCircle2, Clock3, FileText, ShieldCheck } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, Clock3, FileText, FileWarning, PenLine, ShieldCheck, FileSearch } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
@@ -76,6 +76,22 @@ export default async function BlogPostPage({ params }: PageProps) {
         <section className="enterpriseSection blogContent">
           <div className="container blogContentGrid">
             <article>
+              <div className="blogArticleVisual">
+                <div className="blogArticleVisualPanel">
+                  <div>
+                    <FileSearch />
+                    <span>Analiza sprawy</span>
+                  </div>
+                  <div>
+                    <FileWarning />
+                    <span>Decyzja ubezpieczyciela</span>
+                  </div>
+                  <div>
+                    <PenLine />
+                    <span>Treść odwołania</span>
+                  </div>
+                </div>
+              </div>
               <div className="blogBody">
                 <h2>Najważniejsze zasady</h2>
                 <p>{post.sections[0]}</p>
