@@ -93,10 +93,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               </div>
               <div className="blogBody">
-                <h2>Najważniejsze zasady</h2>
-                <p>{post.sections[0]}</p>
-                <p>{post.sections[1]}</p>
-                <p>{post.sections[2]}</p>
+                {post.sections.map((section) => (
+                  <div key={section.heading}>
+                    <h2>{section.heading}</h2>
+                    {section.body.split("\n\n").map((paragraph, paragraphIndex) => (
+                      <p key={paragraphIndex}>{paragraph}</p>
+                    ))}
+                  </div>
+                ))}
               </div>
 
               <div className="blogHighlights">
