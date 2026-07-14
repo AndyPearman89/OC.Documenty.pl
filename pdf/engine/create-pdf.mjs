@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { jsPDF } from "jspdf";
+// Imported from the unminified build on purpose: jsPDF's font subsetter drops
+// composite-glyph component IDs (breaks accented Latin characters, e.g. ó/ś/ć/ń/ź/ż/ł)
+// unless patched — see patches/jspdf+*.patch. The patch targets this file specifically.
+import { jsPDF } from "jspdf/dist/jspdf.node.js";
 import { createLayout } from "./helpers.mjs";
 import { theme } from "./theme.mjs";
 import { typography } from "./typography.mjs";

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { AdsenseScript } from "@/components/AdSense";
 import { BlogCoverVisual, BlogThumbnailVisual } from "@/components/ProductVisuals";
 import { blogPosts, getBlogPost } from "@/lib/blog";
 
@@ -115,6 +116,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             </aside>
           </div>
 
+          <div className="container blogAdSlot blogAdSlotSpaced">
+            <AdsenseScript slot="1234567890" label="Reklama w środku artykułu" />
+          </div>
+
           {post.faq.length > 0 ? (
             <div className="container">
               <div className="blogFaq">
@@ -156,6 +161,10 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             </div>
           ) : null}
+
+          <div className="container blogAdSlot">
+            <AdsenseScript slot="1234567890" label="Reklama w artykule blogowym" />
+          </div>
         </section>
       </main>
       <Footer />

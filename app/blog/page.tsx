@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Sparkles } from "
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { AdsenseScript } from "@/components/AdSense";
 import { BlogHeroVisual, BlogThumbnailVisual } from "@/components/ProductVisuals";
 import { blogCategories, blogPosts } from "@/lib/blog";
 
@@ -89,6 +90,10 @@ export default function BlogPage() {
               ))}
             </div>
 
+            <div className="blogAdSlot">
+              <AdsenseScript slot="1234567890" label="Reklama w sekcji bloga" />
+            </div>
+
             {blogCategories.map((category) => {
               const posts = blogPosts.filter((post) => post.category === category);
               if (!posts.length) return null;
@@ -119,6 +124,10 @@ export default function BlogPage() {
                 </section>
               );
             })}
+
+            <div className="blogAdSlot blogAdSlotSpaced">
+              <AdsenseScript slot="1234567890" label="Drugi blok reklamy na blogu" />
+            </div>
           </div>
         </section>
       </main>
