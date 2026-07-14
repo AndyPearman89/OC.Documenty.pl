@@ -63,10 +63,17 @@ jobs:
           set -e
           url="https://oc.documenty.pl/"
           echo "Smoke-testing ${url} ..."
-          status="$(curl -sS -L -o /dev/null -w '%{http_code}' --max-time 30 "${url}" || echo "000")"
-          echo "HTTP status: ${status}"
+          status="000"
+          for i in $(seq 1 10); do
+            status="$(curl -sS -L -o /dev/null -w '%{http_code}' --max-time 15 "${url}" || echo "000")"
+            echo "Attempt ${i}: HTTP ${status}"
+            if [ "${status}" -ge 200 ] && [ "${status}" -lt 400 ]; then
+              break
+            fi
+            sleep 3
+          done
           if [ "${status}" -lt 200 ] || [ "${status}" -ge 400 ]; then
-            echo "::error::Smoke test failed: ${url} returned HTTP ${status}."
+            echo "::error::Smoke test failed: ${url} returned HTTP ${status} after retries."
             echo "To roll back: re-run this workflow (workflow_dispatch) with 'ref' set to the last known-good commit SHA/tag."
             exit 1
           fi
