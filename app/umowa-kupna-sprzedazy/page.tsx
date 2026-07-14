@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CheckCircle2, Clock3, ShieldCheck, Sparkles, FileText, ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock3, FileText, ShieldCheck, Sparkles } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -8,19 +8,20 @@ import { PurchaseAgreementForm } from "@/features/purchase-agreement/PurchaseAgr
 
 export const metadata: Metadata = {
   title: "Umowa kupna-sprzedaży pojazdu",
-  description: "Profesjonalny wzór umowy kupna-sprzedaży samochodu, motocykla, przyczepki lub ciężarówki do wypełnienia online i pobrania PDF.",
+  description:
+    "Profesjonalny wzór umowy kupna-sprzedaży samochodu, motocykla, przyczepki lub ciężarówki do wypełnienia online i pobrania PDF.",
   alternates: { canonical: "/umowa-kupna-sprzedazy" },
 };
 
 const agreementHighlights = [
-  "układ urzędowy i czytelny dla obu stron transakcji",
-  "miejsce na dane pojazdu, cenę i podpisy",
-  "gotowy PDF do druku lub przekazania online",
+  "formalny układ dokumentu z miejscem na wszystkie kluczowe dane",
+  "wersja czytelna dla sprzedającego i kupującego",
+  "gotowy PDF do druku, podpisu i przekazania dalej",
 ];
 
 const agreementSteps = [
-  "Wybierz typ pojazdu i uzupełnij dane stron.",
-  "Dodaj informacje o pojeździe, cenie i dacie sprzedaży.",
+  "Wybierz typ pojazdu i uzupełnij dane stron transakcji.",
+  "Dodaj informacje o pojeździe, cenie oraz miejscu sprzedaży.",
   "Dołącz podpis zdjęciem i pobierz gotowy dokument PDF.",
 ];
 
@@ -31,14 +32,15 @@ export default function PurchaseAgreementPage() {
       <main id="main-content" className="generatorPage purchasePage">
         <div className="container">
           <Breadcrumbs items={[{ label: "Dokumenty", href: "/dokumenty" }, { label: "Umowa kupna-sprzedaży pojazdu" }]} />
+
           <section className="generatorIntro enterpriseGeneratorIntro purchaseHero">
             <span className="premiumPill">
               <Sparkles /> Oficjalny wzór dokumentu
             </span>
             <h1>Umowa kupna-sprzedaży pojazdu</h1>
             <p>
-              Wypełnij dane sprzedającego, kupującego i pojazdu, a następnie pobierz czytelny dokument PDF gotowy do podpisania.
-              Wzór przygotowaliśmy tak, aby wyglądał formalnie i był wygodny do druku.
+              Wypełnij dane sprzedającego, kupującego i pojazdu, a następnie pobierz estetyczny dokument PDF gotowy do
+              podpisania. Przygotowaliśmy go tak, aby wyglądał formalnie, przejrzyście i dobrze drukował się na A4.
             </p>
             <div className="purchaseHeroBadges">
               <span><CheckCircle2 /> Dla auta, motocykla i ciężarówki</span>
@@ -98,8 +100,9 @@ export default function PurchaseAgreementPage() {
               <span className="premiumPill">Dlaczego ten wzór</span>
               <h2>Formalny dokument, który porządkuje transakcję</h2>
               <p>
-                Umowa zawiera miejsca na wszystkie najważniejsze dane: strony umowy, pojazd, cenę, datę sprzedaży i podpisy. Dzięki
-                temu łatwiej przekazać auto zgodnie z wymaganiami urzędowymi i później wykonać kolejne formalności bez pomyłek.
+                Umowa zawiera miejsca na wszystkie najważniejsze dane: strony umowy, pojazd, cenę, datę sprzedaży i
+                podpisy. Dzięki temu łatwiej przekazać auto zgodnie z wymaganiami urzędowymi i później wykonać kolejne
+                formalności bez pomyłek.
               </p>
             </article>
             <article>

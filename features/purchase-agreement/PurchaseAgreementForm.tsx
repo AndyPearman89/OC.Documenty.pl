@@ -33,16 +33,15 @@ const textFields = [
 ] as const;
 
 type TextField = (typeof textFields)[number];
-
 type FormState = Record<TextField | "vehicleType", string>;
 
 const labels: Record<TextField, string> = {
-  sellerName: "Sprzedający - imię i nazwisko",
-  sellerAddress: "Sprzedający - adres",
-  sellerId: "Sprzedający - PESEL / NIP",
-  buyerName: "Kupujący - imię i nazwisko",
-  buyerAddress: "Kupujący - adres",
-  buyerId: "Kupujący - PESEL / NIP",
+  sellerName: "Sprzedający – imię i nazwisko",
+  sellerAddress: "Sprzedający – adres",
+  sellerId: "Sprzedający – PESEL / NIP",
+  buyerName: "Kupujący – imię i nazwisko",
+  buyerAddress: "Kupujący – adres",
+  buyerId: "Kupujący – PESEL / NIP",
   vehicleMake: "Marka pojazdu",
   vehicleModel: "Model pojazdu",
   vehicleRegistration: "Numer rejestracyjny",
@@ -134,7 +133,7 @@ export function PurchaseAgreementForm() {
           <Check />
           <span className="premiumPill">Dokument gotowy</span>
           <h2>Umowa kupna-sprzedaży została przygotowana</h2>
-          <p>Sprawdź podgląd, pobierz PDF lub wydrukuj dokument.</p>
+          <p>Sprawdź podgląd, pobierz PDF lub wydrukuj dokument w formacie A4.</p>
         </div>
         <div className="documentActions">
           <button className="button buttonPrimary" onClick={() => downloadPdf("purchase-agreement", "umowa-kupna-sprzedazy.pdf")}>
@@ -159,12 +158,16 @@ export function PurchaseAgreementForm() {
         <div className="progressTrack"><i style={{ width: `${progress}%` }} /></div>
         <small><Save /> Zapis lokalny</small>
       </header>
+
       <div className="generatorBody purchaseBody">
         <section className="formPanel">
           <div className="formHeading">
             <span>Wzór umowy</span>
             <h2>Wypełnij umowę kupna-sprzedaży</h2>
-            <p>Wpisz dane stron, typ pojazdu i warunki transakcji. Umowa zostanie przygotowana w przejrzystym układzie.</p>
+            <p>
+              Uzupełnij dane stron, pojazdu i warunki sprzedaży, a my przygotujemy czytelny dokument gotowy do podpisu,
+              druku i pobrania.
+            </p>
           </div>
 
           <div className="formGrid detailedForm">
@@ -210,7 +213,7 @@ export function PurchaseAgreementForm() {
 
           <section className="signatureUpload">
             <h3>Podpis stron</h3>
-            <p>Dodaj zdjęcie podpisu sprzedającego albo wspólną pieczęć transakcji.</p>
+            <p>Dodaj zdjęcie podpisu sprzedającego albo wspólny znak potwierdzający transakcję.</p>
             {signature ? (
               <div className="signaturePreview">
                 <Image src={signature} alt="Podpis" width={420} height={160} unoptimized />
@@ -240,7 +243,7 @@ export function PurchaseAgreementForm() {
           <div className="progressRing" style={{ "--progress": `${progress * 3.6}deg` } as CSSProperties}>
             <span>{progress}%</span>
           </div>
-          <h3>Twoja umowa</h3>
+          <h3>Podsumowanie umowy</h3>
           <p>{values.sellerName ? `${values.sellerName} → ${values.buyerName || "kupujący"}` : "Najpierw uzupełnij dane stron."}</p>
           <ul>
             <li><Check /> Dane stron, typu i pojazdu</li>
@@ -272,37 +275,69 @@ function AgreementDocument({ values, signature }: { values: FormState; signature
           <small>Dokument gotowy do wydruku</small>
         </div>
       </header>
+
       <h1>UMOWA KUPNA-SPRZEDAŻY POJAZDU</h1>
-      <p className="printLead">Wypełnij dane stron i pojazdu czytelnie. Po podpisaniu dokument możesz wydrukować lub przekazać dalej.</p>
+      <p className="printLead">
+        Wpisz dane stron i pojazdu czytelnie. Po podpisaniu dokument możesz wydrukować, przekazać drugiej stronie
+        lub pobrać jako PDF.
+      </p>
+
       <div className="ocParties">
         <section>
           <h3>Sprzedający</h3>
-          <p><b>{values.sellerName || "________________"}</b><br />{values.sellerAddress || "________________"}<br />{values.sellerId || "________________"}</p>
+          <p>
+            <b>{values.sellerName || "________________"}</b>
+            <br />
+            {values.sellerAddress || "________________"}
+            <br />
+            {values.sellerId || "________________"}
+          </p>
         </section>
         <section>
           <h3>Kupujący</h3>
-          <p><b>{values.buyerName || "________________"}</b><br />{values.buyerAddress || "________________"}<br />{values.buyerId || "________________"}</p>
+          <p>
+            <b>{values.buyerName || "________________"}</b>
+            <br />
+            {values.buyerAddress || "________________"}
+            <br />
+            {values.buyerId || "________________"}
+          </p>
         </section>
       </div>
+
       <section>
         <h3>Dane pojazdu</h3>
         <p>
-          Typ: <b>{typeLabel}</b><br />
-          Marka: <b>{values.vehicleMake || "________________"}</b><br />
-          Model: {values.vehicleModel || "________________"}<br />
-          Numer rejestracyjny: {values.vehicleRegistration || "________________"}<br />
-          VIN: {values.vehicleVin || "________________"}<br />
+          Typ: <b>{typeLabel}</b>
+          <br />
+          Marka: <b>{values.vehicleMake || "________________"}</b>
+          <br />
+          Model: {values.vehicleModel || "________________"}
+          <br />
+          Numer rejestracyjny: {values.vehicleRegistration || "________________"}
+          <br />
+          VIN: {values.vehicleVin || "________________"}
+          <br />
           Rok produkcji: {values.vehicleYear || "________________"}
         </p>
       </section>
+
       <section>
         <h3>Warunki transakcji</h3>
-        <p>Miejsce sprzedaży: <b>{values.salePlace || "________________"}</b><br />Data sprzedaży: {values.saleDate || "________________"}<br />Cena: {values.price || "________________"}</p>
+        <p>
+          Miejsce sprzedaży: <b>{values.salePlace || "________________"}</b>
+          <br />
+          Data sprzedaży: {values.saleDate || "________________"}
+          <br />
+          Cena: {values.price || "________________"}
+        </p>
       </section>
+
       <div className="ocSignature">
         <Image src={signature} alt="Podpis" width={300} height={100} unoptimized />
         <span>Podpis sprzedającego</span>
       </div>
+
       <footer className="printFooter">
         <div>
           <strong>OC.Documenty.pl</strong>
