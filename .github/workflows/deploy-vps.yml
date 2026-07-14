@@ -27,6 +27,7 @@ on:
 
 env:
   DEPLOY_PATH: /opt/oc-documenty-pl
+  DEPLOY_REF: ${{ inputs.ref || github.sha }}
 
 jobs:
   deploy:
@@ -48,8 +49,11 @@ jobs:
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" bash -s <<'REMOTE'
           set -euo pipefail
           cd "${{ env.DEPLOY_PATH }}"
+          if ! git remote get-url origin | grep -q '^git@github.com:'; then
+            git remote set-url origin git@github.com:AndyPearman89/OC.Documenty.pl.git
+          fi
           git fetch origin
-          git checkout "${{ inputs.ref || github.sha }}"
+          git checkout "${{ env.DEPLOY_REF }}"
           docker build -t oc-documenty-pl:latest .
           docker rm -f oc_frontend || true
           docker run -d --name oc_frontend \
