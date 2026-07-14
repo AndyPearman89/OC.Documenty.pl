@@ -1,0 +1,73 @@
+name: Deploy to VPS
+
+# Builds the Docker image on the VPS and recreates the oc_frontend container,
+# which Caddy (running as part of the separate documenty-nextjs stack) proxies
+# oc.documenty.pl to over the shared "documenty-nextjs_documenty_net" Docker
+# network. This repo has no database/auth -- Docker + a straight rebuild is
+# all that's needed.
+#
+# Requires repository secrets (Settings -> Secrets and variables -> Actions):
+#   VPS_HOST     - server IP/hostname (e.g. 147.182.136.32)
+#   VPS_USER     - SSH user (e.g. root)
+#   VPS_SSH_KEY  - private half of a deploy-only keypair whose public half is
+#                  in that user's ~/.ssh/authorized_keys on the server
+#
+# Rollback: re-run this workflow via workflow_dispatch with `ref` set to the
+# SHA/tag/branch of the last known-good commit.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Git ref (branch/tag/SHA) to deploy. Leave empty to deploy the current default branch.'
+        required: false
+        type: string
+
+env:
+  DEPLOY_PATH: /opt/oc-documenty-pl
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      - name: Add VPS to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Pull latest code and rebuild on the VPS
+        run: |
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=10 \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" bash -s <<'REMOTE'
+          set -euo pipefail
+          cd "${{ env.DEPLOY_PATH }}"
+          git fetch origin
+          git checkout "${{ inputs.ref || github.sha }}"
+          docker build -t oc-documenty-pl:latest .
+          docker rm -f oc_frontend || true
+          docker run -d --name oc_frontend \
+            --network documenty-nextjs_documenty_net \
+            --restart unless-stopped \
+            oc-documenty-pl:latest
+          REMOTE
+
+      - name: Post-deploy smoke test
+        run: |
+          set -e
+          url="https://oc.documenty.pl/"
+          echo "Smoke-testing ${url} ..."
+          status="$(curl -sS -L -o /dev/null -w '%{http_code}' --max-time 30 "${url}" || echo "000")"
+          echo "HTTP status: ${status}"
+          if [ "${status}" -lt 200 ] || [ "${status}" -ge 400 ]; then
+            echo "::error::Smoke test failed: ${url} returned HTTP ${status}."
+            echo "To roll back: re-run this workflow (workflow_dispatch) with 'ref' set to the last known-good commit SHA/tag."
+            exit 1
+          fi
+          echo "Smoke test passed."
