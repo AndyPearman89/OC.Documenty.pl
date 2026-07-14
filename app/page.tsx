@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroProductVisual, WorkflowVisual } from "@/components/ProductVisuals";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { Reveal } from "@/components/Reveal";
 import { insurerProfiles } from "@/lib/catalog";
 
@@ -25,6 +26,12 @@ const homepageFaq = [
   ["Czy muszę się logować?", "Nie. Dokumenty i generator są dostępne bez konta, a formularze działają lokalnie w przeglądarce."],
   ["Czy mogę pobrać tylko PDF?", "Tak. Przy każdym wzorze masz możliwość pobrania gotowego pliku PDF lub przejścia do generatora."],
   ["Czy znajdę tu też wzory dla firm?", "Tak. Sekcja ubezpieczycieli prowadzi do dokumentów dla konkretnych towarzystw i ich opisów."],
+];
+
+const newsletterPoints = [
+  "dokument tygodnia",
+  "zmiany przepisów i kar",
+  "nowe generatory i PDF",
 ];
 
 const faq = [
@@ -275,6 +282,12 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <NewsletterSignup
+          variant="sales"
+          title="Newsletter dla kierowców"
+          description="Krótko, konkretnie i bez spamu — raz w tygodniu dostaniesz gotowe wzory, zmiany przepisów i rzeczy, które realnie pomagają."
+        />
 
         <section className="enterpriseFinalCta">
           <div className="container">

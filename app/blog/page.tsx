@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { AdsenseScript } from "@/components/AdSense";
 import { BlogHeroVisual, BlogThumbnailVisual } from "@/components/ProductVisuals";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { blogCategories, blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
@@ -130,6 +131,13 @@ export default function BlogPage() {
             </div>
           </div>
         </section>
+
+        <NewsletterSignup
+          compact
+          variant="showcase"
+          title="Newsletter blogowy"
+          description="Dostawaj nowe artykuły, zmiany przepisów i praktyczne poradniki prosto na e-mail."
+        />
       </main>
       <Footer />
     </>
