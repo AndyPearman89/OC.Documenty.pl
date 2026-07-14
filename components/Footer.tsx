@@ -14,6 +14,7 @@ export function Footer() {
         </div>
         <div>
           <strong>Dokumenty</strong>
+          <Link href="/dokumenty">Wszystkie dokumenty</Link>
           <Link href="/generator">Wypowiedzenie OC</Link>
           <Link href="/wspolne-oswiadczenie">Wspólne oświadczenie</Link>
           <Link href="/oswiadczenie-sprawcy">Oświadczenie sprawcy</Link>

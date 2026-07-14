@@ -3,7 +3,7 @@ import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Sparkles } from "
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { BlogHeroVisual } from "@/components/ProductVisuals";
+import { BlogHeroVisual, BlogThumbnailVisual } from "@/components/ProductVisuals";
 import { blogCategories, blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
@@ -66,6 +66,7 @@ export default function BlogPage() {
             <div className="blogGrid">
               {featured.map((post) => (
                 <article className="blogCard featured" key={post.slug}>
+                  <BlogThumbnailVisual category={post.category} title={post.title} />
                   <small>{post.category}</small>
                   <h2>{post.title}</h2>
                   <p>{post.excerpt}</p>
@@ -91,8 +92,9 @@ export default function BlogPage() {
                 <section key={category} className="blogCategorySection">
                   <h2>{category}</h2>
                   <div className="blogList">
-                    {posts.map((post) => (
-                      <article className="blogCard" key={post.slug}>
+                  {posts.map((post) => (
+                    <article className="blogCard" key={post.slug}>
+                        <BlogThumbnailVisual category={post.category} title={post.title} />
                         <small>{post.category}</small>
                         <h3>{post.title}</h3>
                         <p>{post.excerpt}</p>

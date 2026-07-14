@@ -1,339 +1,122 @@
 # SITE_ARCHITECTURE.md
 
-> Enterprise Website Architecture
+> Website Information Architecture
 > Project: OC.Documenty.pl
-> Version: 1.0
 
 ---
 
 # Purpose
 
-This document defines the complete information architecture of the website.
-
-It specifies every page, route, navigation path and content relationship.
+This document lists every route that actually exists in `app/` and the real homepage layout. Keep it in sync with `app/sitemap.ts`.
 
 ---
 
-# Goals
+# Primary Navigation (Header.tsx)
 
-The website must be:
-
-- SEO First
-- Mobile First
-- Accessible
-- Fast
-- Conversion Focused
-- Scalable
+Check `components/Header.tsx` for the current nav links before assuming this list — verify it hasn't drifted.
 
 ---
 
-# Primary Navigation
+# Site Map (real routes)
 
-Home
-
-Generator
-
-Documents
-
-Guides
-
-FAQ
-
-Contact
-
-Login
-
-Dashboard
-
----
-
-# Site Map
-
+```
 /
+/generator
+/dokumenty
+/dokumenty/[slug]            → one per lib/catalog.ts entry (12 documents)
+/kolizja
+/oswiadczenie-sprawcy
+/wspolne-oswiadczenie
+/umowa-kupna-sprzedazy
+/umowa-kupna-sprzedazy-wspolwlasciciel
+/ubezpieczyciele
+/ubezpieczyciele/[slug]       → one per lib/catalog.ts insurerProfiles
+/ubezpieczyciele/pzu          → dedicated landing page (separate from [slug])
+/blog
+/blog/[slug]
+/faq
+/kontakt
+/polityka-prywatnosci
+/regulamin
+```
 
-├── generator/
-│   ├── oc/
-│   ├── ac/
-│   ├── vehicle-sale/
-│   ├── vehicle-purchase/
-│   ├── complaint/
-│   ├── refund/
-│   └── preview/
-│
-├── documents/
-│   ├── category/
-│   ├── insurer/
-│   ├── tag/
-│   └── [slug]
-│
-├── guides/
-│   ├── category/
-│   └── [slug]
-│
-├── faq/
-│
-├── insurers/
-│   └── [slug]
-│
-├── dashboard/
-│
-├── premium/
-│
-├── about/
-│
-├── contact/
-│
-├── privacy-policy/
-│
-├── terms/
-│
-└── cookies/
+There is no `/dashboard`, `/premium`, `/about`, `/cookies`, `/generator/oc`, `/generator/ac`, or any `/{miasto}`/`/{wojewodztwo}` programmatic SEO routes.
 
 ---
 
-# Homepage
+# Homepage (app/page.tsx)
 
-Hero
+Actual section order (see class names in `app/enterprise.css`):
 
-↓
-
-Quick Generator
-
-↓
-
-Popular Documents
-
-↓
-
-Categories
-
-↓
-
-How It Works
-
-↓
-
-Benefits
-
-↓
-
-Statistics
-
-↓
-
-FAQ
-
-↓
-
-Newsletter
-
-↓
-
+```
+Hero (enterpriseHero)
+  ↓
+Trust badges (enterpriseTrust)
+  ↓
+Process — "Od formularza do gotowego dokumentu" (processSection)
+  ↓
+Document surface / preview showcase (surfaceSection)
+  ↓
+Insurers strip (insurersSection)
+  ↓
+Benefits (benefitsSection)
+  ↓
+Guides / blog teasers (guidesSection)
+  ↓
+FAQ (faqEnterprise)
+  ↓
+Final CTA (enterpriseFinalCta)
+  ↓
 Footer
+```
+
+There is no Statistics or Newsletter section on the homepage.
 
 ---
 
-# Generator Flow
+# Generator Flow (features/generator/GeneratorForm.tsx)
 
-Landing
-
-↓
-
-Document Type
-
-↓
-
-Owner Details
-
-↓
-
-Vehicle Details
-
-↓
-
-Insurance Details
-
-↓
-
-Validation
-
-↓
-
-Preview
-
-↓
-
-Signature
-
-↓
-
+```
+Step 1: Ubezpieczyciel (insurer)
+  ↓
+Step 2: Pojazd (vehicle)
+  ↓
+Step 3: Właściciel (owner)
+  ↓
+Step 4: Polisa (policy)
+  ↓
+Step 5: Podpis i podgląd (signature + preview)
+  ↓
 Download
-
-↓
-
-Send
-
-↓
-
-Success
+```
 
 ---
 
-# Dashboard
+# Document Catalog (lib/catalog.ts categories)
 
-Overview
-
-↓
-
-Saved Documents
-
-↓
-
-Drafts
-
-↓
-
-History
-
-↓
-
-Downloads
-
-↓
-
-Settings
+`Wypowiedzenia`, `Zwroty`, `Oświadczenia`, `Pojazd`, `Umowy`, `Odstąpienia`, `Reklamacje` — 12 documents total. See `features/documents/DocumentsBrowser.tsx` for the filter UI.
 
 ---
 
-# Search
+# Footer Navigation (components/Footer.tsx)
 
-Global Search
-
-↓
-
-Documents
-
-↓
-
-Guides
-
-↓
-
-FAQ
-
-↓
-
-Insurers
-
----
-
-# Footer Navigation
-
-Documents
-
-Guides
-
-Categories
-
-Support
-
-Company
-
-Legal
-
-Social
-
----
-
-# SEO Landing Pages
-
-/oc/
-
-/wypowiedzenie-oc/
-
-/ubezpieczyciele/
-
-/poradniki/
-
-/wzory-dokumentow/
-
-/faq/
-
-/kategorie/
-
-/tagi/
-
----
-
-# URL Rules
-
-- Human-readable
-- Short
-- Stable
-- Lowercase
-- Hyphen-separated
-
-Never expose implementation details in URLs.
+Two link columns ("Dokumenty", "Pomoc i informacje") plus a contact block. Check the file directly before assuming its contents — it has previously drifted from the real document list.
 
 ---
 
 # Breadcrumbs
 
-Every content page requires breadcrumbs.
-
-Example
-
-Home
-
->
-
-Documents
-
->
-
-OC
-
->
-
-Cancellation Letter
+`components/Breadcrumbs.tsx` renders breadcrumbs on catalog/insurer pages. Not every page uses them — verify per page before assuming presence.
 
 ---
 
-# Accessibility
+# URL Rules
 
-Every page must include:
-
-- Semantic HTML
-- Keyboard navigation
-- Skip links
-- Proper headings
-- Accessible forms
+- Human-readable, lowercase, hyphen-separated Polish slugs
+- Stable — slugs are used as PDF template keys in `pdf/templates/`, so renaming a slug requires updating `lib/catalog.ts` and the matching template file together
 
 ---
 
-# Performance
+# Future Expansion (not started)
 
-Target:
-
-- Lighthouse ≥95
-- Core Web Vitals "Good"
-
----
-
-# Future Expansion
-
-Architecture must support:
-
-- Additional document types
-- AI features
-- Multi-language
-- User workspaces
-- Enterprise integrations
-
-without restructuring existing routes.
-
----
-
-# Final Rule
-
-The site architecture should remain predictable, scalable and easy to navigate for both users and search engines.
+Programmatic SEO pages (per-city, per-insurer combinations), a dashboard, and additional document categories are plausible future directions but are not designed or scheduled — do not build against them without confirming scope first.

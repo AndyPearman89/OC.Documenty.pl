@@ -5,7 +5,16 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { documentCatalog } from "@/lib/catalog";
 
-const categories = ["Wszystkie", "Wypowiedzenia", "Oświadczenia", "Zwroty", "Pojazd", "Reklamacje"] as const;
+const categories = [
+  "Wszystkie",
+  "Wypowiedzenia",
+  "Oświadczenia",
+  "Zwroty",
+  "Pojazd",
+  "Umowy",
+  "Odstąpienia",
+  "Reklamacje",
+] as const;
 
 function documentHref(slug: string) {
   if (slug === "wypowiedzenie-oc") return "/generator";

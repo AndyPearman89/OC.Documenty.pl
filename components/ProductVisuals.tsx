@@ -1,8 +1,10 @@
+import type { CSSProperties } from "react";
 import {
   CarFront,
   Check,
   CloudDownload,
   FileCheck2,
+  FileClock,
   FileText,
   HandCoins,
   KeyRound,
@@ -185,6 +187,73 @@ export function BlogHeroVisual() {
           <CloudDownload />
           <span>PDF</span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+const blogThumbnailThemes = {
+  "Kolizje i wypadki": { accent: "#ef4444", tint: "rgba(239,68,68,.12)", label: "Kolizje" },
+  "Ubezpieczenie OC": { accent: "#1d4ed8", tint: "rgba(29,78,216,.12)", label: "OC" },
+  "Kupno i sprzedaż auta": { accent: "#0f766e", tint: "rgba(15,118,110,.12)", label: "Auto" },
+  Odszkodowania: { accent: "#7c3aed", tint: "rgba(124,58,237,.12)", label: "Zwrot" },
+  "UFG i przepisy": { accent: "#0f172a", tint: "rgba(15,23,42,.12)", label: "UFG" },
+  "Dokumenty i wzory": { accent: "#ea580c", tint: "rgba(234,88,12,.12)", label: "PDF" },
+  Porównania: { accent: "#059669", tint: "rgba(5,150,105,.12)", label: "Porady" },
+} as const;
+
+export function BlogThumbnailVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
+  const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
+  const initials = title
+    .split(" ")
+    .slice(0, 3)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
+  return (
+    <div className="blogThumbnail" style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties} aria-hidden="true">
+      <div className="blogThumbnailBadge">{theme.label}</div>
+      <div className="blogThumbnailCard">
+        <FileClock />
+        <span>{initials}</span>
+      </div>
+      <div className="blogThumbnailLines">
+        <i />
+        <i />
+        <i />
+      </div>
+    </div>
+  );
+}
+
+export function BlogCoverVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
+  const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
+  const initials = title
+    .split(" ")
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
+  return (
+    <div
+      className="blogCover"
+      style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties}
+      aria-hidden="true"
+    >
+      <div className="blogCoverTop">
+        <span>{theme.label}</span>
+        <i />
+      </div>
+      <div className="blogCoverTitle">{initials}</div>
+      <div className="blogCoverCard">
+        <FileClock />
+        <strong>{title}</strong>
+      </div>
+      <div className="blogCoverFooter">
+        <span>{category}</span>
+        <small>Poradnik OC.Documenty.pl</small>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 export function createDocumentMeta(overrides = {}) {
   const uuid = crypto.randomUUID();
   const version = overrides.version ?? "2.2";
-  const updateDate = overrides.updateDate ?? "14.07.2026";
+  const updateDate = overrides.updateDate ?? new Date().toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit", year: "numeric" });
   const generatorId = overrides.generatorId ?? "oc.documenty.pl/pdf-engine";
   const documentType = overrides.documentType ?? "DOC";
 

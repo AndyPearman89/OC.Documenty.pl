@@ -1,338 +1,158 @@
 # PROJECT_STRUCTURE.md
 
-> Enterprise Repository Structure
+> Repository Structure
 > Project: OC.Documenty.pl
 
 ---
 
 # Purpose
 
-This document defines the official repository structure.
-
-No folders should be created outside this specification unless the architecture evolves and this document is updated.
+This document reflects the actual current repository structure. Update it whenever top-level folders or conventions change.
 
 ---
 
-# Repository
+# Repository (top level)
 
 ```
 OC.Documenty.pl/
-
 app/
 components/
 features/
-hooks/
 lib/
-services/
-types/
-styles/
+pdf/
 public/
-docs/
-tests/
 scripts/
-config/
 ```
+
+There are no `hooks/`, `services/`, `types/`, `styles/`, `docs/`, `tests/` or `config/` folders. Types live inline or next to the modules that use them; global styles live in `app/globals.css` and `app/enterprise.css`.
 
 ---
 
 # app/
 
-Contains all Next.js App Router pages.
+Next.js App Router pages.
 
 ```
 app/
-
-layout.tsx
-
-page.tsx
-
-loading.tsx
-
-error.tsx
-
-not-found.tsx
-
-generator/
-
-dokumenty/
-
-faq/
-
-kontakt/
-
-o-nas/
-
-dashboard/
-
-premium/
-
-api/
+  layout.tsx
+  page.tsx                          → homepage
+  not-found.tsx
+  robots.ts
+  sitemap.ts
+  globals.css
+  enterprise.css
+  generator/page.tsx                → generator wizard (wypowiedzenie OC)
+  dokumenty/page.tsx                → document library with search/filter
+  dokumenty/[slug]/page.tsx         → single document landing page
+  kolizja/page.tsx                  → collision statement flow
+  oswiadczenie-sprawcy/page.tsx
+  wspolne-oswiadczenie/page.tsx
+  umowa-kupna-sprzedazy/page.tsx
+  umowa-kupna-sprzedazy-wspolwlasciciel/page.tsx
+  ubezpieczyciele/page.tsx          → insurer directory
+  ubezpieczyciele/[slug]/page.tsx
+  ubezpieczyciele/pzu/page.tsx      → dedicated PZU landing page
+  blog/page.tsx
+  blog/[slug]/page.tsx
+  faq/page.tsx
+  kontakt/page.tsx
+  polityka-prywatnosci/page.tsx
+  regulamin/page.tsx
 ```
 
-Rules
-
-- Server Components by default
-- Metadata in every route
-- No business logic
+There is no `loading.tsx`, `error.tsx`, `dashboard/`, `premium/`, or `api/` route.
 
 ---
 
 # components/
 
-Reusable UI.
+Flat, reusable UI components (no subfolders):
 
 ```
 components/
-
-layout/
-
-navigation/
-
-cards/
-
-forms/
-
-generator/
-
-pdf/
-
-dashboard/
-
-marketing/
-
-shared/
-
-ui/
+  Header.tsx
+  Footer.tsx
+  Logo.tsx
+  Breadcrumbs.tsx
+  CookieConsent.tsx
+  InsurerBrand.tsx
+  ProductVisuals.tsx    → decorative section illustrations (SVG-based)
+  Reveal.tsx            → scroll-triggered fade-in wrapper (IntersectionObserver)
 ```
-
-Rules
-
-- Reusable
-- No duplicated UI
-- Typed props
 
 ---
 
 # features/
 
-Business features.
-
-Example
+Business logic grouped by feature, one folder per domain:
 
 ```
-generator/
-
-documents/
-
-search/
-
-authentication/
-
-dashboard/
-
-analytics/
-
-pdf/
+features/
+  generator/GeneratorForm.tsx
+  collision/CollisionForm.tsx
+  collision/JointStatementForm.tsx
+  contact/ContactForm.tsx
+  documents/DocumentsBrowser.tsx
+  purchase-agreement/PurchaseAgreementForm.tsx
 ```
-
-Every feature owns
-
-- components
-- hooks
-- types
-- services
-- tests
-
----
-
-# hooks/
-
-Reusable hooks.
-
-```
-useGenerator
-
-useSearch
-
-useLocalStorage
-
-useTheme
-
-useDocument
-```
-
-Never duplicate hooks.
 
 ---
 
 # lib/
 
-Utilities.
-
 ```
-constants.ts
-
-helpers.ts
-
-metadata.ts
-
-schema.ts
-
-validators.ts
-
-config.ts
+lib/
+  catalog.ts       → document catalog, generator groups, insurer list
+  blog.ts          → blog post data
+  downloadPdf.ts    → client-side PDF download helper
 ```
 
 ---
 
-# services/
+# pdf/
 
-Business services.
+Standalone PDF generation engine (Node scripts, not part of the Next.js runtime bundle):
 
 ```
-pdf.ts
-
-generator.ts
-
-search.ts
-
-analytics.ts
-
-email.ts
+pdf/
+  engine/create-pdf.mjs
+  engine/document.mjs
+  engine/footer.mjs
+  engine/form.mjs
+  engine/grid.mjs
+  engine/header.mjs
+  engine/helpers.mjs
+  engine/qr.mjs
+  engine/theme.mjs
+  engine/typography.mjs
+  engine/watermark.mjs
+  templates/oswiadczenie-sprawcy.mjs
+  templates/wspolne-oswiadczenie.mjs
+  templates/wypowiedzenie-oc.mjs
 ```
-
-No UI inside services.
 
 ---
 
-# types/
-
-Project-wide TypeScript types.
+# scripts/
 
 ```
-document.ts
-
-generator.ts
-
-insurance.ts
-
-user.ts
-
-pdf.ts
+scripts/
+  generate-pdf-templates.mjs
+  generate-premium-collision-pdf.mjs
+  generate-professional-pdfs.mjs
+  generate-styled-pdfs.mjs
 ```
 
-No duplicated interfaces.
-
----
-
-# styles/
-
-```
-globals.css
-
-animations.css
-
-forms.css
-
-print.css
-
-variables.css
-```
-
-Only global styles belong here.
+Run via `npm run pdf:generate` (see `package.json`).
 
 ---
 
 # public/
 
 ```
-logo/
-
-icons/
-
-images/
-
-3d/
-
-mockups/
-
-fonts/
-
-favicon/
-```
-
----
-
-# docs/
-
-Architecture documentation.
-
-```
-README.md
-
-ARCHITECTURE.md
-
-DESIGN_SYSTEM.md
-
-TESTING.md
-
-SECURITY.md
-
-DEPLOYMENT.md
-```
-
----
-
-# tests/
-
-```
-unit/
-
-integration/
-
-e2e/
-
-fixtures/
-
-helpers/
-```
-
-Every critical feature must have tests.
-
----
-
-# scripts/
-
-Automation scripts.
-
-```
-build
-
-lint
-
-test
-
-release
-
-generate
-```
-
----
-
-# config/
-
-```
-eslint
-
-prettier
-
-tailwind
-
-typescript
-
-vitest
-
-playwright
+public/
+  images/    → brand + document preview images
+  wzory/     → pre-generated sample PDFs served for download
 ```
 
 ---
@@ -341,27 +161,12 @@ playwright
 
 Never
 
-- duplicate folders
 - duplicate components
-- duplicate services
-- duplicate hooks
+- duplicate features
 - duplicate types
+- add a new top-level folder without updating this document
 
 Always
 
-- organize by feature
-- reuse code
-- keep modules independent
-
----
-
-# Quality Standard
-
-Every new file should have
-
-- clear responsibility
-- strong typing
-- documentation
-- tests when applicable
-
-No exceptions.
+- keep one feature = one folder under `features/`
+- reuse existing components before creating new ones

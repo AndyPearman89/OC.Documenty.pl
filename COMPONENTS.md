@@ -1,319 +1,75 @@
 # COMPONENTS.md
 
-> Enterprise Component Architecture
+> Component Reference
 > Project: OC.Documenty.pl
-> Version: 1.0
 
 ---
 
 # Purpose
 
-This document defines the architecture, lifecycle and implementation standards for every reusable component in the project.
-
-Every UI element must comply with this specification.
+This document lists the actual reusable components and feature forms in the codebase. Update it whenever a component is added, renamed, or removed.
 
 ---
 
 # Principles
 
-Every component must be
+Every component should be
 
-- Reusable
-- Typed
-- Accessible
+- Reusable where genuinely shared, otherwise inline in the page
+- Typed (props interface, no `any`)
+- Accessible (semantic HTML, keyboard support)
 - Responsive
-- Tested
-- Documented
 
-Never build one-off components if they can be generalized.
+Don't generalize a component before a second real use case exists.
 
 ---
 
-# Component Hierarchy
+# components/ (flat, shared UI)
 
-Application
+| Component | Purpose |
+|---|---|
+| `Header.tsx` | Site header, primary nav, mobile menu |
+| `Footer.tsx` | Site footer, link columns, contact block |
+| `Logo.tsx` | Brand mark used in header/footer |
+| `Breadcrumbs.tsx` | Breadcrumb trail for catalog/insurer pages |
+| `CookieConsent.tsx` | Cookie-consent banner, persists choice to `localStorage` |
+| `InsurerBrand.tsx` | Insurer badge/logo rendering |
+| `ProductVisuals.tsx` | Decorative SVG illustrations used across marketing sections |
+| `Reveal.tsx` | Scroll-triggered fade-in wrapper (IntersectionObserver, respects `prefers-reduced-motion`) |
 
-↓
-
-Feature
-
-↓
-
-Section
-
-↓
-
-Component
-
-↓
-
-Primitive
+There are no subfolders (`layout/`, `navigation/`, `ui/`, etc.) — keep components flat unless the list above grows large enough to justify grouping.
 
 ---
 
-# Folder Structure
+# features/ (domain forms, one folder per feature)
 
-components/
-
-layout/
-
-navigation/
-
-marketing/
-
-generator/
-
-documents/
-
-dashboard/
-
-pdf/
-
-forms/
-
-shared/
-
-ui/
+| Feature folder | Component | Purpose |
+|---|---|---|
+| `generator/` | `GeneratorForm.tsx` | Multi-step OC-cancellation wizard |
+| `collision/` | `CollisionForm.tsx` | Collision statement form (`/kolizja`, `/oswiadczenie-sprawcy`) |
+| `collision/` | `JointStatementForm.tsx` | Joint collision statement (`/wspolne-oswiadczenie`) |
+| `contact/` | `ContactForm.tsx` | Contact page form |
+| `documents/` | `DocumentsBrowser.tsx` | Searchable/filterable document catalog (`/dokumenty`) |
+| `purchase-agreement/` | `PurchaseAgreementForm.tsx` | Vehicle purchase/sale contract forms |
 
 ---
 
 # Naming Convention
 
-Use PascalCase.
-
-Examples
-
-Navbar.tsx
-
-Hero.tsx
-
-DocumentCard.tsx
-
-GeneratorStepper.tsx
-
-PreviewPDF.tsx
-
-SignaturePad.tsx
-
----
-
-# Component Template
-
-Every component should contain
-
-- Interface
-- Component
-- Default export
-- Documentation
-- Accessibility
-- Tests
+PascalCase file and component names, matching the existing files above (`GeneratorForm.tsx`, not `generator-form.tsx`).
 
 ---
 
 # Props
 
-Rules
-
-- Explicit interfaces
-- Strict typing
-- Optional props only when necessary
-- No any
-
-Example
-
-interface ButtonProps {
-
-variant
-
-size
-
-disabled
-
-loading
-
-children
-
-onClick
-
-}
-
----
-
-# Component Categories
-
-## Layout
-
-Navbar
-
-Footer
-
-Sidebar
-
-Header
-
-Container
-
-Section
-
-PageLayout
-
-DashboardLayout
-
----
-
-## Navigation
-
-Breadcrumb
-
-Pagination
-
-Tabs
-
-Menu
-
-MegaMenu
-
-MobileMenu
-
-SearchBar
-
----
-
-## Marketing
-
-Hero
-
-Features
-
-Benefits
-
-CTA
-
-Testimonials
-
-FAQ
-
-Newsletter
-
-Statistics
-
-Pricing
-
----
-
-## Generator
-
-GeneratorStepper
-
-ProgressBar
-
-InsuranceForm
-
-VehicleForm
-
-OwnerForm
-
-ReasonSelector
-
-PreviewCard
-
-Summary
-
----
-
-## PDF
-
-PreviewPDF
-
-PDFToolbar
-
-DownloadButton
-
-PrintButton
-
-VersionInfo
-
-QRCode
-
----
-
-## Documents
-
-DocumentCard
-
-DocumentGrid
-
-CategoryCard
-
-DocumentSidebar
-
-RelatedDocuments
-
----
-
-## Dashboard
-
-DashboardCard
-
-StatsCard
-
-ActivityFeed
-
-HistoryTable
-
-ProfileCard
-
----
-
-## Forms
-
-Input
-
-Textarea
-
-Checkbox
-
-Radio
-
-Select
-
-Autocomplete
-
-DatePicker
-
-FileUpload
-
-SignaturePad
-
----
-
-## Feedback
-
-Alert
-
-Toast
-
-Notification
-
-Loading
-
-Skeleton
-
-EmptyState
-
-ErrorState
+- Explicit interfaces, strict typing, no `any`
+- Optional props only when there's a real default behavior
 
 ---
 
 # Styling
 
-Use only
-
-Tailwind CSS
-
-Design Tokens
-
-Shared utilities
+Plain CSS via `app/globals.css` (CSS custom properties: `--red`, `--navy`, `--ink`, `--muted`, `--line`, `--soft`, `--shadow`, `--radius`) and `app/enterprise.css` (page/section-specific classes). No Tailwind, no CSS-in-JS, no component library — class names are handwritten and shared by convention (e.g. `.button`, `.buttonPrimary`, `.buttonOutline`, `.card`-style patterns per section).
 
 No inline styles.
 
@@ -321,99 +77,22 @@ No inline styles.
 
 # State Management
 
-Prefer
-
-Props
-
-↓
-
-Context
-
-↓
-
-Zustand
-
-Avoid unnecessary global state.
+Local component state (`useState`) and React Hook Form for form state. No global state library — don't introduce one without a concrete cross-page state need.
 
 ---
 
 # Accessibility
 
-Every component requires
-
-- semantic HTML
-- ARIA labels
-- keyboard navigation
-- visible focus
-- contrast compliance
-
----
-
-# Performance
-
-Use
-
-memo()
-
-dynamic()
-
-lazy()
-
-only where measurable benefit exists.
-
-Avoid premature optimization.
+Every component should have semantic HTML, visible focus, and keyboard support. WCAG AA is the target; there is no automated accessibility test suite yet, so verify manually when touching a component.
 
 ---
 
 # Testing
 
-Every reusable component requires
-
-- Rendering test
-- Accessibility test
-- Interaction test
-- Snapshot (when useful)
-
----
-
-# Documentation
-
-Every exported component should document
-
-- Purpose
-- Props
-- Usage
-- Accessibility notes
+There is no test suite in this repo today (no `tests/`, no test runner configured in `package.json`). Don't reference or require tests in reviews until one is set up — flag it separately if it's needed.
 
 ---
 
 # Review Checklist
 
-Reject components that
-
-- duplicate existing logic
-- use any
-- lack accessibility
-- lack tests
-- violate design system
-- introduce inconsistent styling
-
----
-
-# Definition of Done
-
-A component is complete only if
-
-✓ Typed
-
-✓ Responsive
-
-✓ Accessible
-
-✓ Tested
-
-✓ Documented
-
-✓ Reusable
-
-✓ Production Ready
+Before adding a component, check this file and the tables above for an existing one that already does the job. Reject additions that duplicate an existing component or introduce a new styling approach (e.g. Tailwind, CSS-in-JS) inconsistent with the rest of the codebase.

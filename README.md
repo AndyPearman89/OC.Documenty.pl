@@ -12,7 +12,7 @@ Generate, preview, sign and manage Polish insurance documents with a modern, acc
 
 ---
 
-Next.js • React • TypeScript • Tailwind CSS • Enterprise Architecture
+Next.js • React • TypeScript
 
 </div>
 
@@ -93,33 +93,25 @@ The platform focuses on simplicity for users while maintaining enterprise-qualit
 
 # Technology Stack
 
-## Frontend
+## Frontend (actual)
 
 - Next.js 16+
 - React 19
 - TypeScript (Strict)
 - App Router
-- Tailwind CSS 4
-- shadcn/ui
-- Framer Motion
-- React Hook Form
-- Zod
-- Zustand
-- TanStack Query
+- Plain CSS (no Tailwind, no component library)
+- React Hook Form + Zod
+- jsPDF + html2canvas (client-side PDF generation)
+- qrcode
+- lucide-react
 
-## Future Backend
+## Backend
 
-- WordPress Headless
-- REST API
-- GraphQL
+None. No API, database, or authentication — everything runs client-side.
 
 ## Infrastructure
 
 - GitHub
-- GitHub Actions
-- Docker
-- Cloudflare
-- Vercel
 
 ---
 
@@ -129,15 +121,13 @@ The platform focuses on simplicity for users while maintaining enterprise-qualit
 app/
 components/
 features/
-hooks/
 lib/
-services/
-types/
-styles/
+pdf/
 public/
-docs/
-tests/
+scripts/
 ```
+
+See PROJECT_STRUCTURE.md for the full breakdown.
 
 ---
 
@@ -242,15 +232,19 @@ Only production-quality code is merged.
 
 # Documentation
 
-Key documentation files:
+Key documentation files (all at repo root, there is no `docs/` folder):
 
 - `README.md`
-- `CLAUDE.md`
-- `CLAUDE.extended.md`
-- `docs/ARCHITECTURE.md`
-- `docs/DESIGN_SYSTEM.md`
-- `docs/TESTING.md`
-- `docs/DEPLOYMENT.md`
+- `CLAUDE.md` / `CLAUDE.extended.md`
+- `ARCHITECTURE.md`
+- `PROJECT_STRUCTURE.md`
+- `SITE_ARCHITECTURE.md`
+- `COMPONENTS.md`
+- `DESIGN_SYSTEM.md` / `UI_GUIDELINES.md`
+- `Landing_Page.md`
+- `NEXTJS.md`
+
+There is no `TESTING.md` or `DEPLOYMENT.md` yet.
 
 ---
 

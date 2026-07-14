@@ -67,7 +67,6 @@ export default function GeneratorPage() {
                       >
                         <strong>{doc.title}</strong>
                         <small>{doc.description}</small>
-                        <span>{group}</span>
                       </Link>
                     ))}
                   </div>

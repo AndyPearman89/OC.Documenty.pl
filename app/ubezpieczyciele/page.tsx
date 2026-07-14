@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { InsurerBrand } from "@/components/InsurerBrand";
 import { insurerProfiles } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Ubezpieczyciele",
-  description: "Dokumenty i formularze dla największych ubezpieczycieli w Polsce.",
+  description: "Wybierz towarzystwo ubezpieczeniowe i przejdź do odpowiednich wzorów dokumentów OC.",
 };
 
 export default function InsurersPage() {
@@ -21,19 +22,23 @@ export default function InsurersPage() {
         </div>
         <section className="catalogHero">
           <div className="container">
-            <span className="eyebrow"><ShieldCheck /> Wzory dokumentów</span>
+            <span className="eyebrow">
+              <ShieldCheck /> Formularze i adresy
+            </span>
             <h1>Dokumenty dla ubezpieczycieli</h1>
-            <p>Wybierz firmę, aby zobaczyć dostępne formularze i instrukcje wysyłki.</p>
+            <p>
+              Wybierz firmę, aby zobaczyć wzory pism, najważniejsze dokumenty i przejście do właściwego generatora.
+            </p>
           </div>
         </section>
         <section className="section">
           <div className="container insurerGrid">
-            {insurerProfiles.map((insurer, index) => (
+            {insurerProfiles.map((insurer) => (
               <Link className="insurerCard" href={`/ubezpieczyciele/${insurer.slug}`} key={insurer.slug}>
-                <span className={index === 0 ? "pzuBadge" : "insurerBadge"}>{index === 0 ? "PZU" : <Building2 />}</span>
+                <InsurerBrand name={insurer.name} />
                 <div>
                   <h2>{insurer.name}</h2>
-                  <p>Dokumenty, adresy i formularze</p>
+                  <p>Wzory dokumentów, instrukcje i skróty do generatorów.</p>
                 </div>
                 <ArrowRight />
               </Link>
@@ -44,10 +49,12 @@ export default function InsurersPage() {
           <div className="container">
             <FileCheck2 />
             <div>
-              <h2>Nie wiesz, który dokument wybrać?</h2>
-              <p>Generator przeprowadzi Cię przez cały proces krok po kroku.</p>
+              <h2>Szukasz właściwego formularza?</h2>
+              <p>Generator przeprowadzi Cię przez dokument krok po kroku i przygotuje PDF do pobrania.</p>
             </div>
-            <Link className="button buttonLight" href="/generator">Uruchom generator <ArrowRight /></Link>
+            <Link className="button buttonLight" href="/generator">
+              Uruchom generator <ArrowRight />
+            </Link>
           </div>
         </section>
       </main>

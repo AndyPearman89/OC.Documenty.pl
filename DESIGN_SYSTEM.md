@@ -190,7 +190,7 @@ Do not mix icon libraries.
 
 # Animations
 
-Use Framer Motion.
+Use CSS transitions and the `Reveal` component (`components/Reveal.tsx`, IntersectionObserver-based scroll fade-in). No animation library is installed — don't add one without confirming the need first.
 
 Animations should:
 

@@ -110,3 +110,6 @@
 
 @media(max-width:900px){.blogHeroGrid,.blogArticleGrid,.blogContentGrid,.blogGrid,.blogList{grid-template-columns:1fr}.blogHero h1,.blogArticleHero h1{font-size:40px}.blogHeroCard,.blogSidebar{order:2}}
 @media(max-width:650px){.blogHero{padding-top:42px}.blogHeroActions .premiumButton{width:100%;justify-content:center}.blogCard>div{flex-direction:column;align-items:flex-start}.blogContentGrid article,.blogArticleAside,.blogHeroCard{padding:20px}}
+
+.cookieConsent{position:fixed;left:20px;right:20px;bottom:20px;z-index:50;max-width:560px;margin-inline:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}.cookieConsent p{margin:0;font-size:13px;color:var(--muted);flex:1 1 260px}.cookieConsent a{color:var(--red);font-weight:700}.cookieConsentActions{display:flex;gap:10px;flex:0 0 auto}
+@media(max-width:520px){.cookieConsent{left:12px;right:12px;bottom:12px;padding:16px;flex-direction:column;align-items:stretch}.cookieConsent p{flex:auto}.cookieConsentActions{flex-direction:column}.cookieConsentActions .button{width:100%}}

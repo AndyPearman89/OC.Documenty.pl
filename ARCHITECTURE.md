@@ -1,265 +1,137 @@
 # ARCHITECTURE.md
 
-> Enterprise Architecture Specification
+> Architecture Specification
 > Project: OC.Documenty.pl
-> Version: 1.0
 
 ---
 
 # Purpose
 
-This document defines the complete architecture of the OC.Documenty.pl platform.
-
-It serves as the primary technical reference for developers, architects and AI coding assistants.
+This document describes the actual architecture of the OC.Documenty.pl platform as implemented today, plus explicitly-marked future direction.
 
 ---
 
 # System Overview
 
-OC.Documenty.pl is an enterprise-grade platform for generating, previewing, managing and delivering Polish insurance documents.
-
-The architecture follows:
-
-- Modular Design
-- Feature Driven Architecture
-- Domain Driven Design principles
-- Component Composition
-- API First
-- Mobile First
-- SEO First
+OC.Documenty.pl is a Next.js site that lets users fill in and download Polish insurance-related document templates (OC cancellation, collision statements, vehicle sale/purchase contracts, refund requests, complaints, etc.) as PDF, entirely client-side — no accounts, no server-side storage of form data.
 
 ---
 
 # High-Level Architecture
 
-Client
+```
+Browser
+  ↓
+Next.js App Router (Server Components for content, Client Components for forms)
+  ↓
+features/*  (form state, validation, step wizards)
+  ↓
+lib/downloadPdf.ts + pdf/engine  (PDF generation, runs in-browser via jsPDF/html2canvas)
+  ↓
+Downloaded PDF file
+```
 
-↓
-
-Next.js Frontend
-
-↓
-
-Application Layer
-
-↓
-
-Business Layer
-
-↓
-
-Infrastructure Layer
-
-↓
-
-Future Integrations
+There is no backend API, database, or authentication layer. `pdf/` also contains standalone Node scripts (`scripts/generate-*.mjs`) used to pre-render the static sample PDFs shipped in `public/wzory/`.
 
 ---
 
-# Core Modules
+# Core Modules (implemented)
 
-## Marketing
+## Marketing / content pages
 
-- Homepage
-- Landing Pages
-- Blog
-- FAQ
-- Contact
-
----
+Homepage, `/dokumenty` (document library), `/blog`, `/faq`, `/kontakt`, `/ubezpieczyciele` (insurer directory + PZU landing page), legal pages (`/regulamin`, `/polityka-prywatnosci`).
 
 ## Generator
 
-- Multi-step wizard
-- Validation
-- Preview
-- PDF preparation
-- Signature flow
+`/generator` — multi-step wizard (`features/generator/GeneratorForm.tsx`) for the OC-cancellation flow: insurer → vehicle → owner → policy → signature/preview, backed by React Hook Form + Zod.
+
+## Collision statements
+
+`/kolizja`, `/oswiadczenie-sprawcy`, `/wspolne-oswiadczenie` — `features/collision/CollisionForm.tsx` and `JointStatementForm.tsx`.
+
+## Vehicle sale/purchase contracts
+
+`/umowa-kupna-sprzedazy`, `/umowa-kupna-sprzedazy-wspolwlasciciel` — `features/purchase-agreement/PurchaseAgreementForm.tsx`.
+
+## Document catalog
+
+`features/documents/DocumentsBrowser.tsx` + `lib/catalog.ts` — searchable, category-filtered list of all 12 document templates.
+
+## PDF engine
+
+`pdf/engine/*.mjs` — shared low-level building blocks (header, footer, watermark, QR code, typography, grid) composed by `pdf/templates/*.mjs` into per-document layouts. Generated PDFs include header, footer, logo, QR code and A4 print-ready layout.
 
 ---
 
-## Documents
+# Not implemented (do not assume these exist)
 
-- Categories
-- Templates
-- Search
-- Related documents
+- User accounts, login, dashboard, saved documents/history
+- Any backend API, database, or WordPress/GraphQL integration
+- Electronic signature (photo-signature capture exists in the generator; cryptographic e-signature does not)
+- OCR, AI autofill, multi-language support
 
----
-
-## User
-
-- Dashboard
-- Saved documents
-- History
-- Settings
-
----
-
-## PDF Engine
-
-Responsibilities
-
-- PDF rendering
-- Print layout
-- Branding
-- QR Code
-- Versioning
-
----
-
-## AI Layer
-
-Future capabilities
-
-- Autofill
-- Content suggestions
-- Validation
-- OCR
-- Smart recommendations
+Treat these as roadmap ideas only — verify with the user before designing against them.
 
 ---
 
 # Frontend Layers
 
-Presentation Layer
-
-↓
-
-Components
-
-↓
-
-Features
-
-↓
-
-Services
-
-↓
-
-Utilities
+```
+app/*/page.tsx (Server Components, metadata, layout)
+  ↓
+components/*  (shared, presentational)
+  ↓
+features/*/*Form.tsx (Client Components: state, validation, steps)
+  ↓
+lib/*  (catalog data, PDF download helper)
+```
 
 ---
 
-# Directory Structure
+# Data Flow (generator/form flows)
 
-app/
+```
+User input (React Hook Form + Zod validation)
+  ↓
+In-memory / component state (no server round-trip)
+  ↓
+Preview render
+  ↓
+pdf/engine via lib/downloadPdf.ts
+  ↓
+Download
+```
 
-components/
-
-features/
-
-hooks/
-
-lib/
-
-services/
-
-types/
-
-styles/
-
-public/
-
-docs/
-
-tests/
-
----
-
-# Design Principles
-
-Every module should be:
-
-- Independent
-- Testable
-- Reusable
-- Documented
-- Accessible
-
----
-
-# Data Flow
-
-User
-
-↓
-
-UI
-
-↓
-
-Validation
-
-↓
-
-Business Logic
-
-↓
-
-PDF Engine
-
-↓
-
-Preview
-
-↓
-
-Download / Send
+Form drafts are not persisted to a server; some flows keep a working draft in browser storage for the duration of the session (see `polityka-prywatnosci` page for the current wording on this).
 
 ---
 
 # Cross-Cutting Concerns
 
-- Accessibility
-- Performance
-- Security
-- SEO
-- Analytics
-- Logging
+- Accessibility (WCAG AA target — see UI_GUIDELINES.md)
+- SEO (per-page metadata, sitemap.ts, robots.ts)
+- Performance (Next.js App Router defaults: server components, image optimization)
 
-Every module must support these concerns.
+No analytics, logging, or monitoring integration exists yet.
 
 ---
 
 # Scalability
 
-The architecture should allow adding new document types without modifying existing modules.
-
-Use extension rather than duplication.
+New document types are added by: extending `lib/catalog.ts`, adding a `features/<domain>/*Form.tsx`, adding a `pdf/templates/<slug>.mjs`, and adding the corresponding `app/<slug>/page.tsx` (or a `dokumenty/[slug]` entry if it doesn't need a dedicated custom page).
 
 ---
 
 # Quality Goals
 
-- High maintainability
-- High performance
-- Low coupling
-- High cohesion
-- Predictable folder structure
-- Strong typing
+- Strong typing (TypeScript strict)
+- No duplicated business logic across features
+- Predictable, flat folder structure (see PROJECT_STRUCTURE.md)
 
 ---
 
-# Future Integrations
+# Future Integrations (not started)
 
-- WordPress Headless
-- REST API
-- GraphQL
-- Electronic Signature
-- ePUAP
-- Email Delivery
-- AI Services
-
----
-
-# Definition of Architecture Complete
-
-The architecture is considered complete when:
-
-- all modules are documented,
-- dependencies are defined,
-- responsibilities are clear,
-- no duplicated responsibilities exist,
-- future integrations have extension points.
+- Backend API / persistence
+- Electronic signature provider
+- Analytics

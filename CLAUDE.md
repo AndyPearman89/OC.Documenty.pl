@@ -56,33 +56,28 @@ Never commit
 
 # Technology
 
-Frontend
+Frontend (actual, verify against package.json before adding a claim here)
 
 - Next.js 16+
 - React 19
 - TypeScript Strict
 - App Router
-- Tailwind CSS 4
-- shadcn/ui
-- Framer Motion
+- Plain CSS (`app/globals.css`, `app/enterprise.css`) — no Tailwind, no component library
 - React Hook Form
 - Zod
-- Zustand
-- TanStack Query
+- jsPDF + html2canvas (client-side PDF generation)
+- qrcode
+- lucide-react (icons)
 
-Backend (future)
+Backend
 
-- WordPress Headless
-- REST API
-- GraphQL
+None. No API routes, no database, no auth. Forms run entirely client-side.
 
 Infrastructure
 
 - GitHub
-- GitHub Actions
-- Docker
-- Vercel
-- Cloudflare
+
+Do not assume Tailwind, shadcn/ui, Framer Motion, Zustand, TanStack Query, WordPress, GraphQL, Docker, Vercel, or Cloudflare are in use — none appear in `package.json`. If one of these is later adopted, update this section.
 
 ---
 
@@ -112,21 +107,15 @@ components/
 
 features/
 
-hooks/
-
 lib/
 
-services/
-
-types/
-
-styles/
+pdf/
 
 public/
 
-docs/
+scripts/
 
-tests/
+See PROJECT_STRUCTURE.md for the full breakdown. There is no `hooks/`, `services/`, `types/`, `styles/`, `docs/`, or `tests/` folder.
 
 ---
 

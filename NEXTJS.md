@@ -54,27 +54,30 @@ Never use `"use client"` unless required.
 
 # Routing
 
+Actual routes (see SITE_ARCHITECTURE.md for the full, current list):
+
 ```
 /
-
 /generator
-
-/generator/oc
-
-/generator/sprzedaz
-
-/generator/zakup
-
 /dokumenty
-
 /dokumenty/[slug]
-
+/kolizja
+/oswiadczenie-sprawcy
+/wspolne-oswiadczenie
+/umowa-kupna-sprzedazy
+/umowa-kupna-sprzedazy-wspolwlasciciel
+/ubezpieczyciele
+/ubezpieczyciele/[slug]
+/ubezpieczyciele/pzu
+/blog
+/blog/[slug]
 /faq
-
 /kontakt
-
-/dashboard
+/polityka-prywatnosci
+/regulamin
 ```
+
+There is no `/dashboard`, `/generator/oc`, or `/generator/sprzedaz` route.
 
 ---
 

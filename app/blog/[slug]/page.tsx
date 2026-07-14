@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { BlogCoverVisual, BlogThumbnailVisual } from "@/components/ProductVisuals";
 import { getBlogPost, blogPosts } from "@/lib/blog";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -53,6 +54,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             </div>
             <aside className="blogArticleAside">
+              <BlogCoverVisual category={post.category} title={post.title} />
               <strong>W tym artykule</strong>
               <ul>
                 <li>praktyczne wskazówki</li>
@@ -104,6 +106,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   {related.map((item) =>
                     item ? (
                       <article className="blogCard" key={item.slug}>
+                        <BlogThumbnailVisual category={item.category} title={item.title} />
                         <small>{item.category}</small>
                         <h3>{item.title}</h3>
                         <p>{item.excerpt}</p>
