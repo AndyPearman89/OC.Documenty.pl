@@ -12,6 +12,10 @@ name: Deploy to VPS
 #   VPS_SSH_KEY  - private half of a deploy-only keypair whose public half is
 #                  in that user's ~/.ssh/authorized_keys on the server
 #
+# This repo must stay PUBLIC: the VPS fetches it over plain HTTPS with no
+# credentials. If it's made private, `git fetch` on the VPS starts failing
+# with "Repository not found" (no auth configured on that remote).
+#
 # Rollback: re-run this workflow via workflow_dispatch with `ref` set to the
 # SHA/tag/branch of the last known-good commit.
 
@@ -49,8 +53,8 @@ jobs:
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" bash -s <<'REMOTE'
           set -euo pipefail
           cd "${{ env.DEPLOY_PATH }}"
-          if ! git remote get-url origin | grep -q '^git@github.com:'; then
-            git remote set-url origin git@github.com:AndyPearman89/OC.Documenty.pl.git
+          if ! git remote get-url origin | grep -q '^https://github.com/'; then
+            git remote set-url origin https://github.com/AndyPearman89/OC.Documenty.pl.git
           fi
           git fetch origin
           git checkout "${{ env.DEPLOY_REF }}"
