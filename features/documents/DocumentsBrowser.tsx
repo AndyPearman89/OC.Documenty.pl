@@ -31,20 +31,20 @@ export function DocumentsBrowser() {
   }, [query, category]);
 
   return (
-    <>
-      <section className="catalogHero">
-        <div className="container">
-          <span className="eyebrow">Biblioteka wzorów</span>
-          <h2>Wzory dokumentów</h2>
-          <p>Aktualne formularze OC gotowe do wypełnienia, pobrania i wydruku.</p>
+    <section className="section catalogSection">
+      <div className="container">
+        <div className="catalogToolbar">
+          <div>
+            <span className="eyebrow">
+              <FileText /> Biblioteka wzorów
+            </span>
+            <h2>Wzory dokumentów</h2>
+            <p>Aktualne formularze OC gotowe do wypełnienia, pobrania i wydruku.</p>
+          </div>
           <label className="catalogSearch">
             <Search />
             <span className="srOnly">Szukaj dokumentu</span>
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Szukaj dokumentu..."
-            />
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Szukaj dokumentu..." />
             {query && (
               <button type="button" onClick={() => setQuery("")} aria-label="Wyczyść wyszukiwanie">
                 <X />
@@ -52,10 +52,8 @@ export function DocumentsBrowser() {
             )}
           </label>
         </div>
-      </section>
 
-      <section className="section">
-        <div className="container catalogLayout">
+        <div className="catalogLayout">
           <aside className="categoryPanel">
             <strong>Kategorie</strong>
             {categories.map((item) => (
@@ -75,9 +73,14 @@ export function DocumentsBrowser() {
               ))}
             </div>
 
-            <p className="resultsCount">
-              Znaleziono: <strong>{documents.length}</strong>
-            </p>
+            <div className="catalogSummary">
+              <p className="resultsCount">
+                Znaleziono: <strong>{documents.length}</strong>
+              </p>
+              <p className="catalogHint">
+                Najczęściej pobierane wzory, gotowe do użycia od razu.
+              </p>
+            </div>
 
             {documents.length ? (
               <div className="catalogList">
@@ -110,14 +113,21 @@ export function DocumentsBrowser() {
                 <FileSearch />
                 <h2>Nie znaleziono dokumentów</h2>
                 <p>Zmień wyszukiwaną frazę lub wybierz inną kategorię.</p>
-                <button type="button" className="button buttonOutline" onClick={() => { setQuery(""); setCategory("Wszystkie"); }}>
+                <button
+                  type="button"
+                  className="button buttonOutline"
+                  onClick={() => {
+                    setQuery("");
+                    setCategory("Wszystkie");
+                  }}
+                >
                   Wyczyść filtry
                 </button>
               </div>
             )}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

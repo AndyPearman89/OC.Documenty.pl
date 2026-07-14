@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { ArrowRight, CheckCircle2, FileCheck2, ShieldCheck, Sparkles, FileText, Search } from "lucide-react";
+import { FileText, Search, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
@@ -12,12 +12,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/dokumenty" },
 };
 
-const documentHighlights = [
-  "Dokumenty uporządkowane według celu: umowy, odstąpienia, oświadczenia i wypowiedzenia.",
-  "Wzory przygotowane do wydruku, PDF i szybkiego wypełnienia online.",
-  "Każda karta prowadzi prosto do wzoru, generatora lub pliku PDF.",
-];
-
 export default function DocumentsPage() {
   return (
     <>
@@ -26,45 +20,6 @@ export default function DocumentsPage() {
         <div className="container">
           <Breadcrumbs items={[{ label: "Dokumenty" }]} />
         </div>
-
-        <section className="catalogHero">
-          <div className="container catalogHeroGrid">
-            <div>
-              <span className="eyebrow">
-                <ShieldCheck /> Biblioteka wzorów
-              </span>
-              <h1>Profesjonalne wzory dokumentów OC w jednym miejscu</h1>
-              <p>
-                Zebraliśmy aktualne formularze OC i dokumenty pojazdowe w jednym katalogu. Wybierasz właściwy wzór, pobierasz PDF
-                albo przechodzisz bezpośrednio do generatora.
-              </p>
-              <div className="catalogHeroChecks">
-                {documentHighlights.map((item) => (
-                  <span key={item}>
-                    <CheckCircle2 /> {item}
-                  </span>
-                ))}
-              </div>
-              <div className="landingActions">
-                <Link className="premiumButton primary" href="/generator">
-                  <FileCheck2 /> Otwórz generator
-                </Link>
-                <Link className="premiumButton secondary" href="/blog">
-                  <ArrowRight /> Zobacz poradniki
-                </Link>
-              </div>
-            </div>
-            <aside className="catalogHeroAside">
-              <strong>Jak korzystać z katalogu</strong>
-              <p>Najpierw wybierz intencję, potem przejdź do karty dokumentu. Każdy wzór ma krótki opis i jasną ścieżkę działania.</p>
-              <ul>
-                <li>czytelny podział na sekcje</li>
-                <li>gotowe PDF i formularze online</li>
-                <li>szybka ścieżka do najczęstszych spraw</li>
-              </ul>
-            </aside>
-          </div>
-        </section>
 
         <section className="section">
           <div className="container catalogIntentGrid">
