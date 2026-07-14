@@ -1,46 +1,212 @@
+import type { CSSProperties } from "react";
 import { ArrowRight, BadgeCheck, BookOpen, Building2, Check, CheckCircle2, Clock3, CloudDownload, FileCheck2, FileText, Headphones, LockKeyhole, Mail, PenLine, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroProductVisual, WorkflowVisual } from "@/components/ProductVisuals";
 import { Reveal } from "@/components/Reveal";
 import { insurerProfiles } from "@/lib/catalog";
 
-const documents=[
-  {title:"Wypowiedzenie umowy OC",description:"Zakończ polisę na właściwej podstawie prawnej.",href:"/generator",tag:"Najpopularniejszy"},
-  {title:"Oświadczenie sprawcy kolizji",description:"Dane zdarzenia, podpis i gotowy dokument PDF.",href:"/oswiadczenie-sprawcy",tag:"Po kolizji"},
-  {title:"Wspólne oświadczenie",description:"Jeden formularz i podpisy obu uczestników.",href:"/wspolne-oswiadczenie",tag:"Dwie strony"},
-  {title:"Puste wzory PDF",description:"Profesjonalne formularze do druku i ręcznego uzupełnienia.",href:"/dokumenty",tag:"Do pobrania"},
+const documents = [
+  { title: "Wypowiedzenie umowy OC", description: "Zakończ polisę na właściwej podstawie prawnej.", href: "/generator", tag: "Najpopularniejszy" },
+  { title: "Oświadczenie sprawcy kolizji", description: "Dane zdarzenia, podpis i gotowy dokument PDF.", href: "/oswiadczenie-sprawcy", tag: "Po kolizji" },
+  { title: "Wspólne oświadczenie", description: "Jeden formularz i podpisy obu uczestników.", href: "/wspolne-oswiadczenie", tag: "Dwie strony" },
+  { title: "Puste wzory PDF", description: "Profesjonalne formularze do druku i ręcznego uzupełnienia.", href: "/dokumenty", tag: "Do pobrania" },
+  { title: "Umowa kupna-sprzedaży", description: "Gotowy wzór umowy dla pojazdu.", href: "/umowa-kupna-sprzedazy", tag: "Nowy wzór" },
 ];
 
-const faq=[
-  ["Czy muszę zakładać konto?","Nie. Generator działa bez rejestracji, a dane formularza pozostają w Twojej przeglądarce."],
-  ["Czy mogę podpisać dokument zdjęciem?","Tak. Dodaj czytelne zdjęcie podpisu w formacie JPG, PNG lub WEBP i sprawdź wymagania ubezpieczyciela."],
-  ["Czy dokument można wysłać e-mailem?","Tak. Serwis przygotuje wiadomość do wskazanego ubezpieczyciela; przed wysłaniem dołącz wygenerowany PDF."],
-  ["Czy dostępne są puste wzory?","Tak. Biblioteka dokumentów zawiera gotowe formularze PDF do samodzielnego wypełnienia."],
+const faq = [
+  ["Czy muszę zakładać konto?", "Nie. Generator działa bez rejestracji, a dane formularza pozostają w Twojej przeglądarce."],
+  ["Czy mogę podpisać dokument zdjęciem?", "Tak. Dodaj czytelne zdjęcie podpisu w formacie JPG, PNG lub WEBP i sprawdź wymagania ubezpieczyciela."],
+  ["Czy dokument można wysłać e-mailem?", "Tak. Serwis przygotuje wiadomość do wskazanego ubezpieczyciela; przed wysłaniem dołącz wygenerowany PDF."],
+  ["Czy dostępne są puste wzory?", "Tak. Biblioteka dokumentów zawiera gotowe formularze PDF do samodzielnego wypełnienia."],
 ];
 
-export default function Home(){
-  const organization={"@context":"https://schema.org","@type":"Organization",name:"OC.Documenty.pl",url:"https://oc.documenty.pl",email:"oc@documenty.pl"};
-  const howTo={"@context":"https://schema.org","@type":"HowTo",name:"Jak przygotować dokument OC online",step:["Wybierz dokument i ubezpieczyciela","Uzupełnij dane oraz dodaj podpis","Pobierz PDF i przekaż go ubezpieczycielowi"].map((name,index)=>({"@type":"HowToStep",position:index+1,name}))};
-  return <><Header/><main id="main-content">
-    <section className="enterpriseHero"><div className="heroMesh"/><div className="container enterpriseHeroGrid"><div className="enterpriseHeroCopy"><span className="premiumPill"><Sparkles/> Generator dokumentów OC</span><h1>Dokument ubezpieczeniowy<br/><em>gotowy w kilka minut.</em></h1><p>Profesjonalne formularze OC, czytelny podgląd i bezpieczne generowanie PDF — bez konta i bez instalowania aplikacji.</p><div className="enterpriseHeroActions"><Link className="premiumButton primary" href="/generator">Generuj wypowiedzenie <ArrowRight/></Link><Link className="premiumButton secondary" href="/ubezpieczyciele"><Building2/> Lista ubezpieczycieli</Link></div><div className="heroProof"><span><CheckCircle2/> Dane przetwarzane lokalnie</span><span><CheckCircle2/> PDF gotowy do druku</span><span><CheckCircle2/> Bez logowania</span></div></div><Reveal className="heroReveal"><HeroProductVisual/></Reveal></div><a className="scrollCue" href="#jak-to-dziala" aria-label="Przejdź do sekcji Jak to działa"><span/></a></section>
+export default function Home() {
+  const organization = { "@context": "https://schema.org", "@type": "Organization", name: "OC.Documenty.pl", url: "https://oc.documenty.pl", email: "oc@documenty.pl" };
+  const howTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Jak przygotować dokument OC online",
+    step: ["Wybierz dokument i ubezpieczyciela", "Uzupełnij dane oraz dodaj podpis", "Pobierz PDF i przekaż go ubezpieczycielowi"].map((name, index) => ({ "@type": "HowToStep", position: index + 1, name })),
+  };
 
-    <section className="enterpriseTrust"><div className="container enterpriseTrustGrid"><div><ShieldCheck/><span><b>Prywatność</b><small>Dane pozostają na urządzeniu</small></span></div><div><FileCheck2/><span><b>Czytelne wzory</b><small>Profesjonalny układ A4</small></span></div><div><Clock3/><span><b>Oszczędność czasu</b><small>Przejrzysty proces krok po kroku</small></span></div><div><CloudDownload/><span><b>Gotowy PDF</b><small>Pobierz, wydrukuj lub udostępnij</small></span></div></div></section>
+  return (
+    <>
+      <Header />
+      <main id="main-content">
+        <section className="enterpriseHero">
+          <div className="heroMesh" />
+          <div className="container enterpriseHeroGrid">
+            <div className="enterpriseHeroCopy">
+              <span className="premiumPill">
+                <Sparkles /> Generator dokumentów OC
+              </span>
+              <h1>Dokumenty OC i AC <em>gotowe w kilka minut.</em></h1>
+              <p>Profesjonalne formularze, czytelny podgląd i bezpieczne generowanie PDF bez konta, bez logowania i bez instalowania aplikacji.</p>
+              <div className="enterpriseHeroActions">
+                <Link className="premiumButton primary" href="/generator">Generuj wypowiedzenie <ArrowRight /></Link>
+                <Link className="premiumButton secondary" href="/ubezpieczyciele"><Building2 /> Lista ubezpieczycieli</Link>
+              </div>
+              <div className="heroProof">
+                <span><CheckCircle2 /> Dane przetwarzane lokalnie</span>
+                <span><CheckCircle2 /> PDF gotowy do druku</span>
+                <span><CheckCircle2 /> Bez logowania</span>
+              </div>
+            </div>
+            <Reveal className="heroReveal"><HeroProductVisual /></Reveal>
+          </div>
+          <a className="scrollCue" href="#jak-to-dziala" aria-label="Przejdź do sekcji Jak to działa"><span /></a>
+        </section>
 
-    <section className="enterpriseSection processSection" id="jak-to-dziala"><div className="container"><Reveal className="enterpriseHeading"><span className="premiumPill">Prosty proces</span><h2>Od formularza do gotowego dokumentu</h2><p>Każdy etap pokazuje tylko informacje potrzebne w danym momencie.</p></Reveal><WorkflowVisual/><div className="enterpriseSteps">{[[Building2,"Wybierz firmę","Znajdź ubezpieczyciela i rozpocznij właściwy formularz."],[PenLine,"Uzupełnij i podpisz","Walidacja prowadzi przez dane właściciela, pojazdu i polisy."],[CloudDownload,"Pobierz lub wyślij","Sprawdź podgląd, pobierz PDF i przekaż dokument."]].map(([Icon,title,text],index)=><Reveal key={String(title)} delay={index*90}><article><b>0{index+1}</b><span><Icon/></span><h3>{String(title)}</h3><p>{String(text)}</p></article></Reveal>)}</div></div></section>
+        <section className="enterpriseTrust">
+          <div className="container enterpriseTrustGrid">
+            <div><ShieldCheck /><span><b>Prywatność</b><small>Dane pozostają na urządzeniu</small></span></div>
+            <div><FileCheck2 /><span><b>Czytelne wzory</b><small>Profesjonalny układ A4</small></span></div>
+            <div><Clock3 /><span><b>Oszczędność czasu</b><small>Przejrzysty proces krok po kroku</small></span></div>
+            <div><CloudDownload /><span><b>Gotowy PDF</b><small>Pobierz, wydrukuj lub udostępnij</small></span></div>
+          </div>
+        </section>
 
-    <section className="enterpriseSection surfaceSection"><div className="container"><Reveal className="enterpriseHeading splitHeading"><div><span className="premiumPill">Dokumenty</span><h2>Wybierz sprawę, którą chcesz załatwić</h2></div><Link className="inlineArrow" href="/dokumenty">Pełna biblioteka <ArrowRight/></Link></Reveal><div className="enterpriseDocGrid">{documents.map((document,index)=><Reveal key={document.title} delay={index*70}><Link className="enterpriseDocCard" href={document.href}><span className="docCardIcon"><FileText/></span><small>{document.tag}</small><h3>{document.title}</h3><p>{document.description}</p><b>Otwórz dokument <ArrowRight/></b></Link></Reveal>)}</div></div></section>
+        <section className="enterpriseSection processSection" id="jak-to-dziala">
+          <div className="container">
+            <Reveal className="enterpriseHeading">
+              <span className="premiumPill">Prosty proces</span>
+              <h2>Od formularza do gotowego dokumentu</h2>
+              <p>Każdy etap pokazuje tylko informacje potrzebne w danym momencie.</p>
+            </Reveal>
+            <WorkflowVisual />
+            <div className="enterpriseSteps">
+              {[[Building2, "Wybierz firmę", "Znajdź ubezpieczyciela i rozpocznij właściwy formularz."], [PenLine, "Uzupełnij i podpisz", "Walidacja prowadzi przez dane właściciela, pojazdu i polisy."], [CloudDownload, "Pobierz lub wyślij", "Sprawdź podgląd, pobierz PDF i przekaż dokument."]].map(([Icon, title, text], index) => (
+                <Reveal key={String(title)} delay={index * 90}>
+                  <article>
+                    <b>0{index + 1}</b>
+                    <span><Icon /></span>
+                    <h3>{String(title)}</h3>
+                    <p>{String(text)}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
 
-    <section className="enterpriseSection insurersSection"><div className="container insurersLayout"><Reveal><span className="premiumPill"><Building2/> Ubezpieczyciele</span><h2>Dokumenty dla największych firm</h2><p>Wybierz ubezpieczyciela, aby przejść do dostępnych formularzy i instrukcji wysyłki.</p><Link className="premiumButton secondary" href="/ubezpieczyciele">Zobacz wszystkie firmy <ArrowRight/></Link></Reveal><Reveal className="insurerCloud" delay={100}>{insurerProfiles.slice(0,8).map((insurer,index)=><Link href={`/ubezpieczyciele/${insurer.slug}`} key={insurer.slug} style={{"--logo-index":index} as CSSProperties}><span>{insurer.name.slice(0,3)}</span><b>{insurer.name}</b></Link>)}</Reveal></div></section>
+        <section className="enterpriseSection surfaceSection">
+          <div className="container">
+            <Reveal className="enterpriseHeading splitHeading">
+              <div>
+                <span className="premiumPill">Dokumenty</span>
+                <h2>Wybierz sprawę, którą chcesz załatwić</h2>
+              </div>
+              <Link className="inlineArrow" href="/dokumenty">Pełna biblioteka <ArrowRight /></Link>
+            </Reveal>
+            <div className="enterpriseDocGrid">
+              {documents.map((document, index) => (
+                <Reveal key={document.title} delay={index * 70}>
+                  <Link className="enterpriseDocCard" href={document.href}>
+                    <span className="docCardIcon"><FileText /></span>
+                    <small>{document.tag}</small>
+                    <h3>{document.title}</h3>
+                    <p>{document.description}</p>
+                    <b>Otwórz dokument <ArrowRight /></b>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
 
-    <section className="enterpriseSection benefitsSection"><div className="container benefitsLayout"><Reveal className="benefitVisual"><div className="securityOrb"><LockKeyhole/><span><b>Dane formularza</b><small>przetwarzane lokalnie</small></span></div><div className="securityChip"><BadgeCheck/> Bez konta</div><div className="securityChip second"><Zap/> Szybki PDF</div></Reveal><div><Reveal><span className="premiumPill">Dlaczego warto</span><h2>Profesjonalne narzędzie bez zbędnej złożoności</h2></Reveal><div className="benefitList">{[[ShieldCheck,"Prywatność od początku","Formularze nie są automatycznie przesyłane na serwer."],[Check,"Walidacja krok po kroku","Czytelne komunikaty pomagają uniknąć pustych pól."],[Mail,"Gotowe do przekazania","Pobierz PDF, wydrukuj lub udostępnij go z telefonu."],[Headphones,"Pomoc po drodze","FAQ i kontakt są dostępne z każdego miejsca serwisu."]].map(([Icon,title,text])=><div key={String(title)}><span><Icon/></span><div><h3>{String(title)}</h3><p>{String(text)}</p></div></div>)}</div></div></div></section>
+        <section className="enterpriseSection insurersSection">
+          <div className="container insurersLayout">
+            <Reveal>
+              <span className="premiumPill"><Building2 /> Ubezpieczyciele</span>
+              <h2>Dokumenty dla największych firm</h2>
+              <p>Wybierz ubezpieczyciela, aby przejść do dostępnych formularzy i instrukcji wysyłki.</p>
+              <Link className="premiumButton secondary" href="/ubezpieczyciele">Zobacz wszystkie firmy <ArrowRight /></Link>
+            </Reveal>
+            <Reveal className="insurerCloud" delay={100}>
+              {insurerProfiles.slice(0, 8).map((insurer, index) => (
+                <Link href={`/ubezpieczyciele/${insurer.slug}`} key={insurer.slug} style={{ "--logo-index": index } as CSSProperties}>
+                  <span>{insurer.name.slice(0, 3)}</span>
+                  <b>{insurer.name}</b>
+                </Link>
+              ))}
+            </Reveal>
+          </div>
+        </section>
 
-    <section className="enterpriseSection guidesSection"><div className="container"><Reveal className="enterpriseHeading splitHeading"><div><span className="premiumPill"><BookOpen/> Wiedza</span><h2>Przydatne przed wysłaniem dokumentu</h2></div><Link className="inlineArrow" href="/faq">Centrum pomocy <ArrowRight/></Link></Reveal><div className="guideGrid"><article><small>Wypowiedzenie OC</small><h3>Kiedy zastosować art. 28, 28a lub 31?</h3><p>W generatorze znajdziesz krótkie objaśnienia każdej podstawy wypowiedzenia.</p><Link href="/generator">Przejdź do generatora <ArrowRight/></Link></article><article><small>Po kolizji</small><h3>Jak przygotować wspólne oświadczenie?</h3><p>Zbierz dane obu stron, pojazdów, polis oraz czytelne podpisy.</p><Link href="/wspolne-oswiadczenie">Otwórz formularz <ArrowRight/></Link></article><article><small>Bezpieczeństwo</small><h3>Co dzieje się z danymi formularza?</h3><p>Dane są przetwarzane lokalnie i znikają po zamknięciu sesji.</p><Link href="/polityka-prywatnosci">Polityka prywatności <ArrowRight/></Link></article></div></div></section>
+        <section className="enterpriseSection benefitsSection">
+          <div className="container benefitsLayout">
+            <Reveal className="benefitVisual">
+              <div className="securityOrb">
+                <LockKeyhole />
+                <span><b>Dane formularza</b><small>przetwarzane lokalnie</small></span>
+              </div>
+              <div className="securityChip"><BadgeCheck /> Bez konta</div>
+              <div className="securityChip second"><Zap /> Szybki PDF</div>
+            </Reveal>
+            <div>
+              <Reveal>
+                <span className="premiumPill">Dlaczego warto</span>
+                <h2>Profesjonalne narzędzie bez zbędnej złożoności</h2>
+              </Reveal>
+              <div className="benefitList">
+                {[[ShieldCheck, "Prywatność od początku", "Formularze nie są automatycznie przesyłane na serwer."], [Check, "Walidacja krok po kroku", "Czytelne komunikaty pomagają uniknąć pustych pól."], [Mail, "Gotowe do przekazania", "Pobierz PDF, wydrukuj lub udostępnij go z telefonu."], [Headphones, "Pomoc po drodze", "FAQ i kontakt są dostępne z każdego miejsca serwisu."]].map(([Icon, title, text]) => (
+                  <div key={String(title)}>
+                    <span><Icon /></span>
+                    <div>
+                      <h3>{String(title)}</h3>
+                      <p>{String(text)}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="enterpriseSection faqEnterprise"><div className="container faqEnterpriseGrid"><Reveal><span className="premiumPill">FAQ</span><h2>Najczęściej zadawane pytania</h2><p>Konkretnie i bez prawniczego żargonu.</p><Link className="premiumButton secondary" href="/faq">Wszystkie odpowiedzi</Link></Reveal><div>{faq.map(([question,answer])=><details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></div></section>
+        <section className="enterpriseSection guidesSection">
+          <div className="container">
+            <Reveal className="enterpriseHeading splitHeading">
+              <div>
+                <span className="premiumPill"><BookOpen /> Wiedza</span>
+                <h2>Przydatne przed wysłaniem dokumentu</h2>
+              </div>
+              <Link className="inlineArrow" href="/faq">Centrum pomocy <ArrowRight /></Link>
+            </Reveal>
+            <div className="guideGrid">
+              <article><small>Wypowiedzenie OC</small><h3>Kiedy zastosować art. 28, 28a lub 31?</h3><p>W generatorze znajdziesz krótkie objaśnienia każdej podstawy wypowiedzenia.</p><Link href="/generator">Przejdź do generatora <ArrowRight /></Link></article>
+              <article><small>Po kolizji</small><h3>Jak przygotować wspólne oświadczenie?</h3><p>Zbierz dane obu stron, pojazdów, polis oraz czytelne podpisy.</p><Link href="/wspolne-oswiadczenie">Otwórz formularz <ArrowRight /></Link></article>
+              <article><small>Bezpieczeństwo</small><h3>Co dzieje się z danymi formularza?</h3><p>Dane są przetwarzane lokalnie i znikają po zamknięciu sesji.</p><Link href="/polityka-prywatnosci">Polityka prywatności <ArrowRight /></Link></article>
+            </div>
+          </div>
+        </section>
 
-    <section className="enterpriseFinalCta"><div className="container"><div><span className="premiumPill light"><Sparkles/> Zacznij teraz</span><h2>Przygotuj wypowiedzenie OC<br/>bez stresu i bez konta.</h2><p>Wybierz ubezpieczyciela, uzupełnij dane i pobierz gotowy dokument PDF.</p></div><Link className="premiumButton white" href="/generator">Generuj dokument <ArrowRight/></Link></div></section>
-  </main><Footer/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify([organization,howTo])}}/></>;
+        <section className="enterpriseSection faqEnterprise">
+          <div className="container faqEnterpriseGrid">
+            <Reveal>
+              <span className="premiumPill">FAQ</span>
+              <h2>Najczęściej zadawane pytania</h2>
+              <p>Konkretnie i bez prawniczego żargonu.</p>
+              <Link className="premiumButton secondary" href="/faq">Wszystkie odpowiedzi</Link>
+            </Reveal>
+            <div>{faq.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
+          </div>
+        </section>
+
+        <section className="enterpriseFinalCta">
+          <div className="container">
+            <div>
+              <span className="premiumPill light"><Sparkles /> Zacznij teraz</span>
+              <h2>Przygotuj dokument OC <br /> bez stresu i bez konta.</h2>
+              <p>Wybierz ubezpieczyciela, uzupełnij dane i pobierz gotowy dokument PDF.</p>
+            </div>
+            <Link className="premiumButton white" href="/generator">Generuj dokument <ArrowRight /></Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([organization, howTo]) }} />
+    </>
+  );
 }
