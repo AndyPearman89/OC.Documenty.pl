@@ -15,6 +15,18 @@ const documents = [
   { title: "Umowa kupna-sprzedaży", description: "Gotowy wzór umowy dla pojazdu.", href: "/umowa-kupna-sprzedazy", tag: "Nowy wzór" },
 ];
 
+const homepageHighlights = [
+  "Wzory dokumentów ułożone według realnych intencji użytkowników.",
+  "Szybkie przejście od wyboru sprawy do gotowego PDF.",
+  "Portal pomaga podjąć właściwy następny krok bez szukania po całym serwisie.",
+];
+
+const homepageFaq = [
+  ["Czy muszę się logować?", "Nie. Dokumenty i generator są dostępne bez konta, a formularze działają lokalnie w przeglądarce."],
+  ["Czy mogę pobrać tylko PDF?", "Tak. Przy każdym wzorze masz możliwość pobrania gotowego pliku PDF lub przejścia do generatora."],
+  ["Czy znajdę tu też wzory dla firm?", "Tak. Sekcja ubezpieczycieli prowadzi do dokumentów dla konkretnych towarzystw i ich opisów."],
+];
+
 const faq = [
   ["Czy muszę zakładać konto?", "Nie. Generator działa bez rejestracji, a dane formularza pozostają w Twojej przeglądarce."],
   ["Czy mogę podpisać dokument zdjęciem?", "Tak. Dodaj czytelne zdjęcie podpisu w formacie JPG, PNG lub WEBP i sprawdź wymagania ubezpieczyciela."],
@@ -65,6 +77,34 @@ export default function Home() {
             <div><FileCheck2 /><span><b>Czytelne wzory</b><small>Profesjonalny układ A4</small></span></div>
             <div><Clock3 /><span><b>Oszczędność czasu</b><small>Przejrzysty proces krok po kroku</small></span></div>
             <div><CloudDownload /><span><b>Gotowy PDF</b><small>Pobierz, wydrukuj lub udostępnij</small></span></div>
+          </div>
+        </section>
+
+        <section className="enterpriseSection homepageIntroSection">
+          <div className="container homepageIntroGrid">
+            <article>
+              <span className="premiumPill">Dla kierowców</span>
+              <h2>Szybciej znajdziesz właściwy dokument</h2>
+              <p>
+                Zamiast szukać osobno wzorów, adresów i instrukcji, możesz zacząć od sprawy, którą chcesz załatwić, a potem przejść
+                prosto do formularza, PDF lub generatora.
+              </p>
+            </article>
+            <article>
+              <span className="premiumPill">Dlaczego to działa</span>
+              <p>
+                Serwis porządkuje najczęstsze zadania kierowców: wypowiedzenie OC, oświadczenie po kolizji, umowy pojazdowe i
+                reklamacje. Dzięki temu użytkownik nie musi zgadywać, od czego zacząć.
+              </p>
+            </article>
+          </div>
+          <div className="container homepageHighlights">
+            {homepageHighlights.map((item) => (
+              <div key={item}>
+                <CheckCircle2 />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -182,6 +222,30 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="enterpriseSection homepageDocsSection">
+          <div className="container">
+            <Reveal className="enterpriseHeading splitHeading">
+              <div>
+                <span className="premiumPill">Co znajdziesz</span>
+                <h2>Dokumenty, które rozwiązują najczęstsze sprawy</h2>
+              </div>
+              <Link className="inlineArrow" href="/dokumenty">Zobacz katalog <ArrowRight /></Link>
+            </Reveal>
+            <div className="homepageDocStrip">
+              {documents.map((document) => (
+                <article key={document.title}>
+                  <small>{document.tag}</small>
+                  <h3>{document.title}</h3>
+                  <p>{document.description}</p>
+                  <Link href={document.href}>
+                    Otwórz <ArrowRight />
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="enterpriseSection faqEnterprise">
           <div className="container faqEnterpriseGrid">
             <Reveal>
@@ -191,6 +255,24 @@ export default function Home() {
               <Link className="premiumButton secondary" href="/faq">Wszystkie odpowiedzi</Link>
             </Reveal>
             <div>{faq.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
+          </div>
+        </section>
+
+        <section className="enterpriseSection homepageFaqSection">
+          <div className="container">
+            <Reveal className="enterpriseHeading">
+              <span className="premiumPill">Dodatkowe pytania</span>
+              <h2>Najczęstsze pytania o korzystanie z portalu</h2>
+              <p>Krótkie odpowiedzi, które pomagają szybciej przejść do działania.</p>
+            </Reveal>
+            <div className="homepageFaqGrid">
+              {homepageFaq.map(([question, answer]) => (
+                <details key={question}>
+                  <summary>{question}<span>+</span></summary>
+                  <p>{answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 

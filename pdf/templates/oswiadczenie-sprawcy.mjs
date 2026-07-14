@@ -1,15 +1,14 @@
-import fs from "node:fs";
 import path from "node:path";
-import { jsPDF } from "jspdf";
+import { createPdfDocument } from "../engine/create-pdf.mjs";
 import { createDocumentMeta } from "../engine/document.mjs";
-import { PAGE } from "../engine/grid.mjs";
-import { theme } from "../engine/theme.mjs";
-import { typography } from "../engine/typography.mjs";
-import { createLayout } from "../engine/helpers.mjs";
 import { renderHeader } from "../engine/header.mjs";
 import { renderFooter } from "../engine/footer.mjs";
 import { renderWatermark } from "../engine/watermark.mjs";
 import { generateQrDataUrl } from "../engine/qr.mjs";
+import { createFormComponents } from "../engine/form.mjs";
+import { PAGE } from "../engine/grid.mjs";
+import { theme } from "../engine/theme.mjs";
+import { typography } from "../engine/typography.mjs";
 
 export async function buildOswiadczenieSprawcyPdf(outputPath = path.resolve("public/wzory/oswiadczenie-sprawcy-wzor.pdf")) {
   const meta = createDocumentMeta({
@@ -19,48 +18,13 @@ export async function buildOswiadczenieSprawcyPdf(outputPath = path.resolve("pub
     sourceUrl: "https://oc.documenty.pl/kolizja",
     revision: "r4",
   });
-  const assets = {
-    icon: `data:image/png;base64,${fs.readFileSync("public/images/oc-icon.png").toString("base64")}`,
-    qr: await generateQrDataUrl(meta.uuid),
-  };
-
-  const fontRegular = fs.readFileSync("C:/Windows/Fonts/calibri.ttf").toString("base64");
-  const fontBold = fs.readFileSync("C:/Windows/Fonts/calibrib.ttf").toString("base64");
-  const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
-
-  doc.addFileToVFS("Calibri.ttf", fontRegular);
-  doc.addFileToVFS("Calibrib.ttf", fontBold);
-  doc.addFont("Calibri.ttf", "Calibri", "normal");
-  doc.addFont("Calibrib.ttf", "Calibri", "bold");
-  doc.setFont("Calibri", "normal");
-
-  const layout = createLayout(doc, theme, typography);
-
-  const sectionHeader = (index, title, x, y, w) => {
-    layout.box(x, y, w, 10.8, [255, 255, 255], theme.colors.border, theme.radius.lg);
-    doc.setFillColor(...theme.colors.primary);
-    doc.roundedRect(x + 3, y + 2.3, 6.8, 6.8, 1.7, 1.7, "F");
-    layout.text(String(index), x + 6.4, y + 7.1, typography.h2, [255, 255, 255], { align: "center", bold: true });
-    doc.setFillColor(...theme.colors.text);
-    doc.roundedRect(x + 12, y + 2.3, w - 15, 6.8, 1.4, 1.4, "F");
-    layout.text(title.toUpperCase(), x + 14.2, y + 7.1, typography.h2, [255, 255, 255], { bold: true });
-  };
-
-  const field = (label, x, y, w, h = 8, required = false) => {
-    layout.text(`${label}${required ? " *" : ""}`, x, y, typography.h2, required ? theme.colors.primary : theme.colors.text);
-    layout.box(x, y + 2, w, h);
-  };
-
-  const multilineField = (label, x, y, w, h) => {
-    layout.text(`${label} *`, x, y, typography.h2, theme.colors.primary);
-    layout.box(x, y + 2, w, h);
-    for (let yy = y + 9; yy < y + 2 + h - 2; yy += 6.6) {
-      layout.line(x + 3, yy, x + w - 3, yy, theme.colors.softBorder, 0.15);
-    }
-  };
+  const assets = { qr: await generateQrDataUrl(meta.uuid) };
+  const { doc, layout } = createPdfDocument();
+  const ctx = { PAGE, theme, typography, meta, assets, layout };
+  const { sectionHeader, field, multilineField } = createFormComponents(doc, ctx);
 
   renderWatermark(doc);
-  renderHeader(doc, { PAGE, theme, typography, meta, assets, layout });
+  renderHeader(doc, ctx);
 
   field("Data zdarzenia", PAGE.marginX, 63.5, 37, 8, true);
   field("Godzina", 51, 63.5, 24, 8, true);
@@ -112,7 +76,7 @@ export async function buildOswiadczenieSprawcyPdf(outputPath = path.resolve("pub
   field("Czytelny podpis sprawcy", 166, 244, 28, 7, true);
   layout.text("podpis własnoręczny lub podpis elektroniczny", 166, 253.2, typography.caption, theme.colors.subtle);
 
-  renderFooter(doc, { PAGE, theme, typography, meta, assets, layout });
+  renderFooter(doc, ctx);
   doc.save(outputPath);
   return outputPath;
 }

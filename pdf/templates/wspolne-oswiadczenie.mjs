@@ -1,5 +1,5 @@
 import path from "node:path";
-import { createPdfDocument, loadBrandIcon } from "../engine/create-pdf.mjs";
+import { createPdfDocument } from "../engine/create-pdf.mjs";
 import { createDocumentMeta } from "../engine/document.mjs";
 import { renderHeader } from "../engine/header.mjs";
 import { renderFooter } from "../engine/footer.mjs";
@@ -18,7 +18,7 @@ export async function buildWspolneOswiadczeniePdf(outputPath = path.resolve("pub
     sourceUrl: "https://oc.documenty.pl/wspolne-oswiadczenie",
     revision: "r3",
   });
-  const assets = { icon: loadBrandIcon(), qr: await generateQrDataUrl(meta.uuid) };
+  const assets = { qr: await generateQrDataUrl(meta.uuid) };
   const { doc, layout } = createPdfDocument();
   const ctx = { PAGE, theme, typography, meta, assets, layout };
   const { sectionHeader, field, multilineField } = createFormComponents(doc, ctx);

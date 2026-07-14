@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ArrowRight, CalendarDays, Clock3, FileText, ShieldCheck } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, Clock3, FileText, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { BlogCoverVisual, BlogThumbnailVisual } from "@/components/ProductVisuals";
-import { getBlogPost, blogPosts } from "@/lib/blog";
+import { blogPosts, getBlogPost } from "@/lib/blog";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -41,6 +41,10 @@ export default async function BlogPostPage({ params }: PageProps) {
               <span className="premiumPill">Artykuł ekspercki</span>
               <h1>{post.title}</h1>
               <p>{post.lead}</p>
+              <div className="blogSummaryBox">
+                <strong>Skrót artykułu</strong>
+                <p>{post.summary}</p>
+              </div>
               <div className="blogMeta">
                 <span>
                   <CalendarDays /> {post.category}
@@ -59,7 +63,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <ul>
                 <li>praktyczne wskazówki</li>
                 <li>najczęstsze pułapki</li>
-                <li>krótkie przejście do formularza</li>
+                <li>szybkie przejście do wzoru</li>
               </ul>
               <Link className="premiumButton secondary" href={post.ctaHref}>
                 {post.ctaLabel} <ArrowRight />
@@ -77,6 +81,19 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <p>{post.sections[1]}</p>
                 <p>{post.sections[2]}</p>
               </div>
+
+              <div className="blogHighlights">
+                <h2>Najważniejsze w skrócie</h2>
+                <div className="blogHighlightsGrid">
+                  {post.highlights.map((highlight) => (
+                    <div key={highlight}>
+                      <CheckCircle2 />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="blogInfoBar">
                 <span>
                   <ShieldCheck /> Treści zgodne z logiką formularzy OC
@@ -97,6 +114,25 @@ export default async function BlogPostPage({ params }: PageProps) {
               </Link>
             </aside>
           </div>
+
+          {post.faq.length > 0 ? (
+            <div className="container">
+              <div className="blogFaq">
+                <h2>Najczęstsze pytania</h2>
+                <div className="faqGrid">
+                  {post.faq.map((item) => (
+                    <details key={item.question}>
+                      <summary>
+                        {item.question}
+                        <span>+</span>
+                      </summary>
+                      <p>{item.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : null}
 
           {related.length > 0 ? (
             <div className="container">

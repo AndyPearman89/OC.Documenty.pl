@@ -1,16 +1,22 @@
 import type { CSSProperties } from "react";
 import {
+  BadgeDollarSign,
+  Building2,
   CarFront,
   Check,
+  ClipboardList,
   CloudDownload,
   FileCheck2,
   FileClock,
   FileText,
+  Gavel,
   HandCoins,
   KeyRound,
+  Landmark,
   LockKeyhole,
   PenLine,
   ReceiptText,
+  ScrollText,
   ShieldCheck,
   ShieldQuestion,
   Signature,
@@ -193,17 +199,18 @@ export function BlogHeroVisual() {
 }
 
 const blogThumbnailThemes = {
-  "Kolizje i wypadki": { accent: "#ef4444", tint: "rgba(239,68,68,.12)", label: "Kolizje" },
-  "Ubezpieczenie OC": { accent: "#1d4ed8", tint: "rgba(29,78,216,.12)", label: "OC" },
-  "Kupno i sprzedaż auta": { accent: "#0f766e", tint: "rgba(15,118,110,.12)", label: "Auto" },
-  Odszkodowania: { accent: "#7c3aed", tint: "rgba(124,58,237,.12)", label: "Zwrot" },
-  "UFG i przepisy": { accent: "#0f172a", tint: "rgba(15,23,42,.12)", label: "UFG" },
-  "Dokumenty i wzory": { accent: "#ea580c", tint: "rgba(234,88,12,.12)", label: "PDF" },
-  Porównania: { accent: "#059669", tint: "rgba(5,150,105,.12)", label: "Porady" },
+  "Kolizje i wypadki": { accent: "#ef4444", tint: "rgba(239,68,68,.12)", label: "Kolizje", icon: CarFront, chip: "Auto" },
+  "Ubezpieczenie OC": { accent: "#1d4ed8", tint: "rgba(29,78,216,.12)", label: "OC", icon: ScrollText, chip: "Polisa" },
+  "Kupno i sprzedaż auta": { accent: "#0f766e", tint: "rgba(15,118,110,.12)", label: "Auto", icon: ClipboardList, chip: "Umowa" },
+  Odszkodowania: { accent: "#7c3aed", tint: "rgba(124,58,237,.12)", label: "Zwrot", icon: BadgeDollarSign, chip: "Szkoda" },
+  "UFG i przepisy": { accent: "#0f172a", tint: "rgba(15,23,42,.12)", label: "UFG", icon: Landmark, chip: "Przepisy" },
+  "Dokumenty i wzory": { accent: "#ea580c", tint: "rgba(234,88,12,.12)", label: "PDF", icon: FileText, chip: "Wzór" },
+  Porównania: { accent: "#059669", tint: "rgba(5,150,105,.12)", label: "Porady", icon: Gavel, chip: "Porównanie" },
 } as const;
 
 export function BlogThumbnailVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
   const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
+  const Icon = theme.icon;
   const initials = title
     .split(" ")
     .slice(0, 3)
@@ -215,9 +222,10 @@ export function BlogThumbnailVisual({ category, title }: { category: keyof typeo
     <div className="blogThumbnail" style={{ "--thumb-accent": theme.accent, "--thumb-tint": theme.tint } as CSSProperties} aria-hidden="true">
       <div className="blogThumbnailBadge">{theme.label}</div>
       <div className="blogThumbnailCard">
-        <FileClock />
+        <Icon />
         <span>{initials}</span>
       </div>
+      <div className="blogThumbnailChip">{theme.chip}</div>
       <div className="blogThumbnailLines">
         <i />
         <i />
@@ -229,6 +237,7 @@ export function BlogThumbnailVisual({ category, title }: { category: keyof typeo
 
 export function BlogCoverVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
   const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
+  const Icon = theme.icon;
   const initials = title
     .split(" ")
     .slice(0, 2)
@@ -248,12 +257,12 @@ export function BlogCoverVisual({ category, title }: { category: keyof typeof bl
       </div>
       <div className="blogCoverTitle">{initials}</div>
       <div className="blogCoverCard">
-        <FileClock />
+        <Icon />
         <strong>{title}</strong>
       </div>
       <div className="blogCoverFooter">
         <span>{category}</span>
-        <small>Poradnik OC.Documenty.pl</small>
+        <small>{theme.chip} • OC.Documenty.pl</small>
       </div>
     </div>
   );

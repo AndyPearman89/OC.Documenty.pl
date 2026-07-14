@@ -10,17 +10,7 @@ import { documentCatalog } from "@/lib/catalog";
 type PageProps = { params: Promise<{ slug: string }> };
 type LandingKind = "document" | "agreement" | "request" | "transfer" | "statement";
 
-const landingCopy: Record<
-  string,
-  {
-    eyebrow: string;
-    intro: string;
-    cta: string;
-    note: string;
-    kind: LandingKind;
-    summary: string;
-  }
-> = {
+const landingCopy: Record<string, { eyebrow: string; intro: string; cta: string; note: string; kind: LandingKind; summary: string }> = {
   "umowa-cesji-praw-z-polisy": {
     eyebrow: "Cesja praw z polisy",
     intro: "Formalny wzór do przeniesienia praw wynikających z polisy ubezpieczeniowej na nowy podmiot.",
@@ -111,26 +101,68 @@ export default async function DocumentLandingPage({ params }: PageProps) {
 
   const pdfPath = `/wzory/${slug}-wzor.pdf`;
   const returnHref = slug === "wypowiedzenie-oc" ? "/generator" : "/dokumenty";
+  const practicalSteps = [
+    "Sprawdź dane stron, pojazdu i numer dokumentu, zanim pobierzesz PDF.",
+    "Jeśli dokument wymaga podpisu, wydrukuj go lub uzupełnij online i zapisz kopię.",
+    "W razie potrzeby przejdź do generatora lub katalogu, aby dobrać powiązany wzór.",
+  ];
+  const usageNotes = [
+    "Wzór jest przygotowany do szybkiego wypełnienia i zachowuje formalny układ.",
+    "Możesz go pobrać jako PDF i przekazać dalej w postaci elektronicznej lub papierowej.",
+    "Dokument dobrze sprawdza się jako baza do druku i archiwizacji.",
+  ];
+  const faq = [
+    {
+      question: "Czy dokument mogę wykorzystać od razu po pobraniu?",
+      answer: "Tak, wzór jest przygotowany tak, aby po pobraniu można go było od razu uzupełnić, wydrukować albo przekazać dalej.",
+    },
+    {
+      question: "Czy to jest format odpowiedni do druku?",
+      answer: "Tak — dokument został ułożony w układzie A4, z myślą o czytelnym wydruku i archiwizacji.",
+    },
+    {
+      question: "Co zrobić, jeśli potrzebuję innego wzoru?",
+      answer: "Wróć do katalogu dokumentów albo otwórz generator, aby przejść do powiązanego formularza.",
+    },
+  ];
 
   return (
     <>
       <Header />
       <main id="main-content" className="documentLandingPage">
         <section className="catalogHero">
-          <div className="container">
-            <span className="eyebrow">
-              <ShieldCheck /> {copy.eyebrow}
-            </span>
-            <h1>{doc.title}</h1>
-            <p>{copy.intro}</p>
-            <div className="landingActions">
-              <a className="premiumButton primary" href={pdfPath} download>
-                <Download /> Pobierz PDF
-              </a>
-              <Link className="premiumButton secondary" href={returnHref}>
-                <ArrowRight /> Wróć do wyboru
-              </Link>
+          <div className="container catalogHeroGrid documentHeroGrid">
+            <div>
+              <span className="eyebrow">
+                <ShieldCheck /> {copy.eyebrow}
+              </span>
+              <h1>{doc.title}</h1>
+              <p>{copy.intro}</p>
+              <div className="documentLeadBox">
+                <strong>Dlaczego warto z tego skorzystać</strong>
+                <p>{copy.summary}</p>
+              </div>
+              <div className="landingActions">
+                <a className="premiumButton primary" href={pdfPath} download>
+                  <Download /> Pobierz PDF
+                </a>
+                <Link className="premiumButton secondary" href={returnHref}>
+                  <ArrowRight /> Wróć do wyboru
+                </Link>
+              </div>
             </div>
+            <aside className="catalogHeroAside documentHeroAside">
+              <strong>Jak użyć dokumentu</strong>
+              <ul>
+                {practicalSteps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ul>
+              <div className="documentUsageNote">
+                <strong>Wskazówka</strong>
+                <p>{copy.note}</p>
+              </div>
+            </aside>
           </div>
         </section>
 
@@ -158,10 +190,43 @@ export default async function DocumentLandingPage({ params }: PageProps) {
               <small>Charakter dokumentu</small>
               <h2>Urzędowy styl i czytelny układ</h2>
               <p>{copy.summary}</p>
+              <div className="documentUsageNote">
+                <strong>W praktyce</strong>
+                {usageNotes.map((note) => (
+                  <p key={note}>{note}</p>
+                ))}
+              </div>
               <Link className="premiumButton primary" href={returnHref}>
                 {copy.cta} <ArrowRight />
               </Link>
             </article>
+          </div>
+
+          <div className="container">
+            <div className="documentSeoBox">
+              <h2>Praktyczne informacje o dokumencie</h2>
+              <p>
+                Ta strona pomaga szybko znaleźć formalny wzór dokumentu, zrozumieć jego zastosowanie i przejść do dalszych kroków bez
+                szukania po całym serwisie.
+              </p>
+            </div>
+          </div>
+
+          <div className="container">
+            <div className="blogFaq">
+              <h2>Najczęstsze pytania</h2>
+              <div className="faqGrid">
+                {faq.map((item) => (
+                  <details key={item.question}>
+                    <summary>
+                      {item.question}
+                      <span>+</span>
+                    </summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       </main>

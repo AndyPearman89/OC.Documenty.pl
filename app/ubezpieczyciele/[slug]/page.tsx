@@ -12,11 +12,34 @@ interface InsurerPageProps {
   params: Promise<{ slug: string }>;
 }
 
-const insurerCopy: Record<string, { intro: string; action: string; note: string }> = {
+const insurerCopy: Record<string, { intro: string; action: string; note: string; bullets: string[]; support: string }> = {
   pzu: {
     intro: "Najpopularniejsze wzory do PZU w jednym miejscu — z naciskiem na czytelność, terminowość i prosty proces wysyłki.",
     action: "Przejdź do dokumentów PZU",
     note: "Przygotuj wypowiedzenie, oświadczenie lub pismo w formacie wygodnym do wydruku i wysyłki.",
+    bullets: ["Najczęściej używane formularze", "Szybkie przejście do generatora", "Dostosowany układ dokumentów"],
+    support: "PZU to jedna z najczęściej wybieranych firm, dlatego strona zawiera też skróty do najważniejszych wzorów i wskazówki, co zrobić po kolei.",
+  },
+  warta: {
+    intro: "Porządek w dokumentach Warty zaczyna się od właściwego wzoru i krótkiego opisu, który prowadzi użytkownika krok po kroku.",
+    action: "Sprawdź wzory dla Warty",
+    note: "Na stronie znajdziesz praktyczne skróty do wypowiedzenia, reklamacji i pozostałych pism związanych z polisą.",
+    bullets: ["Formalny układ pism", "Czytelne wskazówki krok po kroku", "Szybki dostęp do PDF"],
+    support: "Strona pomaga od razu przejść od wyboru firmy do konkretnego dokumentu, bez szukania po całym serwisie.",
+  },
+  allianz: {
+    intro: "Dokumenty Allianz zebrane w jednym miejscu, tak aby szybciej znaleźć właściwe pismo i przejść do generatora.",
+    action: "Otwórz dokumenty Allianz",
+    note: "Przydatne, gdy potrzebujesz uporządkować korespondencję i wybrać właściwy wzór bez dodatkowych decyzji.",
+    bullets: ["Pismo, umowa, oświadczenie", "Przejrzyste sekcje", "Szybki start bez konta"],
+    support: "Krótki opis i podział dokumentów ułatwiają wybór odpowiedniego formularza już na pierwszym ekranie.",
+  },
+  "ergo-hestia": {
+    intro: "Wzory dla ERGO Hestii w formalnym, spokojnym układzie, nastawionym na szybkie odnalezienie potrzebnego pisma.",
+    action: "Sprawdź dokumenty ERGO Hestia",
+    note: "Sekcja pomaga od razu przejść do właściwego wzoru bez zbędnego klikania po całym katalogu.",
+    bullets: ["Formalny i czytelny układ", "Dane i załączniki w jednym miejscu", "Gotowe do wysyłki"],
+    support: "Każdy wzór jest opisany prostym językiem, żeby użytkownik wiedział, do czego służy i kiedy go użyć.",
   },
 };
 
@@ -46,6 +69,24 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
     { title: `Reklamacja do ${insurer.name}`, href: null, note: "Pismo w sprawie decyzji lub sposobu likwidacji szkody." },
     { title: "Oświadczenie sprawcy kolizji", href: "/oswiadczenie-sprawcy", note: "Wzór przydatny po zdarzeniu drogowym." },
   ];
+  const moreActions = [
+    { label: "Zobacz wszystkie dokumenty", href: "/dokumenty" },
+    { label: "Uruchom generator", href: "/generator" },
+  ];
+  const faq = [
+    {
+      question: `Jakie dokumenty dla ${insurer.name} są najczęściej używane?`,
+      answer: "Najczęściej wybierane są wypowiedzenie OC, reklamacja, zwrot składki oraz oświadczenie po kolizji.",
+    },
+    {
+      question: "Czy mogę przejść stąd od razu do generatora?",
+      answer: "Tak — strona prowadzi bezpośrednio do generatora i do katalogu dokumentów, żeby skrócić całą ścieżkę.",
+    },
+    {
+      question: "Czy wzory nadają się do wysyłki online?",
+      answer: "Tak, dokumenty są przygotowane tak, aby można było je pobrać, wypełnić i wysłać zgodnie z wymaganiami firmy.",
+    },
+  ];
   const brand = insurerBrandStyles[insurer.name] ?? insurerBrandStyles.PZU;
   const heroClass = `companyHero companyHero-${slug}`;
 
@@ -67,16 +108,16 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
               <p className="companyHeroLead">
                 {insurerCopy[slug]?.intro ?? "Wybierz dokument, wypełnij go online i pobierz gotowy PDF do dalszej wysyłki."}
               </p>
+              <div className="companyIntroBox">
+                <strong>Dlaczego ta strona pomaga</strong>
+                <p>{insurerCopy[slug]?.support ?? "W jednym miejscu masz opis firmy, najważniejsze dokumenty i przejście do generatora."}</p>
+              </div>
               <div className="companyChecks">
-                <span>
-                  <CheckCircle2 /> Czytelne formularze
-                </span>
-                <span>
-                  <CheckCircle2 /> Gotowe w kilka minut
-                </span>
-                <span>
-                  <CheckCircle2 /> Dane przetwarzane lokalnie
-                </span>
+                {(insurerCopy[slug]?.bullets ?? ["Czytelne formularze", "Gotowe w kilka minut", "Dane przetwarzane lokalnie"]).map((bullet) => (
+                  <span key={bullet}>
+                    <CheckCircle2 /> {bullet}
+                  </span>
+                ))}
               </div>
               <Link className="button buttonPrimary buttonLarge" href="/generator">
                 {insurerCopy[slug]?.action ?? "Utwórz wypowiedzenie OC"} <ArrowRight />
@@ -88,6 +129,10 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
                 <InsurerBrand name={insurer.name} />
                 <small>{brand.label} • dokumenty i formularze online</small>
               </div>
+              <div className="companyIntroBox">
+                <strong>Jak korzystać</strong>
+                <p>Wybierz pismo, sprawdź opis i przejdź bezpośrednio do właściwego wzoru lub generatora.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -97,6 +142,12 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
             <div>
               <h2>Wzory dokumentów</h2>
               <p>{insurerCopy[slug]?.note ?? "Każdy dokument ma prosty układ i prowadzi do kolejnego kroku bez zbędnych decyzji."}</p>
+              <div className="companyIntroBox">
+                <strong>Jak to działa</strong>
+                <p>
+                  {insurerCopy[slug]?.support ?? "Najpierw wybierz dokument, potem uzupełnij dane i pobierz gotowy plik PDF lub DOCX."}
+                </p>
+              </div>
               <div className="companyDocs">
                 {docs.map((doc) => (
                   <article key={doc.title}>
@@ -117,11 +168,20 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
                   </article>
                 ))}
               </div>
+              <div className="companyChecklist">
+                <span>Każdy dokument jest opisany prostym językiem, aby łatwo wybrać właściwy wzór.</span>
+                <span>Jeśli nie potrzebujesz całego katalogu, przejdź od razu do generatora.</span>
+                <span>Treści przygotowaliśmy tak, aby prowadziły do konkretnej akcji, a nie tylko do ogólnego opisu.</span>
+              </div>
             </div>
 
             <aside className="contactCard">
               <h2>Jak wysłać dokument?</h2>
               <p>Po wygenerowaniu możesz przekazać dokument zgodnie z instrukcją wybranego ubezpieczyciela.</p>
+              <div className="companyChecklist">
+                <span>Wysyłka online, pocztą lub przez ePUAP — zależnie od wymagań firmy.</span>
+                <span>Warto zachować potwierdzenie nadania lub wysyłki e-mail.</span>
+              </div>
               <div>
                 <Mail />
                 <span>
@@ -139,7 +199,39 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
               <Link className="button buttonOutline" href="/dokumenty">
                 Zobacz wszystkie wzory
               </Link>
+              {moreActions.map((action) => (
+                <Link className="button buttonOutline" href={action.href} key={action.label}>
+                  {action.label}
+                </Link>
+              ))}
             </aside>
+          </div>
+
+          <div className="container">
+            <div className="documentSeoBox">
+              <h2>Jak korzystać ze strony {insurer.name}</h2>
+              <p>
+                Ta podstrona porządkuje dokumenty dla wybranego ubezpieczyciela, skraca czas wyboru właściwego formularza i prowadzi
+                do PDF albo generatora bez zbędnych kroków.
+              </p>
+            </div>
+          </div>
+
+          <div className="container">
+            <div className="blogFaq">
+              <h2>Najczęstsze pytania</h2>
+              <div className="faqGrid">
+                {faq.map((item) => (
+                  <details key={item.question}>
+                    <summary>
+                      {item.question}
+                      <span>+</span>
+                    </summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       </main>

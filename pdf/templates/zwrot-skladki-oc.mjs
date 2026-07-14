@@ -1,5 +1,5 @@
 import path from "node:path";
-import { createPdfDocument, loadBrandIcon } from "../engine/create-pdf.mjs";
+import { createPdfDocument } from "../engine/create-pdf.mjs";
 import { createDocumentMeta } from "../engine/document.mjs";
 import { renderHeader } from "../engine/header.mjs";
 import { renderFooter } from "../engine/footer.mjs";
@@ -18,7 +18,7 @@ export async function buildZwrotSkladkiOcPdf(outputPath = path.resolve("public/w
     sourceUrl: "https://oc.documenty.pl/dokumenty/zwrot-skladki-oc",
     revision: "r1",
   });
-  const assets = { icon: loadBrandIcon(), qr: await generateQrDataUrl(meta.uuid) };
+  const assets = { qr: await generateQrDataUrl(meta.uuid) };
   const { doc, layout } = createPdfDocument();
   const ctx = { PAGE, theme, typography, meta, assets, layout };
   const { sectionHeader, field, checkbox } = createFormComponents(doc, ctx);

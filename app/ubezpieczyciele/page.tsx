@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { ArrowRight, Building2, FileCheck2, ShieldCheck } from "lucide-react";
+﻿import type { Metadata } from "next";
+import { ArrowRight, BadgeCheck, Building2, FileCheck2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
@@ -8,8 +8,8 @@ import { InsurerBrand } from "@/components/InsurerBrand";
 import { insurerProfiles } from "@/lib/catalog";
 
 export const metadata: Metadata = {
-  title: "Ubezpieczyciele",
-  description: "Wybierz towarzystwo ubezpieczeniowe i przejdź do odpowiednich wzorów dokumentów OC.",
+  title: "Ubezpieczyciele — dokumenty i formularze OC",
+  description: "Wybierz towarzystwo ubezpieczeniowe i przejdź do odpowiednich wzorów dokumentów OC, instrukcji i generatorów.",
 };
 
 export default function InsurersPage() {
@@ -21,14 +21,56 @@ export default function InsurersPage() {
           <Breadcrumbs items={[{ label: "Ubezpieczyciele" }]} />
         </div>
         <section className="catalogHero">
-          <div className="container">
-            <span className="eyebrow">
-              <ShieldCheck /> Formularze i adresy
-            </span>
-            <h1>Dokumenty dla ubezpieczycieli</h1>
-            <p>
-              Wybierz firmę, aby zobaczyć wzory pism, najważniejsze dokumenty i przejście do właściwego generatora.
-            </p>
+          <div className="container catalogHeroGrid insurerHeroGrid">
+            <div>
+              <span className="eyebrow">
+                <ShieldCheck /> Formularze i adresy
+              </span>
+              <h1>Dokumenty dla ubezpieczycieli</h1>
+              <p>
+                Wybierz firmę, aby zobaczyć wzory pism, najważniejsze dokumenty i przejście do właściwego generatora.
+              </p>
+              <div className="catalogHeroChecks">
+                <span>
+                  <BadgeCheck /> Wzory dopasowane do konkretnej marki
+                </span>
+                <span>
+                  <BadgeCheck /> Krótkie opisy i praktyczne podpowiedzi
+                </span>
+                <span>
+                  <BadgeCheck /> Szybki dostęp do PDF i generatora
+                </span>
+              </div>
+            </div>
+            <aside className="catalogHeroAside insurerHeroAside">
+              <strong>Jak korzystać z tej sekcji</strong>
+              <p>
+                Każda karta prowadzi do mini-strony firmy z dokumentami, instrukcją wysyłki i powiązanymi wzorami.
+              </p>
+              <ul>
+                <li>wybierz ubezpieczyciela</li>
+                <li>otwórz właściwy dokument</li>
+                <li>przejdź do generatora lub PDF</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+        <section className="enterpriseSection insurerIntroSection">
+          <div className="container insurerIntroGrid">
+            <article>
+              <h2>Dlaczego to ułatwia sprawę</h2>
+              <p>
+                W jednym miejscu zebraliśmy najbardziej potrzebne pismo, formularze i skróty do generatorów, żeby nie tracić czasu na
+                szukanie właściwego wzoru.
+              </p>
+            </article>
+            <article>
+              <h2>Co możesz zrobić dalej</h2>
+              <p>
+                Przejść do listy dokumentów, otworzyć konkretny generator albo wejść na stronę wybranego ubezpieczyciela i pobrać
+                gotowy PDF.
+              </p>
+            </article>
           </div>
         </section>
         <section className="section">
@@ -38,7 +80,7 @@ export default function InsurersPage() {
                 <InsurerBrand name={insurer.name} />
                 <div>
                   <h2>{insurer.name}</h2>
-                  <p>Wzory dokumentów, instrukcje i skróty do generatorów.</p>
+                  <p>Wzory dokumentów, instrukcje, podpowiedzi i przejścia do generatorów.</p>
                 </div>
                 <ArrowRight />
               </Link>

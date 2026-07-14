@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
@@ -7,8 +7,9 @@ import { BlogHeroVisual, BlogThumbnailVisual } from "@/components/ProductVisuals
 import { blogCategories, blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Poradniki, aktualności i praktyczne wskazówki dotyczące dokumentów OC.",
+  title: "Blog OC — poradniki, wzory i praktyczne wskazówki",
+  description:
+    "Poradniki, aktualności i praktyczne wskazówki dotyczące kolizji, wypowiedzeń OC, dokumentów PDF i wzorów do pobrania.",
   alternates: { canonical: "/blog" },
 };
 
@@ -47,7 +48,10 @@ export default function BlogPage() {
                   <small>gotowych tematów</small>
                 </span>
               </div>
-              <p>Treści są tworzone z myślą o użytkownikach, którzy chcą szybko znaleźć odpowiedź i przejść dalej do wzoru lub generatora.</p>
+              <p>
+                Treści są tworzone z myślą o użytkownikach, którzy chcą szybko znaleźć odpowiedź i przejść dalej do wzoru lub
+                generatora.
+              </p>
               <Link href="/faq">
                 Zobacz FAQ <ArrowRight />
               </Link>
@@ -92,8 +96,8 @@ export default function BlogPage() {
                 <section key={category} className="blogCategorySection">
                   <h2>{category}</h2>
                   <div className="blogList">
-                  {posts.map((post) => (
-                    <article className="blogCard" key={post.slug}>
+                    {posts.map((post) => (
+                      <article className="blogCard" key={post.slug}>
                         <BlogThumbnailVisual category={post.category} title={post.title} />
                         <small>{post.category}</small>
                         <h3>{post.title}</h3>

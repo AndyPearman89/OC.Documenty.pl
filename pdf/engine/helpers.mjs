@@ -2,7 +2,7 @@ export function createLayout(doc, theme, typography) {
   const rgb = (color) => (Array.isArray(color) ? color : theme.colors.text);
 
   function text(value, x, y, size = typography.body, color = theme.colors.text, options = {}) {
-    doc.setFont(options.bold ? "Calibri" : "Calibri", options.bold ? "bold" : "normal");
+    doc.setFont("Inter", options.bold ? "bold" : "normal");
     doc.setFontSize(size);
     doc.setTextColor(...rgb(color));
     doc.text(String(value), x, y, options);
