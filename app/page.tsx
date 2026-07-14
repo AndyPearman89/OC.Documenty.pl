@@ -1,5 +1,23 @@
 import type { CSSProperties } from "react";
-import { ArrowRight, BadgeCheck, BookOpen, Building2, Check, CheckCircle2, Clock3, CloudDownload, FileCheck2, FileText, Headphones, LockKeyhole, Mail, PenLine, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  BookOpen,
+  Building2,
+  Check,
+  CheckCircle2,
+  Clock3,
+  CloudDownload,
+  FileCheck2,
+  FileText,
+  Headphones,
+  LockKeyhole,
+  Mail,
+  PenLine,
+  ShieldCheck,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -28,12 +46,6 @@ const homepageFaq = [
   ["Czy znajdę tu też wzory dla firm?", "Tak. Sekcja ubezpieczycieli prowadzi do dokumentów dla konkretnych towarzystw i ich opisów."],
 ];
 
-const newsletterPoints = [
-  "dokument tygodnia",
-  "zmiany przepisów i kar",
-  "nowe generatory i PDF",
-];
-
 const faq = [
   ["Czy muszę zakładać konto?", "Nie. Generator działa bez rejestracji, a dane formularza pozostają w Twojej przeglądarce."],
   ["Czy mogę podpisać dokument zdjęciem?", "Tak. Dodaj czytelne zdjęcie podpisu w formacie JPG, PNG lub WEBP i sprawdź wymagania ubezpieczyciela."],
@@ -42,12 +54,22 @@ const faq = [
 ];
 
 export default function Home() {
-  const organization = { "@context": "https://schema.org", "@type": "Organization", name: "OC.Documenty.pl", url: "https://oc.documenty.pl", email: "oc@documenty.pl" };
+  const organization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "OC.Documenty.pl",
+    url: "https://oc.documenty.pl",
+    email: "oc@documenty.pl",
+  };
   const howTo = {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: "Jak przygotować dokument OC online",
-    step: ["Wybierz dokument i ubezpieczyciela", "Uzupełnij dane oraz dodaj podpis", "Pobierz PDF i przekaż go ubezpieczycielowi"].map((name, index) => ({ "@type": "HowToStep", position: index + 1, name })),
+    step: [
+      "Wybierz dokument i ubezpieczyciela",
+      "Uzupełnij dane oraz dodaj podpis",
+      "Pobierz PDF i przekaż go ubezpieczycielowi",
+    ].map((name, index) => ({ "@type": "HowToStep", position: index + 1, name })),
   };
 
   return (
@@ -62,10 +84,16 @@ export default function Home() {
                 <Sparkles /> Generator dokumentów OC
               </span>
               <h1>Dokumenty OC i AC <em>gotowe w kilka minut.</em></h1>
-              <p>Profesjonalne formularze, czytelny podgląd i bezpieczne generowanie PDF bez konta, bez logowania i bez instalowania aplikacji.</p>
+              <p>
+                Profesjonalne formularze, czytelny podgląd i bezpieczne generowanie PDF bez konta, bez logowania i bez instalowania aplikacji.
+              </p>
               <div className="enterpriseHeroActions">
-                <Link className="premiumButton primary" href="/generator">Generuj wypowiedzenie <ArrowRight /></Link>
-                <Link className="premiumButton secondary" href="/ubezpieczyciele"><Building2 /> Lista ubezpieczycieli</Link>
+                <Link className="premiumButton primary" href="/generator">
+                  Generuj wypowiedzenie <ArrowRight />
+                </Link>
+                <Link className="premiumButton secondary" href="/ubezpieczyciele">
+                  <Building2 /> Lista ubezpieczycieli
+                </Link>
               </div>
               <div className="heroProof">
                 <span><CheckCircle2 /> Dane przetwarzane lokalnie</span>
@@ -73,9 +101,13 @@ export default function Home() {
                 <span><CheckCircle2 /> Bez logowania</span>
               </div>
             </div>
-            <Reveal className="heroReveal"><HeroProductVisual /></Reveal>
+            <Reveal className="heroReveal">
+              <HeroProductVisual />
+            </Reveal>
           </div>
-          <a className="scrollCue" href="#jak-to-dziala" aria-label="Przejdź do sekcji Jak to działa"><span /></a>
+          <a className="scrollCue" href="#jak-to-dziala" aria-label="Przejdź do sekcji Jak to działa">
+            <span />
+          </a>
         </section>
 
         <section className="enterpriseTrust">
@@ -93,15 +125,15 @@ export default function Home() {
               <span className="premiumPill">Dla kierowców</span>
               <h2>Szybciej znajdziesz właściwy dokument</h2>
               <p>
-                Zamiast szukać osobno wzorów, adresów i instrukcji, możesz zacząć od sprawy, którą chcesz załatwić, a potem przejść
-                prosto do formularza, PDF lub generatora.
+                Zamiast szukać osobno wzorów, adresów i instrukcji, możesz zacząć od sprawy, którą chcesz załatwić, a potem przejść prosto
+                do formularza, PDF lub generatora.
               </p>
             </article>
             <article>
               <span className="premiumPill">Dlaczego to działa</span>
               <p>
-                Serwis porządkuje najczęstsze zadania kierowców: wypowiedzenie OC, oświadczenie po kolizji, umowy pojazdowe i
-                reklamacje. Dzięki temu użytkownik nie musi zgadywać, od czego zacząć.
+                Serwis porządkuje najczęstsze zadania kierowców: wypowiedzenie OC, oświadczenie po kolizji, umowy pojazdowe i reklamacje.
+                Dzięki temu użytkownik nie musi zgadywać, od czego zacząć.
               </p>
             </article>
           </div>
@@ -124,7 +156,11 @@ export default function Home() {
             </Reveal>
             <WorkflowVisual />
             <div className="enterpriseSteps">
-              {[[Building2, "Wybierz firmę", "Znajdź ubezpieczyciela i rozpocznij właściwy formularz."], [PenLine, "Uzupełnij i podpisz", "Walidacja prowadzi przez dane właściciela, pojazdu i polisy."], [CloudDownload, "Pobierz lub wyślij", "Sprawdź podgląd, pobierz PDF i przekaż dokument."]].map(([Icon, title, text], index) => (
+              {[
+                [Building2, "Wybierz firmę", "Znajdź ubezpieczyciela i rozpocznij właściwy formularz."],
+                [PenLine, "Uzupełnij i podpisz", "Walidacja prowadzi przez dane właściciela, pojazdu i polisy."],
+                [CloudDownload, "Pobierz lub wyślij", "Sprawdź podgląd, pobierz PDF i przekaż dokument."],
+              ].map(([Icon, title, text], index) => (
                 <Reveal key={String(title)} delay={index * 90}>
                   <article>
                     <b>0{index + 1}</b>
@@ -145,7 +181,9 @@ export default function Home() {
                 <span className="premiumPill">Dokumenty</span>
                 <h2>Wybierz sprawę, którą chcesz załatwić</h2>
               </div>
-              <Link className="inlineArrow" href="/dokumenty">Pełna biblioteka <ArrowRight /></Link>
+              <Link className="inlineArrow" href="/dokumenty">
+                Pełna biblioteka <ArrowRight />
+              </Link>
             </Reveal>
             <div className="enterpriseDocGrid">
               {documents.map((document, index) => (
@@ -169,7 +207,9 @@ export default function Home() {
               <span className="premiumPill"><Building2 /> Ubezpieczyciele</span>
               <h2>Dokumenty dla największych firm</h2>
               <p>Wybierz ubezpieczyciela, aby przejść do dostępnych formularzy i instrukcji wysyłki.</p>
-              <Link className="premiumButton secondary" href="/ubezpieczyciele">Zobacz wszystkie firmy <ArrowRight /></Link>
+              <Link className="premiumButton secondary" href="/ubezpieczyciele">
+                Zobacz wszystkie firmy <ArrowRight />
+              </Link>
             </Reveal>
             <Reveal className="insurerCloud" delay={100}>
               {insurerProfiles.slice(0, 8).map((insurer, index) => (
@@ -198,7 +238,12 @@ export default function Home() {
                 <h2>Profesjonalne narzędzie bez zbędnej złożoności</h2>
               </Reveal>
               <div className="benefitList">
-                {[[ShieldCheck, "Prywatność od początku", "Formularze nie są automatycznie przesyłane na serwer."], [Check, "Walidacja krok po kroku", "Czytelne komunikaty pomagają uniknąć pustych pól."], [Mail, "Gotowe do przekazania", "Pobierz PDF, wydrukuj lub udostępnij go z telefonu."], [Headphones, "Pomoc po drodze", "FAQ i kontakt są dostępne z każdego miejsca serwisu."]].map(([Icon, title, text]) => (
+                {[
+                  [ShieldCheck, "Prywatność od początku", "Formularze nie są automatycznie przesyłane na serwer."],
+                  [Check, "Walidacja krok po kroku", "Czytelne komunikaty pomagają uniknąć pustych pól."],
+                  [Mail, "Gotowe do przekazania", "Pobierz PDF, wydrukuj lub udostępnij go z telefonu."],
+                  [Headphones, "Pomoc po drodze", "FAQ i kontakt są dostępne z każdego miejsca serwisu."],
+                ].map(([Icon, title, text]) => (
                   <div key={String(title)}>
                     <span><Icon /></span>
                     <div>
@@ -219,12 +264,29 @@ export default function Home() {
                 <span className="premiumPill"><BookOpen /> Wiedza</span>
                 <h2>Przydatne przed wysłaniem dokumentu</h2>
               </div>
-              <Link className="inlineArrow" href="/faq">Centrum pomocy <ArrowRight /></Link>
+              <Link className="inlineArrow" href="/faq">
+                Centrum pomocy <ArrowRight />
+              </Link>
             </Reveal>
             <div className="guideGrid">
-              <article><small>Wypowiedzenie OC</small><h3>Kiedy zastosować art. 28, 28a lub 31?</h3><p>W generatorze znajdziesz krótkie objaśnienia każdej podstawy wypowiedzenia.</p><Link href="/generator">Przejdź do generatora <ArrowRight /></Link></article>
-              <article><small>Po kolizji</small><h3>Jak przygotować wspólne oświadczenie?</h3><p>Zbierz dane obu stron, pojazdów, polis oraz czytelne podpisy.</p><Link href="/wspolne-oswiadczenie">Otwórz formularz <ArrowRight /></Link></article>
-              <article><small>Bezpieczeństwo</small><h3>Co dzieje się z danymi formularza?</h3><p>Dane są przetwarzane lokalnie i znikają po zamknięciu sesji.</p><Link href="/polityka-prywatnosci">Polityka prywatności <ArrowRight /></Link></article>
+              <article>
+                <small>Wypowiedzenie OC</small>
+                <h3>Kiedy zastosować art. 28, 28a lub 31?</h3>
+                <p>W generatorze znajdziesz krótkie objaśnienia każdej podstawy wypowiedzenia.</p>
+                <Link href="/generator">Przejdź do generatora <ArrowRight /></Link>
+              </article>
+              <article>
+                <small>Po kolizji</small>
+                <h3>Jak przygotować wspólne oświadczenie?</h3>
+                <p>Zbierz dane obu stron, pojazdów, polis oraz czytelne podpisy.</p>
+                <Link href="/wspolne-oswiadczenie">Otwórz formularz <ArrowRight /></Link>
+              </article>
+              <article>
+                <small>Bezpieczeństwo</small>
+                <h3>Co dzieje się z danymi formularza?</h3>
+                <p>Dane są przetwarzane lokalnie i znikają po zamknięciu sesji.</p>
+                <Link href="/polityka-prywatnosci">Polityka prywatności <ArrowRight /></Link>
+              </article>
             </div>
           </div>
         </section>
@@ -236,7 +298,9 @@ export default function Home() {
                 <span className="premiumPill">Co znajdziesz</span>
                 <h2>Dokumenty, które rozwiązują najczęstsze sprawy</h2>
               </div>
-              <Link className="inlineArrow" href="/dokumenty">Zobacz katalog <ArrowRight /></Link>
+              <Link className="inlineArrow" href="/dokumenty">
+                Zobacz katalog <ArrowRight />
+              </Link>
             </Reveal>
             <div className="homepageDocStrip">
               {documents.map((document) => (
@@ -259,7 +323,9 @@ export default function Home() {
               <span className="premiumPill">FAQ</span>
               <h2>Najczęściej zadawane pytania</h2>
               <p>Konkretnie i bez prawniczego żargonu.</p>
-              <Link className="premiumButton secondary" href="/faq">Wszystkie odpowiedzi</Link>
+              <Link className="premiumButton secondary" href="/faq">
+                Wszystkie odpowiedzi
+              </Link>
             </Reveal>
             <div>{faq.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
           </div>
@@ -270,12 +336,15 @@ export default function Home() {
             <Reveal className="enterpriseHeading">
               <span className="premiumPill">Dodatkowe pytania</span>
               <h2>Najczęstsze pytania o korzystanie z portalu</h2>
-              <p>Krótkie odpowiedzi, które pomagają szybciej przejść do działania.</p>
+              <p>Krótka odpowiedź, która pomaga szybciej przejść do działania.</p>
             </Reveal>
             <div className="homepageFaqGrid">
               {homepageFaq.map(([question, answer]) => (
                 <details key={question}>
-                  <summary>{question}<span>+</span></summary>
+                  <summary>
+                    {question}
+                    <span>+</span>
+                  </summary>
                   <p>{answer}</p>
                 </details>
               ))}
@@ -292,11 +361,15 @@ export default function Home() {
         <section className="enterpriseFinalCta">
           <div className="container">
             <div>
-              <span className="premiumPill light"><Sparkles /> Zacznij teraz</span>
+              <span className="premiumPill light">
+                <Sparkles /> Zacznij teraz
+              </span>
               <h2>Przygotuj dokument OC <br /> bez stresu i bez konta.</h2>
               <p>Wybierz ubezpieczyciela, uzupełnij dane i pobierz gotowy dokument PDF.</p>
             </div>
-            <Link className="premiumButton white" href="/generator">Generuj dokument <ArrowRight /></Link>
+            <Link className="premiumButton white" href="/generator">
+              Generuj dokument <ArrowRight />
+            </Link>
           </div>
         </section>
       </main>

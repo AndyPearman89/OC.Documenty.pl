@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Clock3, FileText, FileSearch, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -28,10 +28,15 @@ export default function BlogPage() {
               <span className="premiumPill">
                 <Sparkles /> Blog i poradniki
               </span>
-              <h1>Praktyczna wiedza o dokumentach OC</h1>
+              <h1>Aktualne poradniki OC, kolizje i dokumenty gotowe do użycia</h1>
               <p>
-                Krótkie, konkretne teksty o kolizjach, wypowiedzeniu OC, odwołaniach i przygotowaniu dokumentów do wysyłki.
+                Krótkie, konkretne teksty o kolizjach, wypowiedzeniu OC, odwołaniach, zmianach przepisów i przygotowaniu dokumentów do wysyłki.
               </p>
+              <div className="blogHeroChips">
+                <span><TrendingUp /> SEO i Discover</span>
+                <span><ShieldCheck /> Treści zgodne z logiką OC</span>
+                <span><FileSearch /> Szybki dostęp do wzorów</span>
+              </div>
               <div className="blogHeroActions">
                 <Link className="premiumButton primary" href="/generator">
                   Generuj dokument <ArrowRight />
@@ -51,7 +56,7 @@ export default function BlogPage() {
                 </span>
               </div>
               <p>
-                Treści są tworzone z myślą o użytkownikach, którzy chcą szybko znaleźć odpowiedź i przejść dalej do wzoru lub
+                Treści są tworzone z myślą o użytkownikach, którzy chcą szybko znaleźć odpowiedź, zobaczyć wzór i przejść dalej do
                 generatora.
               </p>
               <Link href="/faq">
@@ -67,6 +72,14 @@ export default function BlogPage() {
               {blogCategories.map((category) => (
                 <span key={category}>{category}</span>
               ))}
+            </div>
+
+            <div className="blogSEOBox">
+              <h2>Tematy, które najczęściej prowadzą do wzorów i generatorów</h2>
+              <p>
+                Blog budujemy wokół realnych intencji użytkowników: co zrobić po kolizji, jak wypowiedzieć OC, kiedy zgłosić szkodę i
+                jakie dokumenty pobrać.
+              </p>
             </div>
 
             <div className="blogGrid">
@@ -129,6 +142,27 @@ export default function BlogPage() {
             <div className="blogAdSlot blogAdSlotSpaced">
               <AdsenseScript slot="1234567890" label="Drugi blok reklamy na blogu" />
             </div>
+
+            <section className="blogCategorySection blogDiscoverSection">
+              <h2>Najważniejsze obszary bloga</h2>
+              <div className="catalogIntentGrid">
+                <article className="intentCard">
+                  <span><FileSearch /></span>
+                  <strong>Kolizje i wypadki</strong>
+                  <p>Instrukcje po zdarzeniu, oświadczenia i zgłoszenia szkód.</p>
+                </article>
+                <article className="intentCard">
+                  <span><ShieldCheck /></span>
+                  <strong>Ubezpieczenie OC</strong>
+                  <p>Wypowiedzenia, terminy, podwójne OC i najważniejsze zasady.</p>
+                </article>
+                <article className="intentCard">
+                  <span><TrendingUp /></span>
+                  <strong>Dokumenty i wzory</strong>
+                  <p>PDF-y, formularze oraz szybkie przejścia do generatorów.</p>
+                </article>
+              </div>
+            </section>
           </div>
         </section>
 

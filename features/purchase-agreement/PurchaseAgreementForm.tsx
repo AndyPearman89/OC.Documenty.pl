@@ -259,11 +259,21 @@ function AgreementDocument({ values, signature }: { values: FormState; signature
 
   return (
     <article id="purchase-agreement" className="ocPrintDocument purchaseDocument">
-      <header>
-        <strong><i>OC.</i>Documenty.pl</strong>
-        <span>Dokument wygenerowany online</span>
+      <header className="printDocumentHeader">
+        <div className="printBrand">
+          <img src="/images/oc-brand.jpeg" alt="OC.Documenty.pl" />
+          <div>
+            <strong><i>OC.</i>Documenty.pl</strong>
+            <span>Wzory dokumentów OC/AC online</span>
+          </div>
+        </div>
+        <div className="printMeta">
+          <span>Umowa kupna-sprzedaży</span>
+          <small>Dokument gotowy do wydruku</small>
+        </div>
       </header>
       <h1>UMOWA KUPNA-SPRZEDAŻY POJAZDU</h1>
+      <p className="printLead">Wypełnij dane stron i pojazdu czytelnie. Po podpisaniu dokument możesz wydrukować lub przekazać dalej.</p>
       <div className="ocParties">
         <section>
           <h3>Sprzedający</h3>
@@ -293,6 +303,14 @@ function AgreementDocument({ values, signature }: { values: FormState; signature
         <Image src={signature} alt="Podpis" width={300} height={100} unoptimized />
         <span>Podpis sprzedającego</span>
       </div>
+      <footer className="printFooter">
+        <div>
+          <strong>OC.Documenty.pl</strong>
+          <span>Profesjonalne wzory dokumentów</span>
+        </div>
+        <div>Wygenerowano przez OC.Documenty.pl</div>
+        <div>Strona 1 / 1</div>
+      </footer>
     </article>
   );
 }

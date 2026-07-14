@@ -164,7 +164,6 @@ export function SectionVisual({ section }: { section: "Umowy" | "Odstąpienia" |
       </div>
       <div className="sectionVisualCard">
         <ReceiptText />
-        <strong>{section}</strong>
         <span>
           {section === "Umowy"
             ? "Dokumenty do podpisu stron"
@@ -211,12 +210,6 @@ const blogThumbnailThemes = {
 export function BlogThumbnailVisual({ category, title }: { category: keyof typeof blogThumbnailThemes; title: string }) {
   const theme = blogThumbnailThemes[category] ?? blogThumbnailThemes["Dokumenty i wzory"];
   const Icon = theme.icon;
-  const initials = title
-    .split(" ")
-    .slice(0, 3)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
 
   return (
     <div
@@ -232,9 +225,15 @@ export function BlogThumbnailVisual({ category, title }: { category: keyof typeo
           <Icon />
         </div>
         <div className="blogThumbnailIdentity">
-          <span>{initials}</span>
+          <span>{theme.label}</span>
           <small>{theme.chip}</small>
         </div>
+        <svg className="blogThumbnailRibbon" viewBox="0 0 84 84" aria-hidden="true">
+          <rect x="18" y="10" width="34" height="48" rx="8" fill="none" stroke="currentColor" strokeWidth="3" />
+          <path d="M26 26h18M26 34h18M26 42h11" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="56" cy="52" r="14" fill="none" stroke="currentColor" strokeWidth="3" />
+          <path d="m49.5 52.5 4.8 4.8 9.2-10.4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
       <div className="blogThumbnailMeta">
         <span>

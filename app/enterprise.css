@@ -9,11 +9,77 @@
 .collisionForm>ol,.jointStepper{background:#fbfcfd;border:1px solid #e7ebf1;border-radius:14px;padding:16px!important}.collisionForm>ol .active b,.jointStepper .active b{box-shadow:0 7px 16px rgba(227,6,19,.2)}
 .collisionFieldGrid input,.jointFields input,.jointFields textarea,.contactForm input,.contactForm textarea{border-radius:11px!important;background:#fff;transition:border-color .2s,box-shadow .2s}.collisionFieldGrid input:focus,.jointFields input:focus,.jointFields textarea:focus,.contactForm input:focus,.contactForm textarea:focus{outline:0;border-color:var(--brand)!important;box-shadow:0 0 0 3px #ffe5e7}
 .paperPreview{border-radius:18px!important;border-color:#e1e7ef!important;box-shadow:0 22px 55px rgba(15,23,42,.12)!important}.featureStrip{background:#fff}.featureStrip .container>div{transition:.2s}.featureStrip .container>div:hover{background:#fff7f8}
+  .collisionTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,420px);gap:24px;align-items:center}
+  .collisionInfoGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .collisionInfoGrid article{padding:22px;border:1px solid #e7edf4;border-radius:24px;background:linear-gradient(145deg,#fff,#fff8f9);box-shadow:0 16px 36px rgba(15,23,42,.05)}
+  .collisionInfoGrid h2{margin:10px 0 10px;font-size:24px}
+  .collisionInfoGrid p{margin:0;color:#536174;line-height:1.7}
+  .collisionWhyList{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .collisionWhyList li{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid #e7edf4;border-radius:14px;background:#fff;color:#374151;font-size:14px;line-height:1.6}
+  .collisionWhyList li svg{width:16px;color:var(--brand);flex:0 0 auto;margin-top:3px}
+  .collisionWhyList li span{display:block}
+  .miniBenefits{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .miniBenefits span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #e7edf4;border-radius:999px;background:#fff;color:#111827;font-size:12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+  .miniBenefits svg{width:15px;color:var(--brand)}
 .catalogHero{background:radial-gradient(circle at 82% 20%,rgba(227,6,19,.1),transparent 24%),linear-gradient(145deg,#f8fafc,#fff)}.catalogCard,.insurerCard,.companyDocs article{border-radius:16px!important;transition:transform .2s,box-shadow .2s,border-color .2s}.catalogCard:hover,.insurerCard:hover,.companyDocs article:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(15,23,42,.08);border-color:#efb7bc}.faqGroup{border-radius:18px!important;background:#fff;box-shadow:0 12px 32px rgba(15,23,42,.05)}
-.jointBody,.jointResult{background:linear-gradient(180deg,#fff,#fdfefe)}.twoParties fieldset{border-radius:14px!important;background:#fbfcfd}.uploadArea{background:linear-gradient(145deg,#fff8f8,#fff)!important}
+  .insurerHeroGrid,.companyHeroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:20px;align-items:start}
+  .insurerHeroAside,.companyMark{position:relative}
+  .insurerHeroGrid .eyebrow,.companyHeroGrid .eyebrow{margin-bottom:14px}
+  .companyHeroLead{max-width:680px;font-size:16px;line-height:1.7;color:#536174}
+  .companyIntroBox{margin-top:18px;padding:18px;border:1px solid #e7edf4;border-radius:18px;background:linear-gradient(145deg,#fff,#fff8f9);box-shadow:0 12px 28px rgba(15,23,42,.04)}
+  .companyIntroBox strong{display:block;margin-bottom:8px;font-size:14px}
+  .companyIntroBox p{margin:0;color:#536174;font-size:14px;line-height:1.7}
+  .companyChecks{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .companyChecks span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid #e7edf4;color:#111827;font-size:12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+  .companyChecks svg{width:15px;color:var(--brand)}
+  .companyBrandRow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+  .companyBrandRow small{color:#64748b;font-size:12px;font-weight:700}
+  .companyLayout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:22px;align-items:start}
+  .companyLayout h2{margin-bottom:10px}
+  .companyLayout>div>p{color:#536174;line-height:1.7}
+  .companyDocs{display:grid;gap:12px;margin-top:18px}
+  .companyDocs article{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;align-items:center;padding:18px;border:1px solid #e7edf4;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.05)}
+  .companyDocs article span{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#fff7f8;color:var(--brand)}
+  .companyDocs article h3{margin:0 0 4px;font-size:16px}
+  .companyDocs article p{margin:0;color:#64748b;font-size:13px;line-height:1.6}
+  .companyDocs article a{display:inline-flex;align-items:center;gap:8px;color:var(--brand);font-weight:800;font-size:13px}
+  .comingSoon{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#f8fafc;color:#64748b;font-size:12px;font-weight:800}
+  .companyChecklist{display:grid;gap:10px;margin-top:18px}
+  .companyChecklist span{padding:12px 14px;border:1px solid #e7edf4;border-radius:14px;background:#fff;color:#374151;font-size:13px;line-height:1.6}
+  .documentSeoBox{margin-top:28px;padding:22px;border:1px solid #e7edf4;border-radius:22px;background:linear-gradient(145deg,#fff,#fff8f9);box-shadow:0 16px 36px rgba(15,23,42,.05)}
+  .documentSeoBox h2{margin:0 0 8px;font-size:22px}
+  .documentSeoBox p{margin:0;color:#536174;line-height:1.7}
+  .insurerIntroGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .insurerIntroGrid article{padding:22px;border:1px solid #e7edf4;border-radius:22px;background:linear-gradient(145deg,#fff,#fff8f9);box-shadow:0 12px 30px rgba(15,23,42,.05)}
+  .insurerIntroGrid h2{font-size:20px;margin-bottom:8px}
+  .insurerIntroGrid p{color:#536174;line-height:1.7}
+  .insurerGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .insurerCard{display:grid;gap:14px;padding:18px;border:1px solid #e7edf4;background:#fff;box-shadow:0 14px 30px rgba(15,23,42,.05)}
+  .insurerCard h2{margin:0 0 6px;font-size:18px}
+  .insurerCard p{margin:0;color:#64748b;line-height:1.6}
+  .insurerCard>svg{justify-self:end;color:var(--brand)}
+  .catalogHeroGrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+  .catalogHeroGrid .eyebrow{margin-bottom:14px}
+  .catalogHeroGrid h1,.catalogHeroGrid h2{font-size:clamp(36px,4.5vw,56px);line-height:1.04;letter-spacing:-.05em;max-width:12ch;margin:8px 0 14px}
+  .catalogHeroGrid p{max-width:700px;color:#4b5563;font-size:16px}
+  .catalogHeroChecks{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .catalogHeroChecks span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid #e7edf4;color:#111827;font-size:12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+  .catalogHeroChecks svg{width:15px;color:var(--brand)}
+  .catalogHeroAside{background:linear-gradient(145deg,#fff,#fff8f9);border:1px solid #e7edf4;border-radius:24px;padding:22px;box-shadow:0 16px 36px rgba(15,23,42,.06);align-self:stretch}
+  .catalogHeroAside strong{display:block;font-size:18px;margin-bottom:8px}
+  .catalogHeroAside p{font-size:14px;line-height:1.7;color:#536174}
+  .catalogHeroAside ul{margin:16px 0 0;padding-left:18px;color:#374151;display:grid;gap:8px}
+  .catalogIntentGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .intentCard{padding:22px;border:1px solid #e7edf4;border-radius:22px;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.05)}
+  .intentCard span{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:#fff7f8;color:var(--brand);box-shadow:0 12px 26px rgba(227,6,19,.08);margin-bottom:14px}
+  .intentCard strong{display:block;font-size:18px;margin-bottom:6px}
+  .intentCard p{margin:0;color:#536174;font-size:14px;line-height:1.7}
+  .catalogCard span svg{width:18px;height:18px}
+  .jointBody,.jointResult{background:linear-gradient(180deg,#fff,#fdfefe)}.twoParties fieldset{border-radius:14px!important;background:#fbfcfd}.uploadArea{background:linear-gradient(145deg,#fff8f8,#fff)!important}
 
 /* The security visual stays compact on phones instead of dominating the section. */
-@media(max-width:650px){.enterpriseGeneratorIntro>div{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px;text-align:left}.enterpriseGeneratorIntro .premiumPill{margin-inline:auto}.benefitsSection{padding-top:58px!important}.benefitsLayout{display:flex!important;flex-direction:column}.benefitVisual{height:235px!important;width:100%;order:0}.securityOrb{width:178px;height:178px;inset:28px auto auto 50%!important;transform:translateX(-50%);border-radius:50%!important}.securityOrb>svg{width:46px!important;height:46px!important}.securityOrb b{font-size:14px!important}.securityOrb small{font-size:10px}.securityChip{left:4px!important;top:12px!important;padding:9px 11px!important}.securityChip.second{right:4px!important;left:auto!important;top:auto!important;bottom:10px!important}.benefitsLayout>div:last-child{order:1}.benefitsLayout h2{font-size:31px!important}.collisionHero{padding-top:20px}.collisionForm,.jointBody,.jointResult{border-radius:16px!important}.catalogCard{padding:16px!important}}
+  @media(max-width:900px){.catalogHeroGrid,.catalogIntentGrid,.insurerHeroGrid,.companyLayout,.insurerIntroGrid,.insurerGrid{grid-template-columns:1fr}.catalogHeroAside{order:2}}
+  @media(max-width:650px){.enterpriseGeneratorIntro>div{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px;text-align:left}.enterpriseGeneratorIntro .premiumPill{margin-inline:auto}.benefitsSection{padding-top:58px!important}.benefitsLayout{display:flex!important;flex-direction:column}.benefitVisual{height:235px!important;width:100%;order:0}.securityOrb{width:178px;height:178px;inset:28px auto auto 50%!important;transform:translateX(-50%);border-radius:50%!important}.securityOrb>svg{width:46px!important;height:46px!important}.securityOrb b{font-size:14px!important}.securityOrb small{font-size:10px}.securityChip{left:4px!important;top:12px!important;padding:9px 11px!important}.securityChip.second{right:4px!important;left:auto!important;top:auto!important;bottom:10px!important}.benefitsLayout>div:last-child{order:1}.benefitsLayout h2{font-size:31px!important}.collisionHero{padding-top:20px}.collisionForm,.jointBody,.jointResult{border-radius:16px!important}.catalogCard{padding:16px!important}.catalogHeroGrid h1,.catalogHeroGrid h2{font-size:34px}.catalogHeroChecks{display:grid;grid-template-columns:1fr}.catalogIntentGrid{grid-template-columns:1fr}.catalogHeroAside{padding:18px}.companyDocs article{grid-template-columns:42px minmax(0,1fr);padding:16px}.companyDocs article a{grid-column:1/-1;justify-content:flex-start}.companyBrandRow{flex-direction:column;align-items:flex-start}.companyIntroBox{padding:16px}}
 
 .toolProgress{padding:15px 18px;margin:-1px -1px 18px;border-radius:18px 18px 0 0;background:#fbfcfd;border-bottom:1px solid #e5eaf0}.toolProgress>div{display:flex;align-items:center;justify-content:space-between;color:#64748b;font-size:10px;font-weight:800}.toolProgress strong{color:var(--brand);font-size:12px}.toolProgress>i{height:5px;background:#e9edf2;border-radius:99px;display:block;margin:8px 0;overflow:hidden}.toolProgress>i b{height:100%;display:block;background:linear-gradient(90deg,var(--brand),#ff5965);border-radius:inherit;transition:width .35s}.toolProgress small{display:flex;align-items:center;gap:5px;color:#64748b;font-size:9px}.toolProgress small svg{width:12px;color:#16a160}.collisionForm>ol{grid-template-columns:repeat(4,1fr)!important}.collisionForm{padding-top:0!important}.jointShell>.toolProgress{margin:0;border-radius:19px 19px 0 0}.jointShell>.jointStepper{border-radius:0!important;border-inline:0!important;margin:0!important}
 
@@ -23,16 +89,23 @@
 .blogHeroGrid,.blogArticleGrid,.blogContentGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start}
 .blogHero h1,.blogArticleHero h1{font-size:56px;line-height:1.05;letter-spacing:-.045em;margin:16px 0 10px}
 .blogHero p,.blogArticleHero p{font-size:17px;color:var(--slate);max-width:660px}
-.blogHeroActions{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
-.blogHeroCard,.blogSidebar{background:#fff;border:1px solid #e2e8f0;border-radius:24px;box-shadow:0 20px 50px rgba(15,23,42,.08);padding:26px}
+  .blogHeroActions{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+  .blogHeroChips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 4px}
+  .blogHeroChips span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #e7edf4;border-radius:999px;background:#fff;color:#111827;font-size:12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+  .blogHeroChips svg{width:15px;color:var(--brand)}
+  .blogHeroCard,.blogSidebar{background:#fff;border:1px solid #e2e8f0;border-radius:24px;box-shadow:0 20px 50px rgba(15,23,42,.08);padding:26px}
 .blogHeroCard>div{display:flex;align-items:center;gap:16px}
 .blogHeroCard>div svg{width:30px;height:30px;color:var(--brand)}
 .blogHeroCard strong{display:block;font-size:38px;line-height:1}
 .blogHeroCard small{color:var(--slate)}
 .blogHeroCard p,.blogSidebar p{color:var(--slate);margin:16px 0 20px}
 .blogHeroCard a,.blogSidebar a{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--brand)}
-.blogCategoryBar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
-.blogCategoryBar span{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;background:#fff;border:1px solid #e1e7ef;color:#475467;font-size:12px;font-weight:700}
+  .blogCategoryBar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+  .blogCategoryBar span{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;background:#fff;border:1px solid #e1e7ef;color:#475467;font-size:12px;font-weight:700}
+  .blogSEOBox{margin:18px 0 22px;padding:20px;border:1px solid #e7edf4;border-radius:22px;background:linear-gradient(145deg,#fff,#fff8f9);box-shadow:0 16px 36px rgba(15,23,42,.05)}
+  .blogSEOBox h2{margin:0 0 8px;font-size:22px}
+  .blogSEOBox p{margin:0;color:#536174;line-height:1.7}
+  .blogDiscoverSection{padding-top:0}
 .blogGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
 .blogList{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .blogCard{background:#fff;border:1px solid #e2e8f0;border-radius:22px;padding:24px;box-shadow:0 14px 40px rgba(15,23,42,.05)}
@@ -96,16 +169,20 @@
 .generatorPicker>section{margin-bottom:14px}
 .generatorPicker>section:last-child{margin-bottom:0}
 .generatorPicker>section>div:last-child{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.generatorGroup{border:1px solid #e7edf4;border-radius:24px;background:#fff;box-shadow:0 12px 30px rgba(15,23,42,.05);padding:16px}
-.generatorGroupHeader{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.generatorGroupHeader strong{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#111827}
-.generatorDocChoice{display:grid;gap:6px;padding:18px;border:1px solid #e2e8f0;border-radius:18px;background:linear-gradient(145deg,#fff,#fffafd);box-shadow:0 14px 30px rgba(15,23,42,.05);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.generatorDocChoice:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(15,23,42,.08);border-color:#efb5bb}
-.generatorDocChoice strong{display:block;font-size:15px;line-height:1.25}
-.generatorDocChoice small{color:var(--slate);font-size:12px;line-height:1.5}
-.generatorDocChoice span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--brand);margin-top:2px}
-.generatorDocChoice span svg{width:14px}
-.documentLandingPage .landingActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .generatorGroup{border:1px solid #e7edf4;border-radius:24px;background:#fff;box-shadow:0 12px 30px rgba(15,23,42,.05);padding:16px}
+  .generatorGroupHeader{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .generatorGroupHeader strong{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#111827;line-height:1.1}
+  .generatorDocChoice{display:grid;gap:6px;padding:18px;border:1px solid #e2e8f0;border-radius:18px;background:linear-gradient(145deg,#fff,#fffafd);box-shadow:0 14px 30px rgba(15,23,42,.05);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .generatorDocChoice:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(15,23,42,.08);border-color:#efb5bb}
+  .generatorDocChoice strong{display:block;font-size:15px;line-height:1.25}
+  .generatorDocChoice small{color:var(--slate);font-size:12px;line-height:1.5}
+  .generatorDocChoice span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--brand);margin-top:2px}
+  .generatorDocChoice span svg{width:14px}
+  .generatorStepTip{margin:0 0 16px;padding:12px 14px;border:1px solid #e7edf4;border-radius:14px;background:linear-gradient(145deg,#fff,#fff9fa);color:#536174;font-size:12px;line-height:1.55;box-shadow:0 10px 24px rgba(15,23,42,.04)}
+  .generatorMobileActions{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:18px;padding-top:18px;border-top:1px solid #edf2f7}
+  .generatorMobileActions>span{font-size:12px;font-weight:800;color:#64748b}
+  .generatorMobileActions .formActions{margin:0}
+  .documentLandingPage .landingActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 .documentLandingGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .documentCardVisual,.blogHeroVisual{position:relative;min-height:180px;border-radius:22px;overflow:hidden;background:linear-gradient(145deg,#fff,#fff7f8);border:1px solid #e2e8f0;box-shadow:0 16px 40px rgba(15,23,42,.06);margin-bottom:18px}
 .documentCardVisual:before,.blogHeroVisual:before{content:"";position:absolute;inset:-40px;background:radial-gradient(circle at 30% 30%,rgba(227,6,19,.16),transparent 38%),radial-gradient(circle at 80% 70%,rgba(15,23,42,.08),transparent 35%);filter:blur(6px)}
@@ -126,9 +203,27 @@
 .blogHeroStack span{font-size:12px;font-weight:800;color:var(--ink)}
 .purchaseHeroVisual{margin-top:22px}
 .purchaseHeroVisual .documentCardVisual{min-height:240px}
+  .purchasePage .purchaseHero{padding-top:12px}
+  .purchaseHeroBadges{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+  .purchaseHeroBadges span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #e7edf4;border-radius:999px;background:#fff;color:#111827;font-size:12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+  .purchaseHeroBadges svg{width:15px;color:var(--brand)}
+  .purchaseHeroActions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .purchaseInfoGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .purchaseInfoGrid article{padding:22px;border:1px solid #e7edf4;border-radius:24px;background:linear-gradient(145deg,#fff,#fff8f9);box-shadow:0 16px 36px rgba(15,23,42,.05)}
+  .purchaseInfoGrid h2{margin:10px 0 10px;font-size:24px}
+  .purchaseInfoGrid p{margin:0;color:#536174;line-height:1.7}
+  .purchaseBenefitList{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .purchaseBenefitList li{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid #e7edf4;border-radius:14px;background:#fff;color:#374151;font-size:14px;line-height:1.6}
+  .purchaseBenefitList li svg{width:16px;color:var(--brand);flex:0 0 auto;margin-top:3px}
+  .purchaseBenefitList li span{display:block}
+  .purchaseStepsGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .purchaseStepsGrid article{padding:20px;border:1px solid #e7edf4;border-radius:20px;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.05)}
+  .purchaseStepsGrid b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:12px;background:#fff7f8;color:var(--brand);font-weight:900;margin-bottom:12px}
+  .purchaseStepsGrid p{margin:0;color:#536174;line-height:1.7}
 
 @media(max-width:900px){.purchaseGrid{grid-template-columns:1fr}}
-@media(max-width:650px){.purchaseFormMock{grid-template-columns:1fr}.purchasePanel{padding:20px}.purchasePreview .paperPreview{min-height:auto}.generatorHeroPanel,.generatorPicker>section>div:last-child,.documentLandingGrid{grid-template-columns:1fr}.generatorIntro{padding:22px;border-radius:22px}.generatorHeroSide{grid-template-columns:repeat(3,1fr);grid-template-rows:none}.generatorHeroStat{padding:16px}.generatorHeroStat strong{font-size:24px}.generatorHeroActions{flex-direction:column}.generatorHeroActions .premiumButton{width:100%}.generatorPicker{margin-top:14px}.generatorGroup{padding:14px;border-radius:20px}.documentLandingPage .landingActions{flex-direction:column}.documentCardVisual,.blogHeroVisual{min-height:160px}.blogHeroStack>div:nth-child(2),.blogHeroStack>div:nth-child(3){margin-left:0}}
+  @media(max-width:900px){.collisionTop,.collisionInfoGrid,.purchaseInfoGrid,.purchaseStepsGrid{grid-template-columns:1fr}}
+  @media(max-width:650px){.purchaseFormMock{grid-template-columns:1fr}.purchasePanel{padding:20px}.purchasePreview .paperPreview{min-height:auto}.generatorHeroPanel,.generatorPicker>section>div:last-child,.documentLandingGrid{grid-template-columns:1fr}.generatorIntro{padding:22px;border-radius:22px}.generatorHeroSide{grid-template-columns:repeat(3,1fr);grid-template-rows:none}.generatorHeroStat{padding:16px}.generatorHeroStat strong{font-size:24px}.generatorHeroActions{flex-direction:column}.generatorHeroActions .premiumButton{width:100%}.generatorPicker{margin-top:14px}.generatorGroup{padding:14px;border-radius:20px}.generatorGroupHeader{align-items:flex-start}.generatorGroupHeader .sectionVisual{transform:scale(.9);transform-origin:left top}.generatorGroupHeader strong{font-size:12px}.generatorPicker h2{font-size:16px;margin-bottom:10px}.generatorMobileActions{flex-direction:column;align-items:stretch}.generatorMobileActions .formActions{width:100%}.generatorMobileActions .formActions .button{width:100%}.documentLandingPage .landingActions{flex-direction:column}.documentCardVisual,.blogHeroVisual{min-height:160px}.blogHeroStack>div:nth-child(2),.blogHeroStack>div:nth-child(3){margin-left:0}.collisionTop{grid-template-columns:1fr}.collisionInfoGrid article{padding:18px}.miniBenefits{display:grid;grid-template-columns:1fr 1fr}.miniBenefits span{justify-content:center;white-space:normal}.purchaseHeroBadges,.purchaseHeroActions{flex-direction:column}.purchaseHeroActions .premiumButton,.purchaseHeroBadges span{width:100%}.purchaseInfoGrid,.purchaseStepsGrid{grid-template-columns:1fr}.purchaseInfoGrid article{padding:18px}}
 
 @media(max-width:900px){.blogHeroGrid,.blogArticleGrid,.blogContentGrid,.blogGrid,.blogList{grid-template-columns:1fr}.blogHero h1,.blogArticleHero h1{font-size:40px}.blogHeroCard,.blogSidebar{order:2}}
 @media(max-width:650px){.blogHero{padding-top:42px}.blogHeroActions .premiumButton{width:100%;justify-content:center}.blogCard>div{flex-direction:column;align-items:flex-start}.blogContentGrid article,.blogArticleAside,.blogHeroCard{padding:20px}}

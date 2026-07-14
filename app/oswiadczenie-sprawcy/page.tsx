@@ -11,6 +11,31 @@ export const metadata: Metadata = {
   alternates: { canonical: "/oswiadczenie-sprawcy" },
 };
 
+const whyItMatters = [
+  "czytelny opis zdarzenia dla ubezpieczyciela",
+  "miejsce na dane uczestników i pojazdów",
+  "podpis zdjęciem i gotowy PDF A4",
+];
+
+const processSteps = [
+  {
+    title: "Wypełnij formularz",
+    text: "Podaj dane sprawcy, pojazdu oraz przebieg zdarzenia w logicznej kolejności.",
+  },
+  {
+    title: "Sprawdź podgląd",
+    text: "Zobacz, jak dokument wygląda przed pobraniem i upewnij się, że wszystko jest czytelne.",
+  },
+  {
+    title: "Dodaj podpis",
+    text: "Wstaw zdjęcie podpisu, aby dokument był gotowy do przekazania ubezpieczycielowi.",
+  },
+  {
+    title: "Pobierz lub wyślij",
+    text: "Zapisz PDF, wydrukuj go albo przekaż dalej bez zbędnych kroków.",
+  },
+];
+
 export default function CollisionPage() {
   return (
     <>
@@ -28,8 +53,8 @@ export default function CollisionPage() {
               </span>
               <h1>Oświadczenie<br />sprawcy kolizji</h1>
               <p>
-                Uzupełnij dane uczestników, pojazdów i zdarzenia. Dodaj podpis zdjęciem i pobierz
-                czytelny dokument PDF gotowy do przekazania ubezpieczycielowi.
+                Wypełnij dane uczestników, pojazdów i zdarzenia. Dodaj podpis zdjęciem i pobierz czytelny dokument PDF gotowy do
+                przekazania ubezpieczycielowi.
               </p>
               <div className="miniBenefits">
                 <span><FileText /> Czytelny formularz</span>
@@ -78,6 +103,29 @@ export default function CollisionPage() {
           </div>
         </section>
 
+        <section className="enterpriseSection surfaceSection">
+          <div className="container collisionInfoGrid">
+            <article>
+              <span className="premiumPill">Co zawiera dokument</span>
+              <h2>Urzędowy układ i jasne pola do wypełnienia</h2>
+              <p>
+                Dokument został przygotowany tak, aby prowadził użytkownika po kolei przez wszystkie kluczowe elementy: dane strony,
+                dane pojazdu, opis zdarzenia i podpis. Dzięki temu łatwiej przekazać komplet informacji do likwidacji szkody.
+              </p>
+            </article>
+            <article>
+              <span className="premiumPill">Dlaczego warto</span>
+              <ul className="collisionWhyList">
+                {whyItMatters.map((item) => (
+                  <li key={item}>
+                    <Check /> <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+
         <section className="enterpriseSection enterpriseToolSection" id="formularz">
           <div className="container collisionWorkspace">
             <div>
@@ -120,20 +168,12 @@ export default function CollisionPage() {
               <p>Wypełnij oświadczenie w czterech prostych krokach.</p>
             </div>
             <div className="steps fourSteps">
-              {["Wypełnij formularz", "Sprawdź podgląd", "Pobierz lub wyślij", "Gotowe"].map((title, index) => (
-                <article key={title}>
+              {processSteps.map((step, index) => (
+                <article key={step.title}>
                   <b>{index + 1}</b>
                   {index === 3 ? <Check /> : <FileText />}
-                  <h3>{title}</h3>
-                  <p>
-                    {index === 0
-                      ? "Podaj dane uczestników i pojazdów."
-                      : index === 1
-                        ? "Sprawdź poprawność informacji."
-                        : index === 2
-                          ? "Zapisz dokument jako PDF."
-                          : "Dokument jest gotowy do użycia."}
-                  </p>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
                 </article>
               ))}
             </div>

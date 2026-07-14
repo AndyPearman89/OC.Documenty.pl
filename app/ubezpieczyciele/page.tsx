@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { ArrowRight, BadgeCheck, Building2, FileCheck2, ShieldCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, FileCheck2, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
@@ -26,9 +26,10 @@ export default function InsurersPage() {
               <span className="eyebrow">
                 <ShieldCheck /> Formularze i adresy
               </span>
-              <h1>Dokumenty dla ubezpieczycieli</h1>
+              <h1>Strony ubezpieczycieli z dokumentami, wzorami i skrótami do generatorów</h1>
               <p>
-                Wybierz firmę, aby zobaczyć wzory pism, najważniejsze dokumenty i przejście do właściwego generatora.
+                Wybierz firmę, aby przejść do jej mini-strony, zobaczyć najważniejsze dokumenty i od razu ruszyć do właściwego wzoru
+                lub generatora.
               </p>
               <div className="catalogHeroChecks">
                 <span>
@@ -60,7 +61,7 @@ export default function InsurersPage() {
             <article>
               <h2>Dlaczego to ułatwia sprawę</h2>
               <p>
-                W jednym miejscu zebraliśmy najbardziej potrzebne pismo, formularze i skróty do generatorów, żeby nie tracić czasu na
+                W jednym miejscu zebraliśmy najbardziej potrzebne pisma, formularze i skróty do generatorów, żeby nie tracić czasu na
                 szukanie właściwego wzoru.
               </p>
             </article>
@@ -80,7 +81,7 @@ export default function InsurersPage() {
                 <InsurerBrand name={insurer.name} />
                 <div>
                   <h2>{insurer.name}</h2>
-                  <p>Wzory dokumentów, instrukcje, podpowiedzi i przejścia do generatorów.</p>
+                  <p>Mini-hero, dokumenty, podpowiedzi i skrót do generatora dopasowane do tej firmy.</p>
                 </div>
                 <ArrowRight />
               </Link>
@@ -97,6 +98,25 @@ export default function InsurersPage() {
             <Link className="button buttonLight" href="/generator">
               Uruchom generator <ArrowRight />
             </Link>
+          </div>
+        </section>
+        <section className="section">
+          <div className="container catalogIntentGrid">
+            <article className="intentCard">
+              <span><Building2 /></span>
+              <strong>Każda firma osobno</strong>
+              <p>Strona ma własne wejście, aby ułatwić szybkie dotarcie do dokumentów konkretnego ubezpieczyciela.</p>
+            </article>
+            <article className="intentCard">
+              <span><Sparkles /></span>
+              <strong>Lepsze prowadzenie</strong>
+              <p>Krótki opis, wyraźne CTA i logiczny układ pomagają użytkownikowi podjąć właściwy następny krok.</p>
+            </article>
+            <article className="intentCard">
+              <span><ShieldCheck /></span>
+              <strong>Więcej zaufania</strong>
+              <p>Firmy prezentujemy w formie spójnych kart z czytelnym brandingiem i prostymi wskazówkami.</p>
+            </article>
           </div>
         </section>
       </main>

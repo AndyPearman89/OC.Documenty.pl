@@ -1,20 +1,11 @@
 "use client";
 
-import { ArrowRight, Download, FileSearch, FileText, Search, X } from "lucide-react";
+import { ArrowRight, Download, FileSearch, FileText, Search, Sparkles, X } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { documentCatalog } from "@/lib/catalog";
 
-const categories = [
-  "Wszystkie",
-  "Wypowiedzenia",
-  "Oświadczenia",
-  "Zwroty",
-  "Pojazd",
-  "Umowy",
-  "Odstąpienia",
-  "Reklamacje",
-] as const;
+const categories = ["Wszystkie", "Wypowiedzenia", "Oświadczenia", "Zwroty", "Pojazd", "Umowy", "Odstąpienia", "Reklamacje"] as const;
 
 function documentHref(slug: string) {
   if (slug === "wypowiedzenie-oc") return "/generator";
@@ -44,7 +35,7 @@ export function DocumentsBrowser() {
       <section className="catalogHero">
         <div className="container">
           <span className="eyebrow">Biblioteka wzorów</span>
-          <h1>Wzory dokumentów</h1>
+          <h2>Wzory dokumentów</h2>
           <p>Aktualne formularze OC gotowe do wypełnienia, pobrania i wydruku.</p>
           <label className="catalogSearch">
             <Search />
@@ -55,7 +46,7 @@ export function DocumentsBrowser() {
               placeholder="Szukaj dokumentu..."
             />
             {query && (
-              <button onClick={() => setQuery("")} aria-label="Wyczyść wyszukiwanie">
+              <button type="button" onClick={() => setQuery("")} aria-label="Wyczyść wyszukiwanie">
                 <X />
               </button>
             )}
@@ -68,7 +59,7 @@ export function DocumentsBrowser() {
           <aside className="categoryPanel">
             <strong>Kategorie</strong>
             {categories.map((item) => (
-              <button className={category === item ? "selected" : ""} onClick={() => setCategory(item)} key={item}>
+              <button type="button" className={category === item ? "selected" : ""} onClick={() => setCategory(item)} key={item}>
                 {item}
                 <span>{item === "Wszystkie" ? documentCatalog.length : documentCatalog.filter((doc) => doc.category === item).length}</span>
               </button>
@@ -78,7 +69,7 @@ export function DocumentsBrowser() {
           <div>
             <div className="mobileCategories" role="group" aria-label="Kategorie dokumentów">
               {categories.map((item) => (
-                <button className={category === item ? "selected" : ""} onClick={() => setCategory(item)} key={item}>
+                <button type="button" className={category === item ? "selected" : ""} onClick={() => setCategory(item)} key={item}>
                   {item}
                 </button>
               ))}
@@ -95,7 +86,7 @@ export function DocumentsBrowser() {
                   return (
                     <article className="catalogCard" key={doc.slug}>
                       <span>
-                        <FileText />
+                        {doc.category === "Umowy" ? <Sparkles /> : <FileText />}
                       </span>
                       <div>
                         <small>{doc.category}</small>
@@ -103,16 +94,12 @@ export function DocumentsBrowser() {
                         <p>{doc.description}</p>
                       </div>
                       <div className="catalogActions">
-                        {pdfHref(doc.slug) && (
-                          <a className="pdfLink" href={pdfHref(doc.slug) ?? undefined} download>
-                            <Download /> PDF
-                          </a>
-                        )}
-                        {href ? (
-                          <Link className="button buttonOutline" href={href}>
-                            Wypełnij <ArrowRight />
-                          </Link>
-                        ) : null}
+                        <a className="pdfLink" href={pdfHref(doc.slug)} download>
+                          <Download /> PDF
+                        </a>
+                        <Link className="button buttonOutline" href={href}>
+                          Wypełnij <ArrowRight />
+                        </Link>
                       </div>
                     </article>
                   );
@@ -123,7 +110,7 @@ export function DocumentsBrowser() {
                 <FileSearch />
                 <h2>Nie znaleziono dokumentów</h2>
                 <p>Zmień wyszukiwaną frazę lub wybierz inną kategorię.</p>
-                <button className="button buttonOutline" onClick={() => { setQuery(""); setCategory("Wszystkie"); }}>
+                <button type="button" className="button buttonOutline" onClick={() => { setQuery(""); setCategory("Wszystkie"); }}>
                   Wyczyść filtry
                 </button>
               </div>

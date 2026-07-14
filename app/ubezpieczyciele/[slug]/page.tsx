@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle2, FileText, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Mail, MapPin, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -12,13 +12,16 @@ interface InsurerPageProps {
   params: Promise<{ slug: string }>;
 }
 
-const insurerCopy: Record<string, { intro: string; action: string; note: string; bullets: string[]; support: string }> = {
+const insurerCopy: Record<
+  string,
+  { intro: string; action: string; note: string; bullets: string[]; support: string }
+> = {
   pzu: {
-    intro: "Najpopularniejsze wzory do PZU w jednym miejscu — z naciskiem na czytelność, terminowość i prosty proces wysyłki.",
+    intro: "Najważniejsze wzory do PZU zebrane w jednym miejscu — z naciskiem na jasny układ, prostą nawigację i szybkie przejście do właściwego pisma.",
     action: "Przejdź do dokumentów PZU",
     note: "Przygotuj wypowiedzenie, oświadczenie lub pismo w formacie wygodnym do wydruku i wysyłki.",
-    bullets: ["Najczęściej używane formularze", "Szybkie przejście do generatora", "Dostosowany układ dokumentów"],
-    support: "PZU to jedna z najczęściej wybieranych firm, dlatego strona zawiera też skróty do najważniejszych wzorów i wskazówki, co zrobić po kolei.",
+    bullets: ["Najczęściej używane formularze", "Szybkie przejście do generatora", "Układ dopasowany do pilnych spraw"],
+    support: "PZU to jedna z najczęściej wybieranych firm, dlatego strona zawiera skróty do najważniejszych wzorów i podpowiedź, co zrobić po kolei.",
   },
   warta: {
     intro: "Porządek w dokumentach Warty zaczyna się od właściwego wzoru i krótkiego opisu, który prowadzi użytkownika krok po kroku.",
@@ -232,6 +235,24 @@ export default async function InsurerPage({ params }: InsurerPageProps) {
                 ))}
               </div>
             </div>
+          </div>
+
+          <div className="container catalogIntentGrid">
+            <article className="intentCard">
+              <span><Sparkles /></span>
+              <strong>Mini-hero dla każdej firmy</strong>
+              <p>Każda podstrona ma własny układ i kolorystykę, żeby marka była od razu rozpoznawalna.</p>
+            </article>
+            <article className="intentCard">
+              <span><ShieldCheck /></span>
+              <strong>Formalny charakter</strong>
+              <p>Treść jest bardziej urzędowa, spokojna i nastawiona na konkretne działanie użytkownika.</p>
+            </article>
+            <article className="intentCard">
+              <span><FileText /></span>
+              <strong>Lepsze prowadzenie</strong>
+              <p>Od firmy, przez dokument, aż po generator — bez zbędnych przeskoków i rozproszenia.</p>
+            </article>
           </div>
         </section>
       </main>

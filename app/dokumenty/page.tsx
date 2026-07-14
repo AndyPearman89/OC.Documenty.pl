@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { ArrowRight, CheckCircle2, FileCheck2, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileCheck2, ShieldCheck, Sparkles, FileText, Search } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 };
 
 const documentHighlights = [
-  "Dokumenty z jasnym podziałem na sekcje i pola do wypełnienia.",
-  "Wzory przygotowane z myślą o wydruku, PDF i wysyłce online.",
-  "Kategorie uporządkowane według celu: umowy, odstąpienia, oświadczenia i wypowiedzenia.",
+  "Dokumenty uporządkowane według celu: umowy, odstąpienia, oświadczenia i wypowiedzenia.",
+  "Wzory przygotowane do wydruku, PDF i szybkiego wypełnienia online.",
+  "Każda karta prowadzi prosto do wzoru, generatora lub pliku PDF.",
 ];
 
 export default function DocumentsPage() {
@@ -33,10 +33,10 @@ export default function DocumentsPage() {
               <span className="eyebrow">
                 <ShieldCheck /> Biblioteka wzorów
               </span>
-              <h1>Wzory dokumentów gotowe do użycia</h1>
+              <h1>Profesjonalne wzory dokumentów OC w jednym miejscu</h1>
               <p>
-                Zebraliśmy aktualne formularze OC w jednym miejscu — tak, aby szybko znaleźć właściwy dokument, pobrać PDF i przejść
-                do wypełniania bez zbędnych kroków.
+                Zebraliśmy aktualne formularze OC i dokumenty pojazdowe w jednym katalogu. Wybierasz właściwy wzór, pobierasz PDF
+                albo przechodzisz bezpośrednio do generatora.
               </p>
               <div className="catalogHeroChecks">
                 {documentHighlights.map((item) => (
@@ -55,14 +55,34 @@ export default function DocumentsPage() {
               </div>
             </div>
             <aside className="catalogHeroAside">
-              <strong>Co znajdziesz w katalogu</strong>
-              <p>Formalne wzory wypowiedzeń, oświadczeń, umów, zwrotów, odstąpień i reklamacji.</p>
+              <strong>Jak korzystać z katalogu</strong>
+              <p>Najpierw wybierz intencję, potem przejdź do karty dokumentu. Każdy wzór ma krótki opis i jasną ścieżkę działania.</p>
               <ul>
-                <li>czytelne opisy dokumentów</li>
-                <li>przejście do PDF lub generatora</li>
-                <li>kategorie dopasowane do intencji użytkownika</li>
+                <li>czytelny podział na sekcje</li>
+                <li>gotowe PDF i formularze online</li>
+                <li>szybka ścieżka do najczęstszych spraw</li>
               </ul>
             </aside>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container catalogIntentGrid">
+            <article className="intentCard">
+              <span><FileText /></span>
+              <strong>Umowy</strong>
+              <p>Umowa kupna-sprzedaży, darowizny i cesji praw z polisy.</p>
+            </article>
+            <article className="intentCard">
+              <span><Sparkles /></span>
+              <strong>Odstąpienia</strong>
+              <p>Dokumenty do rezygnacji z umowy zawartej na odległość lub poza lokalem.</p>
+            </article>
+            <article className="intentCard">
+              <span><Search /></span>
+              <strong>Oświadczenia</strong>
+              <p>Oświadczenie sprawcy, wspólne oświadczenie i dokumenty po kolizji.</p>
+            </article>
           </div>
         </section>
 

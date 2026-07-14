@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, CalendarDays, CheckCircle2, Clock3, FileText, FileWarning, PenLine, ShieldCheck, FileSearch } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, Clock3, FileSearch, FileText, FileWarning, PenLine, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
@@ -45,6 +45,11 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="blogSummaryBox">
                 <strong>Skrót artykułu</strong>
                 <p>{post.summary}</p>
+              </div>
+              <div className="blogHeroChips">
+                <span><Sparkles /> Praktyczny poradnik</span>
+                <span><ShieldCheck /> Czytelna ścieżka działania</span>
+                <span><FileSearch /> Powiązanie z wzorem lub generatorem</span>
               </div>
               <div className="blogMeta">
                 <span>
