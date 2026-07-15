@@ -1,55 +1,160 @@
-import { CheckCircle2, Lock, Award, Users } from "lucide-react";
+'use client';
+
+import { Clock, FileText, Lock, Shield, Zap } from 'lucide-react';
 
 interface TrustBadgesProps {
-  layout?: "horizontal" | "vertical";
+  variant?: 'desktop' | 'mobile' | 'footer';
+  columns?: number;
 }
 
-export function TrustBadges({ layout = "horizontal" }: TrustBadgesProps) {
+export function TrustBadges({ variant = 'desktop', columns = 5 }: TrustBadgesProps) {
   const badges = [
     {
-      icon: CheckCircle2,
-      label: "100% Free",
-      description: "Bez ukrytych opłat",
+      icon: Shield,
+      title: 'W 100% zgodnie z obowiązującymi przepisami',
+      subtitle: 'Aktualny wzór dokumentu',
+    },
+    {
+      icon: FileText,
+      title: 'Profesjonalne wzory dokumentów',
+      subtitle: 'Gotowy do pobrania i edycji',
     },
     {
       icon: Lock,
-      label: "Bezpieczne",
-      description: "Dane lokalnie w przeglądarce",
+      title: 'Bezpieczne dane',
+      subtitle: 'Szyfrowane i chronione',
     },
     {
-      icon: Award,
-      label: "30 dni gwarancji",
-      description: "Zwrot pieniędzy bez pytań",
+      icon: Clock,
+      title: 'Szybko i wygodnie',
+      subtitle: 'Gotowe w 2 minuty',
     },
     {
-      icon: Users,
-      label: "Zaufane",
-      description: "50k+ użytkowników",
+      icon: Zap,
+      title: 'Dostępne 24/7',
+      subtitle: 'Kiedy chcesz',
     },
   ];
 
-  const containerClass = layout === "horizontal" ? "flex gap-16 flex-wrap justify-center" : "grid grid-cols-1 gap-12";
-  const badgeClass =
-    layout === "horizontal" ? "flex flex-col items-center text-center flex-1 min-w-40" : "flex items-center gap-12";
-
   return (
-    <div className={containerClass}>
-      {badges.map((badge) => {
-        const Icon = badge.icon;
-        return (
-          <div key={badge.label} className={badgeClass}>
-            <div className="flex-shrink-0">
-              <Icon size={32} className="text-red-500" />
-            </div>
-            <div className="flex-1">
-              <div style={{ fontWeight: 600, fontSize: "14px", color: "#111827", marginBottom: "4px" }}>
-                {badge.label}
+    <div className="trust-badges">
+      <style>{`
+        .trust-badges {
+          width: 100%;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .trust-grid {
+          display: grid;
+          gap: 24px;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 40px 20px;
+        }
+
+        .trust-grid.desktop {
+          grid-template-columns: repeat(5, 1fr);
+        }
+
+        .badge {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 12px;
+        }
+
+        .badge-icon {
+          width: 56px;
+          height: 56px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f0f2f5;
+          border-radius: 8px;
+          color: #E31E24;
+          flex-shrink: 0;
+        }
+
+        .badge-icon svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        .badge-content {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .badge-title {
+          font-size: 14px;
+          font-weight: 600;
+          color: #1a1a1a;
+          line-height: 1.3;
+        }
+
+        .badge-subtitle {
+          font-size: 12px;
+          color: #666;
+          line-height: 1.3;
+        }
+
+        @media (max-width: 1024px) {
+          .trust-grid.desktop {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .trust-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 24px 16px;
+          }
+
+          .badge {
+            flex-direction: row;
+            text-align: left;
+            gap: 16px;
+          }
+
+          .badge-icon {
+            width: 48px;
+            height: 48px;
+          }
+
+          .badge-icon svg {
+            width: 24px;
+            height: 24px;
+          }
+
+          .badge-title {
+            font-size: 13px;
+          }
+
+          .badge-subtitle {
+            font-size: 11px;
+          }
+        }
+      `}</style>
+
+      <div className="trust-grid desktop">
+        {badges.map((badge) => {
+          const Icon = badge.icon;
+          return (
+            <div key={badge.title} className="badge">
+              <div className="badge-icon">
+                <Icon />
               </div>
-              <div style={{ fontSize: "12px", color: "#536174" }}>{badge.description}</div>
+              <div className="badge-content">
+                <div className="badge-title">{badge.title}</div>
+                <div className="badge-subtitle">{badge.subtitle}</div>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
