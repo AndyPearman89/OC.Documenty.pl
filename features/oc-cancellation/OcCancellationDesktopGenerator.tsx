@@ -7,6 +7,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 import { OcCancellationTemplate, type OcCancellationData } from './OcCancellationTemplate';
 import { insurerProfiles } from '@/lib/catalog';
+import { generateOcCancellationPDF } from '@/lib/pdf/pdfGenerator';
 
 const mapFormDataToTemplate = (formData: any): Partial<OcCancellationData> => ({
   clientName: formData.ownerName || '',
@@ -102,6 +103,18 @@ export function OcCancellationDesktopGenerator() {
   };
 
   const handleGeneratePdf = async () => {
+    const mappedData = mapFormDataToTemplate(watchedValues);
+    const pdfBlob = await generateOcCancellationPDF(mappedData);
+
+    const url = URL.createObjectURL(pdfBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Wypowiedzenie-OC-${new Date().toISOString().split('T')[0]}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
     sessionStorage.removeItem('oc-desktop-draft');
     setSubmitted(true);
   };
