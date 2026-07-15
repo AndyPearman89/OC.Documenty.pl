@@ -166,7 +166,44 @@ export async function generateOcCancellationPDF(data: Partial<OcCancellationData
 }
 
 export async function generateOcCancellationDOCX(data: Partial<OcCancellationData>): Promise<Blob> {
-  // Placeholder for DOCX generation (Phase 5)
-  // For now, return empty blob
-  return new Blob([''], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+  // Phase 5: DOCX generation with docx library
+  // For now, create a simple text-based DOCX placeholder
+  // TODO: Replace with proper DOCX template using docx library
+
+  const docContent = `
+WYPOWIEDZENIE UMOWY
+Obowiązkowego Ubezpieczenia OC Posiadaczy Pojazdów Mechanicznych
+
+Miejscowość: ${data.documentPlace || '_______'}
+Data: ${data.documentDate || '_______'}
+
+DANE UBEZPIECZAJĄCEGO:
+Imię i nazwisko: ${data.clientName || '_______'}
+Adres: ${data.clientAddress || '_______'}
+PESEL: ${data.clientPesel || '_______'}
+Telefon: ${data.clientPhone || '_______'}
+
+DANE UBEZPIECZYCIELA:
+Nazwa: ${data.insurerName || '_______'}
+Adres: ${data.insurerAddress || '_______'}
+
+WYPOWIEDZENIE UMOWY:
+Niniejszym wypowiadam umowę obowiązkowego ubezpieczenia OC posiadaczy pojazdów mechanicznych
+nr ${data.policyNumber || '_______'}, zawartą dnia ${data.policyDate || '_______'},
+na pojazd marki ${data.vehicleMake || '_______'}, numer rejestracyjny ${data.vehicleRegistration || '_______'}.
+
+PODSTAWA PRAWNA WYPOWIEDZENIA:
+${data.cancellationOption === 'art28' ? '☑' : '☐'} Art. 28 - Koniec okresu ubezpieczenia
+${data.cancellationOption === 'art28a' ? '☑' : '☐'} Art. 28a - Podwójne ubezpieczenie OC
+${data.cancellationOption === 'art31' ? '☑' : '☐'} Art. 31 - Zakup pojazdu z polisą
+
+Podpis ubezpieczającego: _______________________________
+Data: _______________________________
+
+---
+Wygenerowano przez OC.Documenty.pl
+  `.trim();
+
+  const blob = new Blob([docContent], { type: 'text/plain;charset=utf-8' });
+  return blob;
 }
