@@ -5,8 +5,25 @@ import { ArrowRight, Download, Mail, Printer } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
-import { OcCancellationTemplate } from './OcCancellationTemplate';
+import { OcCancellationTemplate, type OcCancellationData } from './OcCancellationTemplate';
 import { insurerProfiles } from '@/lib/catalog';
+
+const mapFormDataToTemplate = (formData: any): Partial<OcCancellationData> => ({
+  clientName: formData.ownerName || '',
+  clientAddress: formData.address || '',
+  clientPesel: formData.pesel || '',
+  clientPhone: formData.phone || '',
+  clientEmail: '',
+  insurerName: formData.insurer || '',
+  insurerAddress: '',
+  policyNumber: formData.policyNumber || '',
+  policyDate: formData.endDate || '',
+  vehicleMake: formData.vehicleBrand || '',
+  vehicleRegistration: formData.registration || '',
+  cancellationOption: formData.cancellationType || 'art28',
+  documentDate: new Date().toLocaleDateString('pl-PL'),
+  documentPlace: formData.city || '',
+});
 
 const schema = z.object({
   ownerName: z.string().min(2, 'Wpisz imię i nazwisko'),
@@ -556,7 +573,7 @@ export function OcCancellationDesktopGenerator() {
                 </div>
               </div>
               <div className="previewContent">
-                <OcCancellationTemplate data={watchedValues} readOnly={true} showSignature={false} />
+                <OcCancellationTemplate data={mapFormDataToTemplate(watchedValues)} readOnly={true} showSignature={false} />
               </div>
             </div>
           </div>

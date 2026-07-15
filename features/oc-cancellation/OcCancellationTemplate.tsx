@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { type ChangeEvent, useState } from 'react';
+import { type ChangeEvent, useEffect, useState } from 'react';
 
-interface OcCancellationData {
+export interface OcCancellationData {
   clientName: string;
   clientAddress: string;
   clientPesel: string;
@@ -78,6 +78,10 @@ export function OcCancellationTemplate({
   showSignature = false,
 }: OcCancellationTemplateProps) {
   const [values, setValues] = useState<Partial<OcCancellationData>>(data);
+
+  useEffect(() => {
+    setValues(data);
+  }, [data]);
 
   const handleInputChange = (field: keyof OcCancellationData, value: string) => {
     const newValues = { ...values, [field]: value };
