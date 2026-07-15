@@ -1,5 +1,19 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun,
+  AlignmentType,
+  UnderlineType,
+  BorderStyle,
+  convertInchesToTwip,
+  Table,
+  TableCell,
+  VerticalAlign,
+  WidthType,
+} from 'docx';
 import type { OcCancellationData } from '@/features/oc-cancellation';
 
 export async function generateOcCancellationPDF(data: Partial<OcCancellationData>): Promise<Blob> {
@@ -167,43 +181,120 @@ export async function generateOcCancellationPDF(data: Partial<OcCancellationData
 
 export async function generateOcCancellationDOCX(data: Partial<OcCancellationData>): Promise<Blob> {
   // Phase 5: DOCX generation with docx library
-  // For now, create a simple text-based DOCX placeholder
-  // TODO: Replace with proper DOCX template using docx library
+  // Requires: npm install docx
 
-  const docContent = `
-WYPOWIEDZENIE UMOWY
-Obowiązkowego Ubezpieczenia OC Posiadaczy Pojazdów Mechanicznych
+  const sections = [
+    new Paragraph({
+      text: 'OC. Documenty.pl',
+      alignment: AlignmentType.CENTER,
+      bold: true,
+      size: 28,
+    }),
+    new Paragraph({
+      text: 'WYPOWIEDZENIE UMOWY',
+      alignment: AlignmentType.CENTER,
+      bold: true,
+      size: 24,
+      spacing: { before: 200, after: 100 },
+    }),
+    new Paragraph({
+      text: 'Obowiązkowego Ubezpieczenia OC Posiadaczy Pojazdów Mechanicznych',
+      alignment: AlignmentType.CENTER,
+      size: 20,
+      spacing: { after: 400 },
+    }),
 
-Miejscowość: ${data.documentPlace || '_______'}
-Data: ${data.documentDate || '_______'}
+    // Place and date
+    new Paragraph({
+      text: `Miejscowość: ${data.documentPlace || '_______'}   Data: ${data.documentDate || '_______'}`,
+      spacing: { after: 200 },
+    }),
 
-DANE UBEZPIECZAJĄCEGO:
-Imię i nazwisko: ${data.clientName || '_______'}
-Adres: ${data.clientAddress || '_______'}
-PESEL: ${data.clientPesel || '_______'}
-Telefon: ${data.clientPhone || '_______'}
+    // Client section
+    new Paragraph({
+      text: 'DANE UBEZPIECZAJĄCEGO:',
+      bold: true,
+      spacing: { before: 200, after: 100 },
+    }),
+    new Paragraph({
+      children: [
+        new TextRun(`Imię i nazwisko: ${data.clientName || '_______'}\n`),
+        new TextRun(`Adres: ${data.clientAddress || '_______'}\n`),
+        new TextRun(`PESEL: ${data.clientPesel || '_______'}\n`),
+        new TextRun(`Telefon: ${data.clientPhone || '_______'}`),
+      ],
+      spacing: { after: 300 },
+    }),
 
-DANE UBEZPIECZYCIELA:
-Nazwa: ${data.insurerName || '_______'}
-Adres: ${data.insurerAddress || '_______'}
+    // Insurer section
+    new Paragraph({
+      text: 'DANE UBEZPIECZYCIELA:',
+      bold: true,
+      spacing: { after: 100 },
+    }),
+    new Paragraph({
+      children: [
+        new TextRun(`Nazwa: ${data.insurerName || '_______'}\n`),
+        new TextRun(`Adres: ${data.insurerAddress || '_______'}`),
+      ],
+      spacing: { after: 300 },
+    }),
 
-WYPOWIEDZENIE UMOWY:
-Niniejszym wypowiadam umowę obowiązkowego ubezpieczenia OC posiadaczy pojazdów mechanicznych
-nr ${data.policyNumber || '_______'}, zawartą dnia ${data.policyDate || '_______'},
-na pojazd marki ${data.vehicleMake || '_______'}, numer rejestracyjny ${data.vehicleRegistration || '_______'}.
+    // Cancellation statement
+    new Paragraph({
+      text: 'WYPOWIEDZENIE UMOWY:',
+      bold: true,
+      spacing: { after: 100 },
+    }),
+    new Paragraph({
+      text: `Niniejszym wypowiadam umowę obowiązkowego ubezpieczenia OC posiadaczy pojazdów mechanicznych nr ${data.policyNumber || '_______'}, zawartą dnia ${data.policyDate || '_______'}, na pojazd marki ${data.vehicleMake || '_______'}, numer rejestracyjny ${data.vehicleRegistration || '_______'}.`,
+      spacing: { after: 300 },
+    }),
 
-PODSTAWA PRAWNA WYPOWIEDZENIA:
-${data.cancellationOption === 'art28' ? '☑' : '☐'} Art. 28 - Koniec okresu ubezpieczenia
-${data.cancellationOption === 'art28a' ? '☑' : '☐'} Art. 28a - Podwójne ubezpieczenie OC
-${data.cancellationOption === 'art31' ? '☑' : '☐'} Art. 31 - Zakup pojazdu z polisą
+    // Legal basis
+    new Paragraph({
+      text: 'PODSTAWA PRAWNA WYPOWIEDZENIA:',
+      bold: true,
+      spacing: { after: 100 },
+    }),
+    new Paragraph({
+      children: [
+        new TextRun(
+          `${data.cancellationOption === 'art28' ? '☑' : '☐'} Art. 28 - Koniec okresu ubezpieczenia\n`
+        ),
+        new TextRun(
+          `${data.cancellationOption === 'art28a' ? '☑' : '☐'} Art. 28a - Podwójne ubezpieczenie OC\n`
+        ),
+        new TextRun(
+          `${data.cancellationOption === 'art31' ? '☑' : '☐'} Art. 31 - Zakup pojazdu z polisą`
+        ),
+      ],
+      spacing: { after: 400 },
+    }),
 
-Podpis ubezpieczającego: _______________________________
-Data: _______________________________
+    // Signature section
+    new Paragraph({
+      text: 'Podpis ubezpieczającego: _______________________________',
+      spacing: { before: 400, after: 100 },
+    }),
+    new Paragraph({
+      text: 'Data: _______________________________',
+      spacing: { after: 400 },
+    }),
 
----
-Wygenerowano przez OC.Documenty.pl
-  `.trim();
+    // Footer
+    new Paragraph({
+      text: 'Wygenerowano przez OC.Documenty.pl',
+      alignment: AlignmentType.CENTER,
+      italics: true,
+      size: 18,
+      spacing: { before: 400 },
+    }),
+  ];
 
-  const blob = new Blob([docContent], { type: 'text/plain;charset=utf-8' });
-  return blob;
+  const doc = new Document({ sections: [{ children: sections }] });
+  const buffer = await Packer.toBuffer(doc);
+  return new Blob([buffer], {
+    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  });
 }

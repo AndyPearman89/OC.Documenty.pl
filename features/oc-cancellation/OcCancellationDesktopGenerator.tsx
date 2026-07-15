@@ -7,7 +7,7 @@ import { useForm, useWatch, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { OcCancellationTemplate, type OcCancellationData } from './OcCancellationTemplate';
 import { insurerProfiles } from '@/lib/catalog';
-import { generateOcCancellationPDF } from '@/lib/pdf/pdfGenerator';
+import { generateOcCancellationPDF, generateOcCancellationDOCX } from '@/lib/pdf/pdfGenerator';
 import { PDFViewer } from '@/components/PDFViewer';
 import { LegalBasisSelector } from '@/components/LegalBasisSelector';
 
@@ -135,8 +135,17 @@ export function OcCancellationDesktopGenerator() {
       URL.revokeObjectURL(url);
     };
 
-    const handleDownloadDOCX = () => {
-      alert('DOCX pobieranie - dostępne w Phase 5');
+    const handleDownloadDOCX = async () => {
+      const mappedData = mapFormDataToTemplate(watchedValues);
+      const docxBlob = await generateOcCancellationDOCX(mappedData);
+      const url = URL.createObjectURL(docxBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Wypowiedzenie-OC-${new Date().toISOString().split('T')[0]}.docx`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     };
 
     const handleEmail = () => {
@@ -480,12 +489,50 @@ export function OcCancellationDesktopGenerator() {
                   <h2>Dane właściciela pojazdu</h2>
                   <div className="formGroup">
                     <label>Imię i nazwisko *</label>
-                    <input {...register('ownerName')} type="text" placeholder="Jan Kowalski" />
+                    <Controller
+                      name="ownerName"
+                      control={control}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="text"
+                          placeholder="Jan Kowalski"
+                          style={{
+                            width: '100%',
+                            padding: '10px',
+                            border: errors.ownerName ? '1px solid #d32f2f' : '1px solid #ddd',
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                            fontFamily: 'inherit',
+                          }}
+                        />
+                      )}
+                    />
                     {errors.ownerName && <div className="formError">{errors.ownerName.message}</div>}
                   </div>
                   <div className="formGroup">
                     <label>PESEL *</label>
-                    <input {...register('pesel')} type="text" placeholder="79010112345" inputMode="numeric" maxLength={11} />
+                    <Controller
+                      name="pesel"
+                      control={control}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="text"
+                          placeholder="79010112345"
+                          inputMode="numeric"
+                          maxLength={11}
+                          style={{
+                            width: '100%',
+                            padding: '10px',
+                            border: errors.pesel ? '1px solid #d32f2f' : '1px solid #ddd',
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                            fontFamily: 'inherit',
+                          }}
+                        />
+                      )}
+                    />
                     {errors.pesel && <div className="formError">{errors.pesel.message}</div>}
                   </div>
                   <div className="formGroup">
