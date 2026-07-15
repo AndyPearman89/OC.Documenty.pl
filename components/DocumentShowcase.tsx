@@ -390,9 +390,31 @@ export function DocumentShowcase({
             </div>
           </div>
 
-          {/* Right Column - Preview */}
+          {/* Right Column - Illustration/Preview */}
           {showPreview && (
             <div className="showcase-right">
+              <div className="showcase-illustration" style={{
+                width: '100%',
+                maxWidth: '500px',
+                height: '400px',
+                background: 'linear-gradient(135deg, #f5f7fa 0%, #e5e7eb 100%)',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '24px',
+              }}>
+                <img
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=400&fit=crop"
+                  alt="Bezpieczeństwo OC"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '16px',
+                  }}
+                />
+              </div>
               <div className="showcase-preview">
                 <div className="preview-header">
                   <span className="preview-pages">1 / 1</span>

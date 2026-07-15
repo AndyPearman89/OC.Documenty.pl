@@ -1,38 +1,43 @@
 'use client';
 
-import { Clock, FileText, Lock, Shield, Zap } from 'lucide-react';
+import { CheckCircle, Lock, Scale, Star, Zap, Download } from 'lucide-react';
 
 interface TrustBadgesProps {
   variant?: 'desktop' | 'mobile' | 'footer';
   columns?: number;
 }
 
-export function TrustBadges({ variant = 'desktop', columns = 5 }: TrustBadgesProps) {
+export function TrustBadges({ variant = 'desktop', columns = 6 }: TrustBadgesProps) {
   const badges = [
     {
-      icon: Shield,
-      title: 'W 100% zgodnie z obowiązującymi przepisami',
-      subtitle: 'Aktualny wzór dokumentu',
-    },
-    {
-      icon: FileText,
-      title: 'Profesjonalne wzory dokumentów',
-      subtitle: 'Gotowy do pobrania i edycji',
+      icon: CheckCircle,
+      title: 'Aktualne wzory',
+      subtitle: 'Zgodne z przepisami',
     },
     {
       icon: Lock,
       title: 'Bezpieczne dane',
-      subtitle: 'Szyfrowane i chronione',
+      subtitle: 'Szyfrowane lokalnie',
     },
     {
-      icon: Clock,
-      title: 'Szybko i wygodnie',
-      subtitle: 'Gotowe w 2 minuty',
+      icon: Scale,
+      title: 'Zgodne z ustawą',
+      subtitle: 'Art. 28, 28a, 31',
+    },
+    {
+      icon: Star,
+      title: '4.9/5 opinii',
+      subtitle: '1200+ użytkowników',
     },
     {
       icon: Zap,
-      title: 'Dostępne 24/7',
-      subtitle: 'Kiedy chcesz',
+      title: 'Gotowe w 2 minuty',
+      subtitle: 'Szybko i łatwo',
+    },
+    {
+      icon: Download,
+      title: 'PDF i DOCX',
+      subtitle: 'Pobierz jak chcesz',
     },
   ];
 
