@@ -1,0 +1,48 @@
+name: Deploy to Self-Hosted
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test || true
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            cd /var/www/oc-documenty-pl
+            git pull origin main
+            npm ci --omit=dev
+            npm run build
+            pm2 restart oc-documenty-pl || pm2 start npm --name oc-documenty-pl -- start
+            pm2 save
+
+      - name: Health check
+        run: |
+          curl -f https://oc.documenty.pl/ || exit 1
