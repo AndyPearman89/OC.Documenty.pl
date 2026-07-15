@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { readJsonlFile } from "@/lib/admin/readJsonl";
 
 export const metadata: Metadata = {
-  title: "Panel — OC.Documenty.pl",
+  title: "Panel",
   description: "Podgląd zapisanych wiadomości newslettera i kontaktu.",
   alternates: { canonical: "/panel" },
 };

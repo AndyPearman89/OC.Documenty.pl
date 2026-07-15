@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LandingVisual } from "@/components/ProductVisuals";
 import { documentCatalog } from "@/lib/catalog";
 
@@ -130,6 +131,7 @@ export default async function DocumentLandingPage({ params }: PageProps) {
     <>
       <Header />
       <main id="main-content" className="documentLandingPage">
+        <Breadcrumbs items={[{ label: "Dokumenty", href: "/dokumenty" }, { label: doc.title }]} />
         <section className="catalogHero">
           <div className="container catalogHeroGrid documentHeroGrid">
             <div>
@@ -225,6 +227,32 @@ export default async function DocumentLandingPage({ params }: PageProps) {
                     <p>{item.answer}</p>
                   </details>
                 ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="container">
+            <div style={{ marginTop: "48px", paddingTop: "48px", borderTop: "1px solid #e7edf4" }}>
+              <h2 style={{ marginBottom: "24px" }}>Co dalej?</h2>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+                <div style={{ padding: "20px", background: "#f8fafc", borderRadius: "12px", border: "1px solid #e7edf4" }}>
+                  <h3 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "8px" }}>Generator online</h3>
+                  <p style={{ fontSize: "14px", color: "#536174", marginBottom: "16px" }}>
+                    Wypełnij formularz krok po kroku i pobierz spersonalizowany dokument PDF.
+                  </p>
+                  <Link href={returnHref} style={{ color: "#ef4444", fontWeight: 600, textDecoration: "none" }}>
+                    Otwórz generator →
+                  </Link>
+                </div>
+                <div style={{ padding: "20px", background: "#f8fafc", borderRadius: "12px", border: "1px solid #e7edf4" }}>
+                  <h3 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "8px" }}>Więcej dokumentów</h3>
+                  <p style={{ fontSize: "14px", color: "#536174", marginBottom: "16px" }}>
+                    Przeglądaj katalog dokumentów i znajdź inne wzory przydatne w Twojej sytuacji.
+                  </p>
+                  <Link href="/dokumenty" style={{ color: "#ef4444", fontWeight: 600, textDecoration: "none" }}>
+                    Przejdź do katalogu →
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

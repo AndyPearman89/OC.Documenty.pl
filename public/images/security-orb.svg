@@ -1,0 +1,113 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="orbGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#EF4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" />
+    </linearGradient>
+
+    <radialGradient id="orbDepth" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.15" />
+    </radialGradient>
+
+    <filter id="orbShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-opacity="0.15" flood-color="#000000"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.08" flood-color="#000000"/>
+    </filter>
+
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" flood-color="#000000"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- Orb container group -->
+  <g id="orbGroup" filter="url(#orbShadow)">
+    <!-- Main orb circle with gradient -->
+    <circle cx="400" cy="260" r="180" fill="url(#orbGradient)" opacity="1"/>
+
+    <!-- Depth overlay for 3D effect -->
+    <circle cx="400" cy="260" r="180" fill="url(#orbDepth)"/>
+
+    <!-- Subtle inner shadow for depth -->
+    <circle cx="400" cy="260" r="175" fill="none" stroke="#991B1B" stroke-width="2" opacity="0.08"/>
+
+    <!-- Highlight for 3D sphere effect -->
+    <circle cx="340" cy="220" r="60" fill="#FFFFFF" opacity="0.15"/>
+
+    <!-- Outer ring accent -->
+    <circle cx="400" cy="260" r="188" fill="none" stroke="#F0F0F0" stroke-width="3" opacity="0.8"/>
+  </g>
+
+  <!-- Lock Icon inside orb -->
+  <g id="lockIcon">
+    <!-- Lock shackle (curved top) -->
+    <path d="M 370 260 Q 370 210 400 200 Q 430 210 430 260"
+          fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Lock body (main rectangle) -->
+    <rect x="360" y="270" width="80" height="70" rx="6" ry="6"
+          fill="white" stroke="none"/>
+
+    <!-- Keyhole circle -->
+    <circle cx="400" cy="310" r="8" fill="#EF4444"/>
+
+    <!-- Subtle inner glow on lock -->
+    <circle cx="400" cy="310" r="6" fill="none" stroke="#EF4444" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- Top-left accent chip: "Bez konta" -->
+  <g id="chipLeft">
+    <!-- Rounded rectangle background -->
+    <rect x="60" y="55" width="140" height="50" rx="25" ry="25"
+          fill="white" stroke="#1F2937" stroke-width="2.5"/>
+
+    <!-- Check icon -->
+    <g id="checkIcon" transform="translate(85, 80)">
+      <line x1="-8" y1="0" x2="-2" y2="6" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-2" y1="6" x2="8" y2="-6" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Text -->
+    <text x="120" y="87" font-family="Segoe UI, system-ui, sans-serif" font-size="16" font-weight="500"
+          fill="#1F2937" text-anchor="middle" dominant-baseline="middle">Bez konta</text>
+  </g>
+
+  <!-- Top-right accent chip: "Szybki PDF" -->
+  <g id="chipRight">
+    <!-- Rounded rectangle background -->
+    <rect x="600" y="55" width="140" height="50" rx="25" ry="25"
+          fill="white" stroke="#1F2937" stroke-width="2.5"/>
+
+    <!-- Bolt/Lightning icon -->
+    <g id="boltIcon" transform="translate(625, 80)">
+      <path d="M 0 -8 L 4 0 L -2 2 L 6 10 L -8 0 L 0 -2 Z"
+            fill="#EF4444" stroke="none"/>
+    </g>
+
+    <!-- Text -->
+    <text x="680" y="87" font-family="Segoe UI, system-ui, sans-serif" font-size="16" font-weight="500"
+          fill="#1F2937" text-anchor="middle" dominant-baseline="middle">Szybki PDF</text>
+  </g>
+
+  <!-- Main text below orb -->
+  <g id="textSection" filter="url(#textShadow)">
+    <!-- Primary text: "Dane formularza" -->
+    <text x="400" y="480" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="28" font-weight="600"
+          fill="#1F2937" text-anchor="middle" letter-spacing="-0.3">Dane formularza</text>
+
+    <!-- Secondary text: "przetwarzane lokalnie" -->
+    <text x="400" y="525" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="16" font-weight="400"
+          fill="#9CA3AF" text-anchor="middle" letter-spacing="0.1">przetwarzane lokalnie</text>
+  </g>
+
+  <!-- Decorative breathing room indicator (subtle) -->
+  <g id="spacingAccent" opacity="0.35">
+    <!-- Subtle horizontal lines suggesting precision -->
+    <line x1="50" y1="520" x2="750" y2="520" stroke="#E5E7EB" stroke-width="1"/>
+    <line x1="50" y1="550" x2="750" y2="550" stroke="#E5E7EB" stroke-width="1"/>
+  </g>
+</svg>

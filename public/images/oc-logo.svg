@@ -1,15 +1,19 @@
-<svg width="92" height="104" viewBox="0 0 92 104" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="oc-logo-title">
+<svg width="46" height="52" viewBox="0 0 46 52" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="oc-logo-title">
   <title id="oc-logo-title">OC.Documenty.pl</title>
-  <rect x="0" y="0" width="92" height="104" rx="20" fill="#e30613"/>
-  <g transform="translate(14,16)" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 4 L30 4 L40 14 L40 68 C40 70.2 38.2 72 36 72 L4 72 C1.8 72 0 70.2 0 68 L0 8 C0 5.8 1.8 4 4 4 Z"/>
-    <path d="M30 4 L30 14 L40 14"/>
-    <path d="M8 30 H24"/>
-    <path d="M8 42 H32"/>
-    <path d="M8 54 H32"/>
+  <rect x="0" y="0" width="46" height="52" rx="10" fill="#f31324"/>
+
+  <!-- FileText icon (lucide), 27x31 at (7,7), white stroke -->
+  <g transform="translate(7,7) scale(1.125,1.2917)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+    <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+    <path d="M10 9H8"/>
+    <path d="M16 13H8"/>
+    <path d="M16 17H8"/>
   </g>
-  <g transform="translate(38,44)">
-    <path d="M18 0 L34 6 V20 C34 32 27 40 18 44 C9 40 2 32 2 20 V6 Z" fill="#ffffff" stroke="#e30613" stroke-width="2.5"/>
-    <path d="M10 21 L16 27 L27 14" fill="none" stroke="#e30613" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ShieldCheck icon (lucide), 24x24 at (20,26), red fill + white stroke -->
+  <g transform="translate(20,26)" fill="#d90012" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+    <path d="m9 12 2 2 4-4" fill="none"/>
   </g>
 </svg>

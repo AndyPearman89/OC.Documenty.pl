@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "FAQ - najczęściej zadawane pytania",
+  title: "FAQ — najczęściej zadawane pytania",
   description: "Odpowiedzi na pytania dotyczące generatorów, podpisów, plików PDF i wysyłania dokumentów ubezpieczeniowych.",
 };
 

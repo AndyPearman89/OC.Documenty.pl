@@ -10,7 +10,7 @@ type PageProps = { params: Promise<{ id: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   return {
-    title: `Weryfikacja dokumentu ${id} | OC.Documenty.pl`,
+    title: `Weryfikacja dokumentu ${id}`,
     description: `Sprawdzenie dokumentu OC.Documenty.pl dla identyfikatora ${id}.`,
     alternates: { canonical: `/verify/${id}` },
   };

@@ -1,16 +1,16 @@
 export const documentCatalog = [
-  { slug: "wypowiedzenie-oc", title: "Wypowiedzenie umowy OC", description: "Formalny wzór zakończenia obowiązkowej umowy OC.", category: "Wypowiedzenia" },
-  { slug: "zmiana-ubezpieczyciela", title: "Zmiana ubezpieczyciela OC", description: "Pismo do uporządkowanego przejścia do nowego towarzystwa.", category: "Wypowiedzenia" },
-  { slug: "zwrot-skladki-oc", title: "Wniosek o zwrot składki OC", description: "Wniosek o rozliczenie niewykorzystanej części składki.", category: "Zwroty" },
-  { slug: "oswiadczenie-sprawcy", title: "Oświadczenie sprawcy kolizji", description: "Urzędowy wzór oświadczenia po zdarzeniu drogowym.", category: "Oświadczenia" },
-  { slug: "wspolne-oswiadczenie", title: "Wspólne oświadczenie o zdarzeniu", description: "Wspólny formularz uczestników kolizji drogowej.", category: "Oświadczenia" },
-  { slug: "zgloszenie-sprzedazy", title: "Zgłoszenie sprzedaży pojazdu", description: "Zawiadomienie ubezpieczyciela o zbyciu pojazdu.", category: "Pojazd" },
-  { slug: "umowa-kupna-sprzedazy", title: "Umowa kupna-sprzedaży pojazdu", description: "Profesjonalny wzór umowy zakupu auta lub motocykla.", category: "Pojazd" },
-  { slug: "umowa-kupna-sprzedazy-wspolwlasciciel", title: "Umowa kupna-sprzedaży samochodu ze współwłaścicielem", description: "Wzór umowy z udziałem współwłaściciela pojazdu.", category: "Pojazd" },
-  { slug: "umowa-cesji-praw-z-polisy", title: "Umowa cesji praw z polisy ubezpieczeniowej", description: "Wzór przeniesienia praw z polisy na nowy podmiot.", category: "Umowy" },
-  { slug: "umowa-darowizny-samochodu", title: "Umowa darowizny samochodu", description: "Wzór przekazania pojazdu w formie darowizny.", category: "Umowy" },
-  { slug: "odstapienie-od-umowy-ubezpieczenia-zawartej-na-odleglosc", title: "Odstąpienie od umowy ubezpieczenia zawartej na odległość", description: "Formalny wzór odstąpienia od umowy zawartej online.", category: "Odstąpienia" },
-  { slug: "reklamacja", title: "Reklamacja do ubezpieczyciela", description: "Wniosek o ponowne rozpatrzenie decyzji lub szkody.", category: "Reklamacje" },
+  { slug: "wypowiedzenie-oc", title: "Wypowiedzenie umowy OC", description: "Formalny wzór zakończenia obowiązkowej umowy OC.", category: "Wypowiedzenia", pages: 1, size: "240 KB" },
+  { slug: "zmiana-ubezpieczyciela", title: "Zmiana ubezpieczyciela OC", description: "Pismo do uporządkowanego przejścia do nowego towarzystwa.", category: "Wypowiedzenia", pages: 1, size: "185 KB" },
+  { slug: "zwrot-skladki-oc", title: "Wniosek o zwrot składki OC", description: "Wniosek o rozliczenie niewykorzystanej części składki.", category: "Zwroty", pages: 1, size: "198 KB" },
+  { slug: "oswiadczenie-sprawcy", title: "Oświadczenie sprawcy kolizji", description: "Urzędowy wzór oświadczenia po zdarzeniu drogowym.", category: "Oświadczenia", pages: 2, size: "320 KB" },
+  { slug: "wspolne-oswiadczenie", title: "Wspólne oświadczenie o zdarzeniu", description: "Wspólny formularz uczestników kolizji drogowej.", category: "Oświadczenia", pages: 2, size: "310 KB" },
+  { slug: "zgloszenie-sprzedazy", title: "Zgłoszenie sprzedaży pojazdu", description: "Zawiadomienie ubezpieczyciela o zbyciu pojazdu.", category: "Pojazd", pages: 1, size: "175 KB" },
+  { slug: "umowa-kupna-sprzedazy", title: "Umowa kupna-sprzedaży pojazdu", description: "Profesjonalny wzór umowy zakupu auta lub motocykla.", category: "Pojazd", pages: 2, size: "420 KB" },
+  { slug: "umowa-kupna-sprzedazy-wspolwlasciciel", title: "Umowa kupna-sprzedaży samochodu ze współwłaścicielem", description: "Wzór umowy z udziałem współwłaściciela pojazdu.", category: "Pojazd", pages: 3, size: "480 KB" },
+  { slug: "umowa-cesji-praw-z-polisy", title: "Umowa cesji praw z polisy ubezpieczeniowej", description: "Wzór przeniesienia praw z polisy na nowy podmiot.", category: "Umowy", pages: 2, size: "340 KB" },
+  { slug: "umowa-darowizny-samochodu", title: "Umowa darowizny samochodu", description: "Wzór przekazania pojazdu w formie darowizny.", category: "Umowy", pages: 2, size: "360 KB" },
+  { slug: "odstapienie-od-umowy-ubezpieczenia-zawartej-na-odleglosc", title: "Odstąpienie od umowy ubezpieczenia zawartej na odległość", description: "Formalny wzór odstąpienia od umowy zawartej online.", category: "Odstąpienia", pages: 1, size: "210 KB" },
+  { slug: "reklamacja", title: "Reklamacja do ubezpieczyciela", description: "Wniosek o ponowne rozpatrzenie decyzji lub szkody.", category: "Reklamacje", pages: 2, size: "290 KB" },
 ] as const;
 
 export const generatorDocuments = [

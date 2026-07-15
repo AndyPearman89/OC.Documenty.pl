@@ -4,6 +4,7 @@ import { Check, FileDown, ImageUp, Printer, Save, ShieldCheck, Trash2 } from "lu
 import Image from "next/image";
 import { type ChangeEvent, type CSSProperties, useEffect, useMemo, useState } from "react";
 import { downloadPdf } from "@/lib/downloadPdf";
+import { MobileWizardForm } from "./MobileWizardForm";
 
 type VehicleType = "samochod" | "motocykl" | "przyczepka" | "ciezarowka" | "pozostale";
 
@@ -73,6 +74,7 @@ const defaults: FormState = {
 const draftKey = "oc-documenty-umowa-kupna-sprzedazy-draft";
 
 export function PurchaseAgreementForm() {
+  const [isMobile, setIsMobile] = useState(false);
   const [values, setValues] = useState<FormState>(() => {
     if (typeof window === "undefined") return defaults;
     try {
@@ -85,6 +87,15 @@ export function PurchaseAgreementForm() {
   const [signature, setSignature] = useState("");
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     sessionStorage.setItem(draftKey, JSON.stringify(values));
@@ -146,6 +157,10 @@ export function PurchaseAgreementForm() {
         <AgreementDocument values={values} signature={signature} />
       </section>
     );
+  }
+
+  if (isMobile) {
+    return <MobileWizardForm />;
   }
 
   return (

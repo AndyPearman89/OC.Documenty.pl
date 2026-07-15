@@ -12,7 +12,7 @@ function getBrowser() {
 export async function renderHtmlToPdf(html, outputPath) {
   const browser = await getBrowser();
   const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: "networkidle0" });
+  await page.setContent(html, { waitUntil: "load" });
   await page.pdf({
     path: outputPath,
     format: "A4",

@@ -1,0 +1,330 @@
+/* Document Action Bar — Pobierz, Drukuj, Udostępnij, Wyślij */
+
+.documentActionBar {
+  background: white;
+  border: 1px solid #e7edf4;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+/* Main Actions Grid */
+.actionButtonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.actionButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 12px;
+  border: 2px solid #e7edf4;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  font-family: inherit;
+}
+
+.actionButton:hover {
+  border-color: #ef4444;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+  transform: translateY(-2px);
+}
+
+.actionButton:active {
+  transform: scale(0.98);
+}
+
+/* Button Variants */
+.actionButton-primary {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.actionButton-primary:hover {
+  background: #dc2626;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.actionButton-secondary {
+  background: #f9fafb;
+  color: #111827;
+  border-color: #e7edf4;
+}
+
+.actionButton-secondary:hover {
+  background: #f3f4f6;
+  border-color: #ef4444;
+}
+
+/* Icons */
+.actionButton svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+/* Dropdowns */
+.actionButtonWrapper {
+  position: relative;
+}
+
+.shareDropdown,
+.emailDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e7edf4;
+  border-radius: 10px;
+  margin-top: 8px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  min-width: 280px;
+}
+
+/* Share Option */
+.shareOption {
+  margin-bottom: 16px;
+}
+
+.shareOption label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.shareLink {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.shareLinkInput {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #e7edf4;
+  border-radius: 6px;
+  font-size: 12px;
+  background: #f9fafb;
+  color: #536174;
+}
+
+.shareLinkInput:focus {
+  outline: 0;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+.copyButton {
+  padding: 8px 10px;
+  border: 1px solid #e7edf4;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  min-width: 40px;
+}
+
+.copyButton:hover {
+  border-color: #ef4444;
+  background: #fff7f8;
+}
+
+/* Social Share */
+.socialShare {
+  padding-top: 12px;
+  border-top: 1px solid #e7edf4;
+}
+
+.shareLabel {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.socialButton {
+  padding: 8px 12px;
+  border: 1px solid #e7edf4;
+  border-radius: 6px;
+  background: white;
+  color: #111827;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+}
+
+.socialButton:hover {
+  border-color: #ef4444;
+  background: #fff7f8;
+  color: #ef4444;
+}
+
+.socialButton.facebook {
+  color: #1877f2;
+}
+
+.socialButton.facebook:hover {
+  border-color: #1877f2;
+  background: #e7f3ff;
+}
+
+.socialButton.twitter {
+  color: #000000;
+}
+
+.socialButton.twitter:hover {
+  border-color: #000000;
+  background: #f0f0f0;
+}
+
+.socialButton.linkedin {
+  color: #0a66c2;
+}
+
+.socialButton.linkedin:hover {
+  border-color: #0a66c2;
+  background: #e7f3ff;
+}
+
+/* Email Form */
+.emailForm {
+  display: flex;
+  gap: 6px;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #e7edf4;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.emailInput:focus {
+  outline: 0;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+.sendButton {
+  padding: 10px 14px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.sendButton:hover {
+  background: #dc2626;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.sendButton:active {
+  transform: scale(0.98);
+}
+
+/* Document Info */
+.documentInfo {
+  background: #f9fafb;
+  border: 1px solid #e7edf4;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+}
+
+.documentInfo p {
+  margin: 4px 0;
+  color: #536174;
+}
+
+.documentInfo strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.documentTip {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e7edf4;
+  color: #111827;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .actionButtonsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .actionButtonsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actionButton {
+    flex-direction: row;
+    justify-content: center;
+    padding: 14px 16px;
+  }
+
+  .shareDropdown,
+  .emailDropdown {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 12px 12px 0 0;
+    min-width: 100%;
+    margin: 0;
+  }
+
+  .socialButtons {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .documentActionBar {
+    display: none;
+  }
+}

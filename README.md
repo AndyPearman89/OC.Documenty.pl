@@ -8,7 +8,9 @@
 
 Generate, preview, sign and manage Polish insurance documents with a modern, accessible and production-ready user experience.
 
-**Status:** 🚧 Active Development
+**Status:** ✅ Production Ready (P0-P2 Complete)
+
+**Latest:** E2E tests + accessibility + dark mode + security hardened
 
 ---
 

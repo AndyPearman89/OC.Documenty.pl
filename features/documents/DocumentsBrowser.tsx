@@ -88,16 +88,23 @@ export function DocumentsBrowser() {
                   const href = documentHref(doc.slug);
                   return (
                     <article className="catalogCard" key={doc.slug}>
-                      <span>
-                        {doc.category === "Umowy" ? <Sparkles /> : <FileText />}
-                      </span>
-                      <div>
-                        <small>{doc.category}</small>
+                      <div className="catalogCardVisual">
+                        <div className="catalogCardThumbnail">
+                          {doc.category === "Umowy" ? <Sparkles /> : <FileText />}
+                          <span className="pageCount">{doc.pages}</span>
+                        </div>
+                        <div className="catalogCardMeta">
+                          <small className="docSize"><Download size={12} /> {doc.size}</small>
+                          <small className="docPages">{doc.pages} {doc.pages === 1 ? "strona" : doc.pages < 5 ? "strony" : "stron"}</small>
+                        </div>
+                      </div>
+                      <div className="catalogCardContent">
+                        <small className="docCategory">{doc.category}</small>
                         <h2>{doc.title}</h2>
                         <p>{doc.description}</p>
                       </div>
-                      <div className="catalogActions">
-                        <a className="pdfLink" href={pdfHref(doc.slug)} download>
+                      <div className="catalogCardActions">
+                        <a className="pdfLink" href={pdfHref(doc.slug)} download aria-label={`Pobierz ${doc.title} w formacie PDF`}>
                           <Download /> PDF
                         </a>
                         <Link className="button buttonOutline" href={href}>

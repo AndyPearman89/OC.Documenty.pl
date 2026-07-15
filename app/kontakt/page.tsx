@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 import { ContactForm } from "@/features/contact/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Kontakt — OC.Documenty.pl",
+  title: "Kontakt",
   description: "Skontaktuj się z zespołem OC.Documenty.pl w sprawie wzorów i generatorów dokumentów.",
   alternates: { canonical: "/kontakt" },
 };
