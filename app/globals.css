@@ -169,5 +169,41 @@ linear-gradient(135deg,#fff 0%,#fff6f7 58%,#fff 100%);border-color:#efb5bb}
 .companyHero-proama .insurerHeroShield{left:24px;bottom:22px;width:126px;height:126px;border-radius:28px}
 .companyHero-proama .insurerHeroBubble{right:24px;bottom:24px;width:64px;height:64px}
 @media(max-width:800px){.companyHero-proama .insurerHeroVisual{width:100%;height:260px}}
+@media(max-width:520px){.companyHero-proama .insurerHeroVisual{width:100%;height:260px}}
 @media(max-width:520px){.companyHero-proama .insurerHeroVisual{height:230px;padding:14px}.companyHero-proama .insurerHeroCard{min-width:150px}.companyHero-proama .insurerHeroSheet{width:106px;height:138px}.companyHero-proama .insurerHeroShield{width:110px;height:110px}.companyHero-proama .insurerHeroBubble{width:56px;height:56px}}
+
+/* OC Document Landing Page */
+.whyChoose{background:#fff;padding:60px 20px;margin-top:40px}
+.whyChooseHeader{text-align:center;margin-bottom:48px}
+.whyChooseHeader .eyebrow{color:var(--brand);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:block}
+.whyChooseHeader h2{font-size:32px;font-weight:800;color:#1a1a1a;margin:0}
+.whyChooseGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.whyCard{padding:28px;background:#f9f9f9;border-radius:8px;text-align:center;transition:all .3s}
+.whyCard:hover{background:#f0f2f5;transform:translateY(-4px)}
+.whyIcon{font-size:48px;margin-bottom:16px}
+.whyCard h3{font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px}
+.whyCard p{font-size:13px;color:#666;line-height:1.5;margin:0}
+
+.trustSection{background:#f9f9f9;padding:40px 20px;margin-top:40px}
+.trustHeader{text-align:center;margin-bottom:40px}
+.trustHeader .eyebrow{color:var(--brand);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:block}
+.trustHeader h2{font-size:28px;font-weight:800;color:#1a1a1a;margin:0}
+
+.ctaSection{background:linear-gradient(135deg,var(--brand) 0%,#c41920 100%);color:#fff;padding:60px 20px;text-align:center;margin-top:40px}
+.ctaSection h2{font-size:36px;font-weight:800;margin:0 0 16px 0}
+.ctaSection p{font-size:16px;margin-bottom:32px;opacity:.95;margin:0 0 32px 0}
+.ctaButton{display:inline-flex;align-items:center;gap:8px;padding:16px 40px;background:#fff;color:var(--brand);border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .3s}
+.ctaButton:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+
+@media(max-width:1024px){.whyChooseGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .whyChoose{padding:40px 16px}
+  .whyChooseHeader h2{font-size:24px}
+  .whyChooseGrid{grid-template-columns:1fr}
+  .trustSection{padding:24px 16px}
+  .trustHeader h2{font-size:20px}
+  .ctaSection{padding:40px 16px}
+  .ctaSection h2{font-size:24px}
+  .ctaButton{width:100%;justify-content:center}
+}
 
