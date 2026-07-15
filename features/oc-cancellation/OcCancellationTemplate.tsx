@@ -21,6 +21,7 @@ export interface OcCancellationData {
   newInsurer?: string;
   newPolicyPeriodFrom?: string;
   newPolicyPeriodTo?: string;
+  bankAccount?: string;
 }
 
 interface OcCancellationTemplateProps {
