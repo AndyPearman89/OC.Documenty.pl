@@ -38,7 +38,7 @@ jobs:
           script: |
             cd /var/www/oc-documenty-pl
             git pull origin main
-            npm ci --omit=dev
+            npm ci
             npm run build
             pm2 restart oc-documenty-pl || pm2 start npm --name oc-documenty-pl -- start
             pm2 save
