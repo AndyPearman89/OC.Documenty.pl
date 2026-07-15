@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { OcCancellationTemplate, type OcCancellationData } from './OcCancellationTemplate';
 import { insurerProfiles } from '@/lib/catalog';
 import { generateOcCancellationPDF } from '@/lib/pdf/pdfGenerator';
+import { PDFViewer } from '@/components/PDFViewer';
 
 const mapFormDataToTemplate = (formData: any): Partial<OcCancellationData> => ({
   clientName: formData.ownerName || '',
@@ -586,20 +587,21 @@ export function OcCancellationDesktopGenerator() {
 
           {/* Preview Column */}
           <div className="previewColumn">
-            <div className="previewTitle">Podgląd dokumentu</div>
-            <div className="previewBox">
-              <div className="previewHeader">
-                <span>1 / 1</span>
-                <div style={{ display: 'flex', gap: '8px', fontSize: '12px' }}>
-                  <button style={{ background: '#e0e0e0', border: 'none', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer' }}>−</button>
-                  <span>100%</span>
-                  <button style={{ background: '#e0e0e0', border: 'none', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer' }}>+</button>
-                </div>
-              </div>
-              <div className="previewContent">
-                <OcCancellationTemplate data={mapFormDataToTemplate(watchedValues)} readOnly={true} showSignature={false} />
-              </div>
-            </div>
+            <PDFViewer
+              title="Podgląd dokumentu"
+              currentPage={1}
+              totalPages={1}
+              onDownload={handleGeneratePdf}
+              onPrint={() => {
+                const printWindow = window.open('', '', 'width=800,height=600');
+                if (printWindow) {
+                  printWindow.document.write('<html><body>Drukowanie...</body></html>');
+                  printWindow.window.print();
+                }
+              }}
+            >
+              <OcCancellationTemplate data={mapFormDataToTemplate(watchedValues)} readOnly={true} showSignature={false} />
+            </PDFViewer>
           </div>
         </div>
       </div>
