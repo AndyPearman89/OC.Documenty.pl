@@ -15,9 +15,10 @@ import { DocumentShowcase } from '@/components/DocumentShowcase';
 import { TrustBadges } from '@/components/TrustBadges';
 
 export const metadata: Metadata = {
-  title: 'Wypowiedzenie umowy OC — Generator',
+  title:
+    'Wypowiedzenie umowy ubezpieczenia OC posiadaczy pojazdów mechanicznych — Generator',
   description:
-    'Szybko, bezpiecznie i wygodnie wygeneruj wypowiedzenie umowy OC w PDF lub DOCX. Zgodne z prawem, gotowe w 2 minuty.',
+    'Szybko, bezpiecznie i wygodnie wygeneruj i wyślij wypowiedzenie umowy OC. Zgodne z prawem, gotowe w 2 minuty. Wypełnij formularz i wyślij do ubezpieczyciela.',
   alternates: { canonical: '/dokument/wypowiedzenie-oc' },
 };
 
@@ -238,10 +239,13 @@ export default function DocumentPage() {
 
         <section className="ctaSection">
           <div className="container">
-            <h2>Gotowy na wypowiedzenie OC?</h2>
-            <p>Wygeneruj profesjonalny dokument w zaledwie kilka minut</p>
+            <h2>Wypełnij formularz i wyślij wypowiedzenie OC</h2>
+            <p>
+              Zupełnie bezpłatnie, bezpiecznie i bez potrzeby rejestracji. Dokumenty
+              są generowane lokalnie na Twoim urządzeniu.
+            </p>
             <a href="/generator-oc" className="ctaButton">
-              Przejdź do generatora
+              Wypełnij i wyślij
               <ArrowRight size={20} />
             </a>
           </div>
