@@ -463,3 +463,43 @@
 .vehicleOptionEmoji{font-size:28px;line-height:1;display:block}
 .vehicleOption span:last-child{font-size:13px;font-weight:600;color:#536174;text-align:center}
 .vehicleOption:hover{border-color:#d1d5db;background:#f9fafb}
+
+/* FAQ Card Section (Phase 6) */
+.faqCard{background:#fff;border:1px solid #e7edf4;border-radius:18px;padding:24px;display:flex;gap:18px;transition:all .2s;box-shadow:0 8px 20px rgba(15,23,42,.04)}
+.faqCard:hover{box-shadow:0 14px 32px rgba(15,23,42,.08);border-color:#efb7bc;transform:translateY(-2px)}
+.faqIcon{flex:0 0 48px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#fff7f8;border-radius:12px;color:var(--brand);margin-top:2px}
+.faqContent{flex:1}
+.faqContent h3{margin:0 0 8px;font-size:16px;font-weight:700;color:#111827}
+.faqContent p{margin:0;color:#536174;font-size:14px;line-height:1.7}
+.faqGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px;max-width:100%}
+@media(max-width:900px){.faqGrid{grid-template-columns:1fr}}
+
+/* Blog Section (Phase 6) */
+.blogSection{padding:60px 0;background:#fff}
+.blogHeader{text-align:center;margin-bottom:40px;max-width:680px;margin-inline:auto}
+.blogHeader .eyebrow{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+.blogHeader h2{font-size:32px;margin:10px 0 16px;color:#111827}
+.blogHeader p{color:#536174;font-size:16px;margin:0;line-height:1.6}
+.blogGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:32px}
+.blogCard{background:#fff;border:1px solid #e7edf4;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:16px;transition:all .2s;box-shadow:0 8px 20px rgba(15,23,42,.04)}
+.blogCard:hover{box-shadow:0 14px 40px rgba(15,23,42,.08);border-color:#efb7bc;transform:translateY(-3px)}
+.blogCardIcon{flex:0 0 48px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#fff7f8;border-radius:12px;color:var(--brand)}
+.blogCard h3{margin:0;font-size:16px;font-weight:700;color:#111827;line-height:1.35}
+.blogExcerpt{margin:0;color:#536174;font-size:14px;line-height:1.6}
+.blogMeta{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 0}
+.blogDate,.blogTime{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#64748b;font-weight:600}
+.blogLink{display:inline-flex;align-items:center;gap:8px;color:var(--brand);font-weight:800;font-size:13px;text-decoration:none;margin-top:auto;transition:gap .2s}
+.blogLink:hover{gap:12px}
+.blogLink svg{width:14px;height:14px}
+@media(max-width:900px){.blogGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.blogGrid{grid-template-columns:1fr}.blogCard{padding:20px}}
+
+/* Info Section (Phase 6) */
+.infoSection{padding:60px 0;background:linear-gradient(135deg,#f8fafc,#fff0f1)}
+.infoBanner{max-width:720px;margin-inline:auto;background:#fff;border:1px solid #e7edf4;border-radius:20px;padding:36px;box-shadow:0 12px 32px rgba(15,23,42,.06)}
+.infoBanner h3{margin:0 0 12px;font-size:24px;font-weight:700;color:#111827}
+.infoBanner>p{margin:0 0 24px;color:#536174;font-size:15px;line-height:1.7}
+.infoList{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.infoList li{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid #e7edf4;border-radius:12px;background:#fbfcfd;color:#374151;font-size:14px;font-weight:500}
+.infoList svg{flex:0 0 auto;width:18px;height:18px;color:var(--brand)}
+@media(max-width:650px){.infoBanner{padding:24px}.infoBanner h3{font-size:20px}.infoList li{padding:10px 14px;font-size:13px}}
