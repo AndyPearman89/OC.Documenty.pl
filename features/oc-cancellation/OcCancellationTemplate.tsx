@@ -27,6 +27,7 @@ interface OcCancellationTemplateProps {
   data: Partial<OcCancellationData>;
   onDataChange?: (data: Partial<OcCancellationData>) => void;
   readOnly?: boolean;
+  showSignature?: boolean;
 }
 
 const userIcon = (
