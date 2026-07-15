@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, Check, CheckCircle2, Clock3, CloudDownload, FileText, PenLine, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, Clock3, CloudDownload, FileText, PenLine, ShieldCheck, Sparkles, AlertTriangle, Users, FileSignature, Clock, Lock, Phone } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -176,6 +176,92 @@ export default function CollisionPage() {
                   <p>{step.text}</p>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section style={{ paddingTop: '60px', paddingBottom: '40px' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <span className="eyebrow">Rodzaje oświadczeń</span>
+              <h2>Trzy sposoby złożenia oświadczenia po kolizji</h2>
+            </div>
+
+            <div className="collisionTypesGrid">
+              <article className="collisionTypeCard">
+                <div className="collisionTypeIcon">
+                  <AlertTriangle size={28} />
+                </div>
+                <h3>Kolizja drogowa</h3>
+                <span className="collisionTypeLabel">Zdarzenie drogowe</span>
+                <p>
+                  Oświadczenie sprawcy gdy doszło do zderzenia pojazdów na drodze publicznej. Obejmuje wszystkie dane zdarzenia i stron uczestniczących.
+                </p>
+                <a href="#blog/kolizja-drogowa" className="collisionTypeLink">
+                  Dowiedz się więcej <ArrowRight size={16} />
+                </a>
+              </article>
+
+              <article className="collisionTypeCard">
+                <div className="collisionTypeIcon">
+                  <Users size={28} />
+                </div>
+                <h3>Wspólne oświadczenie</h3>
+                <span className="collisionTypeLabel">Szybsza procedura</span>
+                <p>
+                  Gdy obie strony zgadzają się na ustalony przebieg zdarzenia, wspólne oświadczenie przyspiesza likwidację szkody i zmniejsza konflikty.
+                </p>
+                <a href="#blog/wspolne-oswiadczenie" className="collisionTypeLink">
+                  Dowiedz się więcej <ArrowRight size={16} />
+                </a>
+              </article>
+
+              <article className="collisionTypeCard">
+                <div className="collisionTypeIcon">
+                  <FileSignature size={28} />
+                </div>
+                <h3>Osobne oświadczenia</h3>
+                <span className="collisionTypeLabel">Gdy brak zgody</span>
+                <p>
+                  Gdy strony mają różne wersje zdarzeń, każda może złożyć własne oświadczenie z własną interpretacją przrzebiegu kolizji.
+                </p>
+                <a href="#blog/osobne-oswiadczenia" className="collisionTypeLink">
+                  Dowiedz się więcej <ArrowRight size={16} />
+                </a>
+              </article>
+            </div>
+
+            <div className="collisionHelpSection">
+              <h3>Przydatne informacje</h3>
+              <div className="collisionHelpGrid">
+                <a href="#blog/procedura-likwidacji" className="collisionHelpCard">
+                  <div className="collisionHelpIcon">
+                    <Clock size={24} />
+                  </div>
+                  <div className="collisionHelpContent">
+                    <strong>Procedura likwidacji</strong>
+                    <p>Ile czasu trwa rozpatrzenie szkody?</p>
+                  </div>
+                </a>
+                <a href="#blog/ochrona-danych-kolizja" className="collisionHelpCard">
+                  <div className="collisionHelpIcon">
+                    <Lock size={24} />
+                  </div>
+                  <div className="collisionHelpContent">
+                    <strong>Ochrona danych</strong>
+                    <p>Jak bezpiecznie udostępniać dane?</p>
+                  </div>
+                </a>
+                <a href="#blog/roszczenia-poszkodowanych" className="collisionHelpCard">
+                  <div className="collisionHelpIcon">
+                    <Phone size={24} />
+                  </div>
+                  <div className="collisionHelpContent">
+                    <strong>Roszczenia poszkodowanych</strong>
+                    <p>Jakie są terminy i limity?</p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </section>

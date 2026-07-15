@@ -29,7 +29,7 @@ import { TrustBadges } from "@/components/TrustBadges";
 import { insurerProfiles } from "@/lib/catalog";
 
 const documents = [
-  { title: "Wypowiedzenie umowy OC", description: "Zakończ polisę na właściwej podstawie prawnej.", href: "/generator", tag: "Najpopularniejszy" },
+  { title: "Wypowiedzenie umowy OC", description: "Zakończ polisę na właściwej podstawie prawnej.", href: "/dokument/wypowiedzenie-oc", tag: "Najpopularniejszy" },
   { title: "Oświadczenie sprawcy kolizji", description: "Dane zdarzenia, podpis i gotowy dokument PDF.", href: "/oswiadczenie-sprawcy", tag: "Po kolizji" },
   { title: "Wspólne oświadczenie", description: "Jeden formularz i podpisy obu uczestników.", href: "/wspolne-oswiadczenie", tag: "Dwie strony" },
   { title: "Puste wzory PDF", description: "Profesjonalne formularze do druku i ręcznego uzupełnienia.", href: "/dokumenty", tag: "Do pobrania" },
@@ -154,7 +154,7 @@ export default function Home() {
 
         <section style={{ padding: "60px 20px", background: "#f8fafc" }}>
           <div className="container" style={{ maxWidth: "1200px" }}>
-            <TrustBadges layout="horizontal" />
+            <TrustBadges variant="desktop" />
           </div>
         </section>
 

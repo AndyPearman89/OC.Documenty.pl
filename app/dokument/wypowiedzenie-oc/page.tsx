@@ -7,6 +7,12 @@ import {
   CheckCircle,
   Shield,
   BookOpen,
+  Calendar,
+  FileCheck,
+  Key,
+  AlertCircle,
+  Lock,
+  DollarSign,
 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -233,6 +239,92 @@ export default function DocumentPage() {
                   Aktualne wzory dokumentów
                 </li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        <section style={{ paddingTop: '60px', paddingBottom: '40px' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <span className="eyebrow">Podstawy prawne</span>
+              <h2>Trzy sposoby wypowiedzenia ubezpieczenia OC</h2>
+            </div>
+
+            <div className="legalBasisGrid">
+              <article className="legalBasisCard">
+                <div className="legalBasisIcon">
+                  <Calendar size={28} />
+                </div>
+                <h3>Artykuł 28</h3>
+                <span className="legalBasisLabel">Koniec okresu ubezpieczenia</span>
+                <p>
+                  Wypowiedzenie umowy z ostatnim dniem okresu, na który została zawarta. Najczęściej wybierana opcja gdy polisa nie będzie przedłużana.
+                </p>
+                <a href="#blog/art-28-vs-28a-vs-31" className="legalBasisLink">
+                  Dowiedz się więcej <ArrowRight size={16} />
+                </a>
+              </article>
+
+              <article className="legalBasisCard">
+                <div className="legalBasisIcon">
+                  <FileCheck size={28} />
+                </div>
+                <h3>Artykuł 28a</h3>
+                <span className="legalBasisLabel">Podwójne ubezpieczenie OC</span>
+                <p>
+                  Wypowiedzenie gdy masz już nową polisę OC w innej firmie. Wymaga podania daty, nowego ubezpieczycieli i okresu nowej polisy.
+                </p>
+                <a href="#blog/art-28-vs-28a-vs-31" className="legalBasisLink">
+                  Dowiedz się więcej <ArrowRight size={16} />
+                </a>
+              </article>
+
+              <article className="legalBasisCard">
+                <div className="legalBasisIcon">
+                  <Key size={28} />
+                </div>
+                <h3>Artykuł 31</h3>
+                <span className="legalBasisLabel">Zakup pojazdu z ubezpieczeniem</span>
+                <p>
+                  Możliwość wypowiedzenia polisy gdy kupiłeś pojazd z aktywnym ubezpieczeniem. Wybór tylko dla nowego właściciela.
+                </p>
+                <a href="#blog/art-28-vs-28a-vs-31" className="legalBasisLink">
+                  Dowiedz się więcej <ArrowRight size={16} />
+                </a>
+              </article>
+            </div>
+
+            <div className="helpfulLinksSection">
+              <h3>Przydatne informacje</h3>
+              <div className="helpfulLinksGrid">
+                <a href="#blog/terminy-wypowiedzenia-oc" className="helpfulLinkCard">
+                  <div className="helpfulLinkIcon">
+                    <Clock size={24} />
+                  </div>
+                  <div className="helpfulLinkContent">
+                    <strong>Terminy wypowiedzenia</strong>
+                    <p>Ile czasu ma ubezpieczyciel na potwierdzenie?</p>
+                  </div>
+                </a>
+                <a href="#blog/bezpieczenstwo-danych-dokumenty" className="helpfulLinkCard">
+                  <div className="helpfulLinkIcon">
+                    <Lock size={24} />
+                  </div>
+                  <div className="helpfulLinkContent">
+                    <strong>Bezpieczeństwo danych</strong>
+                    <p>Jak chronić swoje dane osobowe?</p>
+                  </div>
+                </a>
+                <a href="#blog/zwrot-skladki-oc" className="helpfulLinkCard">
+                  <div className="helpfulLinkIcon">
+                    <DollarSign size={24} />
+                  </div>
+                  <div className="helpfulLinkContent">
+                    <strong>Zwrot składki</strong>
+                    <p>Kiedy i jak otrzymać zwrot?</p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </section>
