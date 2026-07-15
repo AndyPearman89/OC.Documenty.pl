@@ -1,7 +1,7 @@
 # OC Generator — Task Checklist
 
 **Last Updated:** 2026-07-15  
-**Progress:** 15% (2/13 major phases complete)
+**Progress:** 30% (4/13 major phases complete or in-progress)
 
 ---
 
@@ -32,58 +32,66 @@
 
 ---
 
-## 🟡 IN PROGRESS / NOT STARTED
+## 🟢 COMPLETED (continued)
 
 ### Phase 2: Landing Page
-- [ ] Create `/dokument/wypowiedzenie-oc` page route
-  - [ ] Page component with metadata
-  - [ ] Layout wrapper
-- [ ] **Desktop Layout (Priority: HIGH)**
-  - [ ] Header section
-  - [ ] 2-column hero (text + illustration)
-  - [ ] Document showcase/mockup
-  - [ ] Benefits grid
-  - [ ] Trust badges section
-  - [ ] Rating/social proof display
-  - [ ] CTA buttons (Pobierz PDF, Przejdź do generatora)
-  - [ ] Footer
+- [x] Create `/dokument/wypowiedzenie-oc` page route
+  - [x] Page component with metadata
+  - [x] Layout wrapper
+- [x] **Desktop Layout (Priority: HIGH)**
+  - [x] Header section
+  - [x] 2-column hero (text + illustration)
+  - [x] Document showcase/mockup
+  - [x] Benefits grid
+  - [x] Trust badges section
+  - [x] Rating/social proof display
+  - [x] CTA buttons (Pobierz PDF, Przejdź do generatora)
+  - [x] Footer
 
-- [ ] **Mobile Layout (Priority: HIGH)**
-  - [ ] Stack all sections vertically
-  - [ ] Full-width buttons and images
-  - [ ] Responsive spacing
-  - [ ] Touch-friendly interactions
+- [x] **Mobile Layout (Priority: HIGH)**
+  - [x] Stack all sections vertically
+  - [x] Full-width buttons and images
+  - [x] Responsive spacing
+  - [x] Touch-friendly interactions
 
-- [ ] **Content Writing (Priority: MEDIUM)**
-  - [ ] Headline and tagline
-  - [ ] Problem statement
-  - [ ] Solution description
-  - [ ] 5-7 key features
-  - [ ] Social proof / testimonials
-  - [ ] Legal disclaimers
-  - [ ] Contact information
+- [x] **Content Writing (Priority: MEDIUM)**
+  - [x] Headline and tagline
+  - [x] Problem statement
+  - [x] Solution description
+  - [x] 5-7 key features
+  - [x] Social proof / testimonials
+  - [x] Legal disclaimers
+  - [x] Contact information
 
-- [ ] **Components for Landing (Priority: HIGH)**
-  - [ ] `DocumentShowcase` component
-  - [ ] `TrustBadges` component
-  - [ ] Image/illustration assets
-  - [ ] Rating display component
+- [x] **Components for Landing (Priority: HIGH)**
+  - [x] `DocumentShowcase` component
+  - [x] `TrustBadges` component
+  - [x] Image/illustration assets
+  - [x] Rating display component
 
-### Phase 3: Desktop Generator
-- [ ] Create `OcCancellationDesktopGenerator` component
-  - [ ] 2-column layout (form + preview)
-  - [ ] Left column: form fields
-  - [ ] Right column: live PDF preview
-  - [ ] Responsive breakpoints
-  - [ ] Real-time form → PDF sync
-  - [ ] Step indicator with progress
-  - [ ] Navigation buttons (Previous/Next)
+---
 
-- [ ] Update form to support both mobile and desktop
-  - [ ] Responsive form groups
-  - [ ] Horizontal layout for desktop
-  - [ ] Vertical layout for mobile
-  - [ ] Conditional rendering
+## 🟡 IN PROGRESS / NOT STARTED
+
+### Phase 3: Desktop Generator (75% COMPLETE)
+- [x] Create `OcCancellationDesktopGenerator` component
+  - [x] 2-column layout (form + preview)
+  - [x] Left column: form fields
+  - [x] Right column: live PDF preview
+  - [x] Responsive breakpoints
+  - [x] Real-time form → PDF sync framework
+  - [x] Step indicator with progress
+  - [x] Navigation buttons (Previous/Next)
+
+- [x] Update form to support both mobile and desktop
+  - [x] Responsive form groups
+  - [x] Horizontal layout for desktop
+  - [x] Vertical layout for mobile
+  - [x] Conditional rendering
+
+- [ ] Fine-tune form validation behavior
+- [ ] Polish step transition animations
+- [ ] Test all cancellation types (art 28, 28a, 31)
 
 ### Phase 4: PDF Generation Engine
 - [ ] Create `lib/pdf/pdfGenerator.ts` service
