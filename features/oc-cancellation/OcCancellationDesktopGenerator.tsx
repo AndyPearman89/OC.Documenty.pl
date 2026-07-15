@@ -81,13 +81,24 @@ export function OcCancellationDesktopGenerator() {
   }, [watchedValues]);
 
   const nextStep = async () => {
+    const values = getValues();
     const fieldGroups: Record<number, (keyof FormData)[]> = {
       1: ['ownerName', 'pesel'],
       2: ['vehicleBrand', 'vehicleModel', 'registration'],
       3: ['insurer', 'policyNumber', 'endDate'],
     };
-    const valid = await trigger(fieldGroups[step] || []);
-    if (valid && step < steps.length) setStep(step + 1);
+
+    const fields = fieldGroups[step] || [];
+    const isValid = fields.every(field => {
+      const value = values[field];
+      if (field === 'pesel') return value && value.length === 11;
+      if (field === 'policyNumber') return value && value.length >= 3;
+      return value && (value as string).length >= 2;
+    });
+
+    if (isValid && step < steps.length) {
+      setStep(step + 1);
+    }
   };
 
   const handleGeneratePdf = async () => {
