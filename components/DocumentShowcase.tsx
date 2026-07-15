@@ -15,14 +15,14 @@ export function DocumentShowcase({
 }: DocumentShowcaseProps) {
   const config = {
     'wypowiedzenie-oc': {
-      title: 'Wypowiedzenie umowy OC',
-      subtitle: 'kupna-sprzedaży pojazdu',
+      title: 'Wypowiedzenie umowy',
+      subtitle: 'ubezpieczenia OC',
       description:
-        'Wypełnij formularz krok po kroku, a my wygenerujemy profesjonalną umowę w PDF lub DOCX.',
+        'Szybko i bezpiecznie wygeneruj i wyślij wypowiedzenie ubezpieczenia odpowiedzialności cywilnej. Zgodne z ustawą, gotowe w 2 minuty.',
       features: [
-        '✓ Zgodne z prawem',
-        '✓ Gotowy do pobrania',
-        '✓ Do edycji i wydruku',
+        '✓ Aktualne wzory',
+        '✓ Bezpieczne dane',
+        '✓ Wysyłka w 2 minuty',
       ],
       rating: '4.9/5',
       ratingCount: '1200+',
@@ -376,11 +376,11 @@ export function DocumentShowcase({
             <div className="showcase-buttons">
               <button className="btn btn-primary" onClick={onGeneratorClick}>
                 <ArrowRight size={18} />
-                Przejdź do generatora
+                Wypełnij i wyślij
               </button>
               <button className="btn btn-secondary">
                 <Download size={18} />
-                Pobierz PDF
+                Pobierz szablon
               </button>
             </div>
 
@@ -429,32 +429,30 @@ export function DocumentShowcase({
                 <div className="preview-content">
                   <div className="preview-header-doc">
                     <div className="preview-subtitle">OC.Documenty.pl</div>
-                    <div className="preview-title">UMOWA KUPNA-SPRZEDAŻY POJAZDU</div>
+                    <div className="preview-title">WYPOWIEDZENIE UMOWY OC</div>
                   </div>
 
                   <div className="preview-section">
-                    <div className="preview-label">§ 1. STRONY UMOWY</div>
+                    <div className="preview-label">DANE WŁAŚCICIELA</div>
                     <div className="preview-line"></div>
                     <div className="preview-line short"></div>
                   </div>
 
                   <div className="preview-section">
-                    <div className="preview-label">§ 2. PRZEDMIOT UMOWY</div>
+                    <div className="preview-label">DANE POJAZDU</div>
                     <div className="preview-line"></div>
                     <div className="preview-line short"></div>
                   </div>
 
                   <div className="preview-section">
-                    <div className="preview-label">§ 3. CENA I ZAPŁATA</div>
+                    <div className="preview-label">WYBÓR PODSTAWY PRAWNEJ</div>
                     <div className="preview-line"></div>
                     <div className="preview-line"></div>
                   </div>
 
                   <div className="preview-section">
-                    <div className="preview-label">§ 4. OŚWIADCZENIA STRON</div>
-                    <div className="preview-line"></div>
-                    <div className="preview-line"></div>
-                    <div className="preview-line short"></div>
+                    <div className="preview-label">PODPIS</div>
+                    <div className="preview-line short" style={{ width: '40%' }}></div>
                   </div>
                 </div>
               </div>
