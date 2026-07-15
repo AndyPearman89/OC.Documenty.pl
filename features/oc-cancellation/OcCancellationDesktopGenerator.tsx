@@ -3,12 +3,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight, Download, Mail, Printer } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm, useWatch, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { OcCancellationTemplate, type OcCancellationData } from './OcCancellationTemplate';
 import { insurerProfiles } from '@/lib/catalog';
 import { generateOcCancellationPDF } from '@/lib/pdf/pdfGenerator';
 import { PDFViewer } from '@/components/PDFViewer';
+import { LegalBasisSelector } from '@/components/LegalBasisSelector';
 
 const mapFormDataToTemplate = (formData: any): Partial<OcCancellationData> => ({
   clientName: formData.ownerName || '',
@@ -121,6 +122,31 @@ export function OcCancellationDesktopGenerator() {
   };
 
   if (submitted) {
+    const handleDownloadPDF = async () => {
+      const mappedData = mapFormDataToTemplate(watchedValues);
+      const pdfBlob = await generateOcCancellationPDF(mappedData);
+      const url = URL.createObjectURL(pdfBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Wypowiedzenie-OC-${new Date().toISOString().split('T')[0]}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+
+    const handleDownloadDOCX = () => {
+      alert('DOCX pobieranie - dostępne w Phase 5');
+    };
+
+    const handleEmail = () => {
+      alert('Email - dostępne w Phase 5');
+    };
+
+    const handlePrint = () => {
+      window.print();
+    };
+
     return (
       <div className="desktopSuccess">
         <style>{`
@@ -187,16 +213,16 @@ export function OcCancellationDesktopGenerator() {
         <p className="successMessage">PDF został wygenerowany. Możesz teraz pobrać, wydrukować lub wysłać e-mailem.</p>
 
         <div className="successActions">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={handleDownloadPDF}>
             <Download size={16} /> Pobierz PDF
           </button>
-          <button className="btn btn-secondary">
+          <button className="btn btn-secondary" onClick={handleDownloadDOCX}>
             <Download size={16} /> Pobierz DOCX
           </button>
-          <button className="btn btn-secondary">
+          <button className="btn btn-secondary" onClick={handleEmail}>
             <Mail size={16} /> Wyślij e-mail
           </button>
-          <button className="btn btn-secondary">
+          <button className="btn btn-secondary" onClick={handlePrint}>
             <Printer size={16} /> Drukuj
           </button>
         </div>
@@ -529,22 +555,17 @@ export function OcCancellationDesktopGenerator() {
                     <input {...register('endDate')} type="date" />
                     {errors.endDate && <div className="formError">{errors.endDate.message}</div>}
                   </div>
-                  <div className="formGroup">
-                    <label>Typ wypowiedzenia *</label>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px' }}>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'normal', fontSize: '13px' }}>
-                        <input {...register('cancellationType')} type="radio" value="art28" />
-                        Art. 28 — Koniec okresu ubezpieczenia
-                      </label>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'normal', fontSize: '13px' }}>
-                        <input {...register('cancellationType')} type="radio" value="art28a" />
-                        Art. 28a — Podwójne ubezpieczenie
-                      </label>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'normal', fontSize: '13px' }}>
-                        <input {...register('cancellationType')} type="radio" value="art31" />
-                        Art. 31 — Zakup pojazdu z polisą
-                      </label>
-                    </div>
+                  <div className="formGroup" style={{ marginTop: '24px' }}>
+                    <Controller
+                      name="cancellationType"
+                      control={control}
+                      render={({ field }) => (
+                        <LegalBasisSelector
+                          value={field.value as 'art28' | 'art28a' | 'art31'}
+                          onChange={field.onChange}
+                        />
+                      )}
+                    />
                   </div>
                 </div>
               )}
