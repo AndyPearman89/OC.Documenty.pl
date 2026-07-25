@@ -1,269 +1,133 @@
 import type { Metadata } from "next";
-import { ArrowRight, Check, CheckCircle2, Clock3, CloudDownload, FileText, PenLine, ShieldCheck, Sparkles, AlertTriangle, Users, FileSignature, Clock, Lock, Phone } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import {
+  ArrowRight,
+  Check,
+  Clock3,
+  Download,
+  FileCheck2,
+  FilePenLine,
+  FileText,
+  LockKeyhole,
+  Mail,
+  ShieldCheck,
+  Star,
+  Upload,
+} from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { CollisionForm } from "@/features/collision/CollisionForm";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Oświadczenie sprawcy kolizji",
-  description: "Wypełnij oświadczenie sprawcy kolizji, dodaj podpis i pobierz gotowy dokument PDF.",
+  title: "Oświadczenie sprawcy kolizji — generator PDF",
+  description: "Wypełnij oświadczenie sprawcy kolizji online, pobierz PDF, podpisz i wyślij do ubezpieczyciela.",
   alternates: { canonical: "/oswiadczenie-sprawcy" },
 };
 
-const whyItMatters = [
-  "czytelny opis zdarzenia dla ubezpieczyciela",
-  "miejsce na dane uczestników i pojazdów",
-  "podpis zdjęciem i gotowy PDF A4",
+const documents = [
+  ["Oświadczenie sprawcy kolizji", "Zgłoś szkodę bez błędów.", "/oswiadczenie-sprawcy"],
+  ["Wypowiedzenie OC", "Wypowiedz polisę OC online.", "/wypowiedzenie-oc"],
+  ["Zgłoszenie szkody OC", "Przekaż komplet danych ubezpieczycielowi.", "/zgloszenie-szkody"],
+  ["Kalkulator OC/AC", "Porównaj warianty ubezpieczenia.", "/kalkulator-oc"],
+  ["Pełnomocnictwo OC", "Upoważnij inną osobę do działania.", "/pelnomocnictwo"],
+  ["Wniosek o zwrot składki", "Odzyskaj niewykorzystaną składkę.", "/wniosek-o-zwrot-skladki"],
 ];
 
-const processSteps = [
-  {
-    title: "Wypełnij formularz",
-    text: "Podaj dane sprawcy, pojazdu oraz przebieg zdarzenia w logicznej kolejności.",
-  },
-  {
-    title: "Sprawdź podgląd",
-    text: "Zobacz, jak dokument wygląda przed pobraniem i upewnij się, że wszystko jest czytelne.",
-  },
-  {
-    title: "Dodaj podpis",
-    text: "Wstaw zdjęcie podpisu, aby dokument był gotowy do przekazania ubezpieczycielowi.",
-  },
-  {
-    title: "Pobierz lub wyślij",
-    text: "Zapisz PDF, wydrukuj go albo przekaż dalej bez zbędnych kroków.",
-  },
-];
+const steps = [
+  [FilePenLine, "Wypełnij", "formularz online"],
+  [Download, "Pobierz PDF", "gotowy dokument"],
+  [FileCheck2, "Podpisz", "ręcznie lub online"],
+  [Upload, "Wgraj lub wyślij", "do ubezpieczyciela"],
+  [ShieldCheck, "Otrzymaj", "potwierdzenie"],
+  [Clock3, "Załatwione", "bez wychodzenia z domu"],
+] as const;
 
 export default function CollisionPage() {
   return (
     <>
       <Header />
-      <main id="main-content">
-        <div className="container">
-          <Breadcrumbs items={[{ label: "Dokumenty", href: "/dokumenty" }, { label: "Oświadczenie sprawcy kolizji" }]} />
-        </div>
-
-        <section className="collisionHero">
-          <div className="container collisionTop">
-            <div>
-              <span className="premiumPill">
-                <Sparkles /> Formularz po kolizji
-              </span>
-              <h1>Oświadczenie<br />sprawcy kolizji</h1>
-              <p>
-                Wypełnij dane uczestników, pojazdów i zdarzenia. Dodaj podpis zdjęciem i pobierz czytelny dokument PDF gotowy do
-                przekazania ubezpieczycielowi.
-              </p>
-              <div className="miniBenefits">
-                <span><FileText /> Czytelny formularz</span>
-                <span><Clock3 /> Kilka minut</span>
-                <span><ShieldCheck /> Dane lokalne</span>
-                <span><CloudDownload /> PDF A4</span>
+      <main id="main-content" className={styles.page}>
+        <section className={styles.hero}>
+          <div className={`container ${styles.heroGrid}`}>
+            <div className={styles.heroCopy}>
+              <div className={styles.hotPill}>Najpopularniejszy dokument w kategorii OC</div>
+              <h1>Oświadczenie<br /><span>sprawcy kolizji</span></h1>
+              <p>Wypełnij online, pobierz PDF, podpisz i wyślij do ubezpieczyciela w kilka minut.</p>
+              <div className={styles.trustRow}>
+                <span><ShieldCheck /> Zgodne z wymaganiami</span>
+                <span><LockKeyhole /> Bezpieczne i bez rejestracji</span>
+                <span><FileCheck2 /> Aktualny wzór</span>
               </div>
-              <a className="premiumButton primary" href="#formularz">
-                Wypełnij oświadczenie <ArrowRight />
-              </a>
+              <div className={styles.heroActions}>
+                <a href="#formularz" className={styles.primaryCta}><FilePenLine /> Wypełnij oświadczenie <ArrowRight /></a>
+                <a href="#podglad" className={styles.secondaryCta}><Download /> Zobacz przykładowy PDF</a>
+              </div>
+              <div className={styles.rating}>
+                <div className={styles.avatars}><i /><i /><i /><i /></div>
+                <div><div>{[1,2,3,4,5].map((n)=><Star key={n} fill="currentColor" />)}</div><small>4,9/5 na podstawie opinii użytkowników</small></div>
+              </div>
             </div>
-            <DocumentPreview compact />
-          </div>
-        </section>
-
-        <section className="enterpriseTrust">
-          <div className="container enterpriseTrustGrid">
-            <div>
-              <CheckCircle2 />
-              <span>
-                <b>Bez konta</b>
-                <small>natychmiastowy dostęp</small>
-              </span>
-            </div>
-            <div>
-              <ShieldCheck />
-              <span>
-                <b>Lokalnie</b>
-                <small>bez zapisu na serwerze</small>
-              </span>
-            </div>
-            <div>
-              <PenLine />
-              <span>
-                <b>Podpis zdjęciem</b>
-                <small>JPG, PNG lub WEBP</small>
-              </span>
-            </div>
-            <div>
-              <CloudDownload />
-              <span>
-                <b>PDF A4</b>
-                <small>do pobrania i druku</small>
-              </span>
+            <div id="podglad" className={styles.visual}>
+              <div className={styles.crashGlow} />
+              <DocumentMock />
             </div>
           </div>
         </section>
 
-        <section className="enterpriseSection surfaceSection">
-          <div className="container collisionInfoGrid">
-            <article>
-              <span className="premiumPill">Co zawiera dokument</span>
-              <h2>Urzędowy układ i jasne pola do wypełnienia</h2>
-              <p>
-                Dokument został przygotowany tak, aby prowadził użytkownika po kolei przez wszystkie kluczowe elementy: dane strony,
-                dane pojazdu, opis zdarzenia i podpis. Dzięki temu łatwiej przekazać komplet informacji do likwidacji szkody.
-              </p>
-            </article>
-            <article>
-              <span className="premiumPill">Dlaczego warto</span>
-              <ul className="collisionWhyList">
-                {whyItMatters.map((item) => (
-                  <li key={item}>
-                    <Check /> <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <section className="enterpriseSection enterpriseToolSection" id="formularz">
-          <div className="container collisionWorkspace">
-            <div>
-              <span className="premiumPill">Podgląd</span>
-              <h2>Dokument na żywo</h2>
-              <DocumentPreview />
-            </div>
-            <div>
-              <span className="premiumPill">Generator</span>
-              <h2>Wypełnij online</h2>
-              <CollisionForm />
-            </div>
-          </div>
-        </section>
-
-        <section className="featureStrip">
-          <div className="container">
-            {[
-              [Clock3, "Szybkie wypełnianie", "Prowadzenie krok po kroku"],
-              [FileText, "Dostępny online", "Komputer i telefon"],
-              [CloudDownload, "Pobierz PDF", "Gotowy do sprawdzenia"],
-              [ShieldCheck, "Lokalne dane", "Bez automatycznej wysyłki"],
-            ].map(([Icon, title, text]) => (
-              <div key={String(title)}>
-                <Icon />
-                <span>
-                  <strong>{String(title)}</strong>
-                  <small>{String(text)}</small>
-                </span>
+        <section className={`container ${styles.processCard}`}>
+          <div className={styles.processIntro}><strong>Prosty proces —<br />od wypełnienia do wysyłki</strong><i /></div>
+          <div className={styles.processSteps}>
+            {steps.map(([Icon,title,text], index) => (
+              <div className={styles.processStep} key={title}>
+                <span><Icon /></span><b>{title}</b><small>{text}</small>{index < steps.length - 1 && <ArrowRight className={styles.stepArrow} />}
               </div>
             ))}
           </div>
         </section>
 
-        <section className="enterpriseSection surfaceSection">
-          <div className="container">
-            <div className="enterpriseHeading">
-              <span className="premiumPill">Proces</span>
-              <h2>Jak to działa?</h2>
-              <p>Wypełnij oświadczenie w czterech prostych krokach.</p>
-            </div>
-            <div className="steps fourSteps">
-              {processSteps.map((step, index) => (
-                <article key={step.title}>
-                  <b>{index + 1}</b>
-                  {index === 3 ? <Check /> : <FileText />}
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </article>
-              ))}
-            </div>
+        <section className={`container ${styles.popular}`}>
+          <div className={styles.sectionHeader}><h2>Najpopularniejsze dokumenty OC</h2><a href="/dokumenty">Zobacz wszystkie dokumenty OC <ArrowRight /></a></div>
+          <div className={styles.documentGrid}>
+            {documents.map(([title,text,href], index) => (
+              <a href={href} className={`${styles.documentCard} ${index === 0 ? styles.featured : ""}`} key={title}>
+                {index === 0 && <em>Najpopularniejszy</em>}
+                <span><FileText /></span><h3>{title}</h3><p>{text}</p><b>{index === 3 ? "Porównaj" : "Wypełnij"} <ArrowRight /></b>
+              </a>
+            ))}
           </div>
         </section>
 
-        <section style={{ paddingTop: '60px', paddingBottom: '40px' }}>
-          <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <span className="eyebrow">Rodzaje oświadczeń</span>
-              <h2>Trzy sposoby złożenia oświadczenia po kolizji</h2>
-            </div>
-
-            <div className="collisionTypesGrid">
-              <article className="collisionTypeCard">
-                <div className="collisionTypeIcon">
-                  <AlertTriangle size={28} />
-                </div>
-                <h3>Kolizja drogowa</h3>
-                <span className="collisionTypeLabel">Zdarzenie drogowe</span>
-                <p>
-                  Oświadczenie sprawcy gdy doszło do zderzenia pojazdów na drodze publicznej. Obejmuje wszystkie dane zdarzenia i stron uczestniczących.
-                </p>
-                <a href="#blog/kolizja-drogowa" className="collisionTypeLink">
-                  Dowiedz się więcej <ArrowRight size={16} />
-                </a>
-              </article>
-
-              <article className="collisionTypeCard">
-                <div className="collisionTypeIcon">
-                  <Users size={28} />
-                </div>
-                <h3>Wspólne oświadczenie</h3>
-                <span className="collisionTypeLabel">Szybsza procedura</span>
-                <p>
-                  Gdy obie strony zgadzają się na ustalony przebieg zdarzenia, wspólne oświadczenie przyspiesza likwidację szkody i zmniejsza konflikty.
-                </p>
-                <a href="#blog/wspolne-oswiadczenie" className="collisionTypeLink">
-                  Dowiedz się więcej <ArrowRight size={16} />
-                </a>
-              </article>
-
-              <article className="collisionTypeCard">
-                <div className="collisionTypeIcon">
-                  <FileSignature size={28} />
-                </div>
-                <h3>Osobne oświadczenia</h3>
-                <span className="collisionTypeLabel">Gdy brak zgody</span>
-                <p>
-                  Gdy strony mają różne wersje zdarzeń, każda może złożyć własne oświadczenie z własną interpretacją przrzebiegu kolizji.
-                </p>
-                <a href="#blog/osobne-oswiadczenia" className="collisionTypeLink">
-                  Dowiedz się więcej <ArrowRight size={16} />
-                </a>
-              </article>
-            </div>
-
-            <div className="collisionHelpSection">
-              <h3>Przydatne informacje</h3>
-              <div className="collisionHelpGrid">
-                <a href="#blog/procedura-likwidacji" className="collisionHelpCard">
-                  <div className="collisionHelpIcon">
-                    <Clock size={24} />
-                  </div>
-                  <div className="collisionHelpContent">
-                    <strong>Procedura likwidacji</strong>
-                    <p>Ile czasu trwa rozpatrzenie szkody?</p>
-                  </div>
-                </a>
-                <a href="#blog/ochrona-danych-kolizja" className="collisionHelpCard">
-                  <div className="collisionHelpIcon">
-                    <Lock size={24} />
-                  </div>
-                  <div className="collisionHelpContent">
-                    <strong>Ochrona danych</strong>
-                    <p>Jak bezpiecznie udostępniać dane?</p>
-                  </div>
-                </a>
-                <a href="#blog/roszczenia-poszkodowanych" className="collisionHelpCard">
-                  <div className="collisionHelpIcon">
-                    <Phone size={24} />
-                  </div>
-                  <div className="collisionHelpContent">
-                    <strong>Roszczenia poszkodowanych</strong>
-                    <p>Jakie są terminy i limity?</p>
-                  </div>
-                </a>
-              </div>
-            </div>
+        <section className={`container ${styles.business}`}>
+          <div>
+            <small>Dla firm</small><h2>OC.Documenty.pl <span>Business</span></h2>
+            <p>Twórz dokumenty z własnym brandingiem i zarządzaj nimi w zespole.</p>
+            <ul>
+              {["Własne logo, kolory i pieczęć","Szablony dla pracowników","Historia i numeracja dokumentów","Eksport PDF i DOCX bez oznaczeń","Wspólna książka kontrahentów","Integracja z e-podpisem"].map(item=><li key={item}><Check />{item}</li>)}
+            </ul>
+            <a href="/dla-firm" className={styles.primaryCta}>Poznaj wersję Business <ArrowRight /></a>
           </div>
+          <div className={styles.dashboardMock}><div className={styles.dashSidebar} /><div className={styles.dashContent}><b>Moje dokumenty</b><i /><i /><i /><i /></div><DocumentMock compact /></div>
+        </section>
+
+        <section className={`container ${styles.metrics}`}>
+          <div><FileText /><b>500 000+</b><small>wygenerowanych dokumentów</small></div>
+          <div><Star /><b>98%</b><small>zadowolonych użytkowników</small></div>
+          <div><Clock3 /><b>5 min</b><small>średni czas wypełnienia</small></div>
+          <div><ShieldCheck /><b>100%</b><small>zgodności ze wzorem</small></div>
+          <div><LockKeyhole /><b>Bezpiecznie</b><small>Twoje dane są prywatne</small></div>
+        </section>
+
+        <section id="formularz" className={styles.generatorSection}>
+          <div className="container">
+            <div className={styles.generatorHeading}><small>Generator dokumentu</small><h2>Wypełnij oświadczenie online</h2><p>Dane są przetwarzane lokalnie w przeglądarce.</p></div>
+            <CollisionForm />
+          </div>
+        </section>
+
+        <section className={`container ${styles.contactStrip}`}>
+          <div><ShieldCheck /><span><b>Masz pytania?</b><small>Jesteśmy tu, aby pomóc.</small></span></div>
+          <div><Mail /><span><small>Napisz do nas</small><b>kontakt@oc.documenty.pl</b></span></div>
+          <div><Clock3 /><span><small>Dostępne 7 dni w tygodniu</small><b>8:00–20:00</b></span></div>
         </section>
       </main>
       <Footer />
@@ -271,26 +135,13 @@ export default function CollisionPage() {
   );
 }
 
-function DocumentPreview({ compact = false }: { compact?: boolean }) {
+function DocumentMock({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`paperPreview ${compact ? "compact" : ""}`}>
-      <header>
-        OC.<strong>Documenty.pl</strong>
-      </header>
-      <h3>OŚWIADCZENIE SPRAWCY KOLIZJI DROGOWEJ</h3>
-      <div className="previewMeta">
-        <span>Aktualny wzór 2026</span>
-        <span>PDF i DOCX</span>
-        <span>Bezpieczne dane</span>
-      </div>
-      {["1. DANE SPRAWCY KOLIZJI", "2. DANE POJAZDU SPRAWCY", "3. DANE ZDARZENIA"].map((section) => (
-        <div className="paperSection" key={section}>
-          <b>{section}</b>
-          <i />
-          <i />
-          <i />
-        </div>
-      ))}
+    <div className={`${styles.documentMock} ${compact ? styles.compactMock : ""}`}>
+      <header><ShieldCheck /><b>OC.Documenty.pl</b><em>Zgodne z wymaganiami</em></header>
+      <h3>OŚWIADCZENIE SPRAWCY KOLIZJI</h3><p>dla potrzeb ubezpieczyciela</p>
+      {["1. DANE ZDARZENIA","2. DANE POSZKODOWANEGO","3. DANE SPRAWCY","4. OŚWIADCZENIE O ZDARZENIU"].map((title,idx)=><section key={title}><b>{title}</b>{Array.from({length: idx === 3 ? 4 : 3}).map((_,i)=><i key={i} />)} </section>)}
+      <footer><span>Data: 24.06.2026</span><span>Podpis sprawcy</span></footer>
     </div>
   );
 }
