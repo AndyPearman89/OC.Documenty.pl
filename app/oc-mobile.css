@@ -46,7 +46,7 @@
 .ocSectionWhite { background:#fff; }
 .ocHeading { max-width:740px; margin-bottom:28px; }
 .ocHeading small { color:var(--oc-red); font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
-.ocHeading h2 { margin:10px 0; font-size:clamp(30px,4vw,48px); letter-spacing:-.04em; }
+.ocHeading h1,.ocHeading h2 { margin:10px 0; font-size:clamp(30px,4vw,48px); letter-spacing:-.04em; }
 .ocHeading p { color:var(--oc-muted); font-size:17px; line-height:1.65; }
 .ocCards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 .ocCard { background:#fff; border:1px solid var(--oc-line); border-radius:24px; padding:22px; box-shadow:0 12px 34px rgba(16,24,40,.06); }
@@ -75,6 +75,24 @@
 .ocStep p { margin:0; color:var(--oc-muted); font-size:14px; line-height:1.45; }
 .ocBottomBar { display:none; }
 
+.ocBackLink { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; color:var(--oc-red); font-weight:850; text-decoration:none; }
+.ocCompareLayout { display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:24px; align-items:start; }
+.ocPartnerWidget { min-height:560px; padding:24px; border:1px solid var(--oc-line); border-radius:28px; background:#fff; box-shadow:0 18px 44px rgba(16,24,40,.08); }
+.ocPartnerWidgetHead { display:flex; align-items:center; gap:14px; padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--oc-line); }
+.ocPartnerWidgetHead>span { width:50px; height:50px; display:grid; place-items:center; border-radius:16px; color:var(--oc-red); background:#fff0f2; }
+.ocPartnerWidgetHead small { color:var(--oc-red); font-weight:900; text-transform:uppercase; letter-spacing:.08em; }
+.ocPartnerWidgetHead h2 { margin:3px 0 0; font-size:23px; }
+.ocCompareAside { position:sticky; top:94px; padding:24px; border-radius:28px; color:#fff; background:linear-gradient(145deg,#111827,#233044); }
+.ocCompareAside h2 { margin:0 0 16px; font-size:25px; }
+.ocCompareAside ol { list-style:none; display:grid; gap:13px; margin:0; padding:0; }
+.ocCompareAside li { display:flex; gap:10px; align-items:flex-start; color:#e4e7ec; line-height:1.5; }
+.ocCompareAside li svg { width:18px; flex:0 0 auto; margin-top:2px; color:#6ce09a; }
+.ocContinuityNote { display:flex; gap:12px; margin:20px 0; padding:15px; border:1px solid rgba(255,255,255,.14); border-radius:18px; background:rgba(255,255,255,.07); }
+.ocContinuityNote svg { flex:0 0 auto; color:#fff; }
+.ocContinuityNote p { margin:0; color:#e4e7ec; line-height:1.5; }
+.ocCompareAside .ocButton { width:100%; }
+.ocDisclosureDark { color:#667085; }
+
 @media (max-width: 900px) {
   .ocShell { width:min(100% - 24px,680px); }
   .ocHero { padding-top:22px; }
@@ -85,6 +103,8 @@
   .ocCards { grid-template-columns:1fr 1fr; }
   .ocAffiliate { grid-template-columns:1fr; }
   .ocSteps { grid-template-columns:1fr 1fr; }
+  .ocCompareLayout { grid-template-columns:1fr; }
+  .ocCompareAside { position:static; }
   .ocBottomBar { position:sticky; bottom:10px; z-index:30; display:grid; grid-template-columns:1fr 1fr; gap:8px; width:calc(100% - 20px); margin:0 auto 10px; padding:8px; border:1px solid var(--oc-line); border-radius:20px; background:rgba(255,255,255,.94); backdrop-filter:blur(14px); box-shadow:0 16px 36px rgba(16,24,40,.18); }
   .ocBottomBar a { min-height:48px; display:flex; align-items:center; justify-content:center; border-radius:14px; font-weight:900; text-decoration:none; }
   .ocBottomBar a:first-child { color:#fff; background:var(--oc-red); }
@@ -98,5 +118,6 @@
   .ocProof { display:grid; gap:10px; }
   .ocSection { padding:54px 0; }
   .ocCards,.ocSteps { grid-template-columns:1fr; }
-  .ocAffiliateMain,.ocSavings { padding:22px; border-radius:24px; }
+  .ocAffiliateMain,.ocSavings,.ocPartnerWidget,.ocCompareAside { padding:22px; border-radius:24px; }
+  .ocPartnerWidget { min-height:500px; }
 }
