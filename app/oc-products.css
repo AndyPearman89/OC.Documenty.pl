@@ -1,0 +1,147 @@
+.ocProductMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.ocProductMini {
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--oc-line);
+  border-radius: 18px;
+  color: var(--oc-ink);
+  background: #fff7f8;
+  text-decoration: none;
+}
+
+.ocProductMini svg {
+  color: var(--oc-red);
+}
+
+.ocProductMini strong {
+  font-size: 14px;
+}
+
+.ocProductGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ocProductCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 24px;
+  border: 1px solid var(--oc-line);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 16px 38px rgba(16, 24, 40, .07);
+}
+
+.ocProductHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ocProductHeader > span {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 17px;
+  color: var(--oc-red);
+  background: #fff0f2;
+}
+
+.ocProductHeader b {
+  color: var(--oc-red);
+  font-size: 13px;
+  letter-spacing: .12em;
+}
+
+.ocProductHeader h3 {
+  margin: 3px 0 0;
+  font-size: 20px;
+}
+
+.ocProductCard > p {
+  margin: 18px 0;
+  color: var(--oc-muted);
+  line-height: 1.6;
+}
+
+.ocProductCard ul {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.ocProductCard li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #475467;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.ocProductCard li svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--oc-green);
+}
+
+.ocProductCard > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  color: var(--oc-red);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.ocPackageChecklist {
+  display: grid;
+  gap: 11px;
+  margin-top: 22px;
+}
+
+.ocPackageChecklist span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px;
+  border: 1px solid var(--oc-line);
+  border-radius: 14px;
+  color: #344054;
+  background: #f8fafc;
+  font-weight: 750;
+}
+
+.ocPackageChecklist svg {
+  color: var(--oc-green);
+}
+
+@media (max-width: 900px) {
+  .ocProductGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .ocProductCard {
+    padding: 20px;
+    border-radius: 22px;
+  }
+}
