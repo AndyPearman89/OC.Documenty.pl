@@ -7,9 +7,9 @@ import { Footer } from "@/components/Footer";
 import "../oc-mobile.css";
 
 export const metadata: Metadata = {
-  title: "Porównaj oferty OC i AC | OC.Documenty.pl",
+  title: "Porównaj oferty OC, AC i NNW | OC.Documenty.pl",
   description:
-    "Porównaj oferty OC i AC, a po wyborze nowej polisy przygotuj właściwe wypowiedzenie dotychczasowej umowy.",
+    "Porównaj pakiety OC, AC i NNW. Po wyborze nowej polisy przygotuj właściwe wypowiedzenie dotychczasowej umowy OC.",
   alternates: { canonical: "https://oc.documenty.pl/kalkulator-oc" },
 };
 
@@ -20,39 +20,39 @@ export default function KalkulatorOcPage() {
       <main className="ocHome" id="main-content">
         <section className="ocSection ocSectionWhite">
           <div className="ocShell">
-            <Link href="/" className="ocBackLink"><ArrowLeft size={17} /> Wróć do centrum OC</Link>
+            <Link href="/" className="ocBackLink"><ArrowLeft size={17} /> Wróć do centrum ubezpieczeń</Link>
             <div className="ocHeading">
               <small>Porównywarka partnerska</small>
-              <h1>Porównaj oferty OC przed odnowieniem polisy</h1>
+              <h1>Porównaj pakiety OC, AC i NNW przed odnowieniem polisy</h1>
               <p>
-                Najpierw zapewnij sobie nową ochronę bez przerwy. Następnie wróć do generatora i przygotuj właściwe wypowiedzenie dotychczasowej umowy.
+                Zestaw obowiązkowe OC z dobrowolnym AC i NNW, sprawdź zakres ochrony oraz cenę całego pakietu. Po zakupie nowej polisy możesz wrócić do generatora wypowiedzenia dotychczasowego OC.
               </p>
             </div>
 
             <div className="ocCompareLayout">
-              <section className="ocPartnerWidget" aria-label="Porównywarka ofert OC i AC">
+              <section className="ocPartnerWidget" aria-label="Porównywarka ofert OC, AC i NNW">
                 <div className="ocPartnerWidgetHead">
                   <span><BadgePercent /></span>
                   <div>
                     <small>Bezpłatna kalkulacja</small>
-                    <h2>Sprawdź aktualne oferty OC/AC</h2>
+                    <h2>Sprawdź aktualne oferty OC / AC / NNW</h2>
                   </div>
                 </div>
                 <div id="rankomat-ocac" data-cid="12d0280e430a0dedb1f3ae505bbaa009" />
-                <noscript>Włącz JavaScript, aby uruchomić porównywarkę OC/AC.</noscript>
+                <noscript>Włącz JavaScript, aby uruchomić porównywarkę ubezpieczeń komunikacyjnych.</noscript>
               </section>
 
               <aside className="ocCompareAside">
-                <h2>Bezpieczna kolejność</h2>
+                <h2>Porównuj cały pakiet</h2>
                 <ol>
-                  <li><CheckCircle2 /> Porównaj dostępne oferty.</li>
-                  <li><CheckCircle2 /> Kup nową polisę z właściwą datą startu.</li>
-                  <li><CheckCircle2 /> Przygotuj wypowiedzenie starej umowy.</li>
-                  <li><CheckCircle2 /> Podpisz dokument i zachowaj potwierdzenie.</li>
+                  <li><CheckCircle2 /> OC — obowiązkowa ochrona odpowiedzialności cywilnej.</li>
+                  <li><CheckCircle2 /> AC — dobrowolna ochrona własnego pojazdu.</li>
+                  <li><CheckCircle2 /> NNW — ochrona kierowcy i pasażerów.</li>
+                  <li><CheckCircle2 /> Sprawdź cenę, zakres, udział własny i wyłączenia.</li>
                 </ol>
                 <div className="ocContinuityNote">
                   <ShieldCheck />
-                  <p>Nie dopuszczaj do przerwy w obowiązkowej ochronie OC.</p>
+                  <p>Nie dopuszczaj do przerwy w obowiązkowej ochronie OC. AC i NNW są dodatkami dobrowolnymi.</p>
                 </div>
                 <Link className="ocButton ocButtonPrimary" href="/generator">
                   Mam już nową polisę
@@ -61,7 +61,7 @@ export default function KalkulatorOcPage() {
             </div>
 
             <p className="ocDisclosure ocDisclosureDark">
-              Materiał partnerski. OC.Documenty.pl może otrzymać wynagrodzenie za wykonaną kalkulację lub zakup polisy. Porównanie jest bezpłatne dla użytkownika.
+              Materiał partnerski. OC.Documenty.pl może otrzymać wynagrodzenie za wykonaną kalkulację lub zakup polisy. Dostępność AC i NNW zależy od ofert prezentowanych przez partnera.
             </p>
           </div>
         </section>
