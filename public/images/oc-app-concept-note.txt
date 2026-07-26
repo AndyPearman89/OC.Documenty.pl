@@ -1,0 +1,8 @@
+OC.Documenty.pl mobile-first concept
+
+Visual direction:
+- dynamic red, graphite and light gray identity
+- app-like mobile navigation
+- vehicle, policy, calculator, document and OC-sign motifs
+- affiliate comparison before document generation
+- safe flow: compare, buy new policy, generate cancellation, sign and send
