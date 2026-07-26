@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
 import "./enterprise.css";
+import "./oc-products.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://oc.documenty.pl"),
-  title: { default: "OC.Documenty.pl — wzory dokumentów OC/AC online", template: "%s | OC.Documenty.pl" },
+  title: { default: "OC.Documenty.pl — OC, AC i NNW online", template: "%s | OC.Documenty.pl" },
   description:
-    "Generuj dokumenty ubezpieczeniowe OC/AC online. Wypowiedzenie, wspólne oświadczenie, umowy pojazdowe. Szybko, bezpiecznie, bez logowania.",
-  keywords: "dokumenty OC, generator OC, wypowiedzenie ubezpieczenia, oświadczenie kolizja, umowa kupna-sprzedaży",
+    "Porównuj pakiety OC, AC i NNW oraz generuj dokumenty ubezpieczeniowe online. Szybko, bezpiecznie i bez logowania.",
+  keywords: "ubezpieczenie OC, autocasco AC, NNW, porównywarka ubezpieczeń, dokumenty OC, generator OC, wypowiedzenie ubezpieczenia",
   applicationName: "OC.Documenty.pl",
   category: "insurance",
   creator: "OC.Documenty.pl",
@@ -19,9 +20,9 @@ export const metadata: Metadata = {
   appleWebApp: { capable: true, statusBarStyle: "black-translucent" },
   formatDetection: { telephone: false, email: true, address: false },
   openGraph: {
-    title: "OC.Documenty.pl — profesjonalne dokumenty ubezpieczeniowe",
+    title: "OC.Documenty.pl — OC, AC i NNW w jednym miejscu",
     description:
-      "Generuj gotowe dokumenty ubezpieczeniowe w kilka minut. Bez logowania, bez aplikacji, bez stresu.",
+      "Porównuj zakres ochrony i generuj gotowe dokumenty ubezpieczeniowe w kilka minut.",
     url: "https://oc.documenty.pl",
     siteName: "OC.Documenty.pl",
     type: "website",
@@ -31,14 +32,14 @@ export const metadata: Metadata = {
         url: "/images/oc-brand.jpeg",
         width: 1254,
         height: 1254,
-        alt: "OC.Documenty.pl — generator dokumentów ubezpieczeniowych",
+        alt: "OC.Documenty.pl — mobilne centrum OC, AC i NNW",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "OC.Documenty.pl",
-    description: "Profesjonalne dokumenty OC/AC online — szybko, bezpiecznie, bez konta.",
+    title: "OC.Documenty.pl — OC, AC i NNW",
+    description: "Porównanie pakietów i profesjonalne dokumenty ubezpieczeniowe online.",
     images: ["/images/oc-brand.jpeg"],
   },
   alternates: {
